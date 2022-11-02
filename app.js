@@ -114,6 +114,18 @@ function recipeToHTML(recipe) {
 }
 
 //cargar las recetas predefinidas en el array recetas, detnro de objetos del tipo Receta
-for (let recipe of predefinedRecipes){
+for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
+
+$(document).ready(function(){
+    $("vista receta").hide();
+});
+
+$(function () {
+    $("#btn-show").click(function (i){
+        $("#main").hide();
+        $("#vista receta").show();
+        $("#vista receta").text("Receta = " + recipe[i].getName()); //, "Descripcion de la receta" , "image", "indegradiente, prep"
+    });
+})
