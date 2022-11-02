@@ -119,13 +119,13 @@ for (let recipe of predefinedRecipes) {
 }
 
 $(document).ready(function(){
-    $("vista receta").hide();
+    $("#vista_receta").hide();
 });
 
 $(function () {
-    $("#btn-show").click(function (i){
+    $("#btn-show").click(function (){
         $("#main").hide();
-        $("#vista receta").show();
-        $("#vista receta").text("Receta = " + recipe[i].getName()); //, "Descripcion de la receta" , "image", "indegradiente, prep"
+        $("#vista_receta").show();
+        $("#vista_receta_prueba").text("Receta = " + recipe[0].getName()); //, "Descripcion de la receta" , "image", "indegradiente, prep"
     });
 })
