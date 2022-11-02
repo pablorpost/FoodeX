@@ -79,7 +79,7 @@ class Recipe {
 recipe = new Array()
 
 function addRecipe(recipe) {
-    let newRecipe = new Receta(recipe)
+    let newRecipe = new Recipe(recipe)
     recipe.push(newRecipe)
 }
 
