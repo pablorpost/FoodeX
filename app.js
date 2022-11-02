@@ -39,6 +39,41 @@ class Recipe {
         if (datos[3]) { this.ingredients = datos[3] }
         if (datos[4]) { this.preparation = datos[4] }
     }
+
+    getName(){
+        return this.name
+    }
+    setName(name){
+        this.name = name
+    }
+
+    getDescription(){
+        return this.description
+    }
+    setDescription(description){
+        this.description = description
+    }
+
+    getImage(){
+        return this.image
+    }
+    setImage(image){
+        this.image = image
+    }
+
+    getIngredients(){
+        return this.ingredients
+    }
+    setIngredients(ingredients){
+        this.ingredients = ingredients
+    }
+
+    getPreparation(){
+        return this.preparation
+    }
+    setPreparation(preparation){
+        this.preparation = preparation
+    }
 }
 
 recipe = new Array()
