@@ -76,11 +76,11 @@ class Recipe {
     }
 }
 
-recipe = new Array()
+recipes = new Array()
 
 function addRecipe(recipe) {
     let newRecipe = new Recipe(recipe)
-    recipe.push(newRecipe)
+    recipes.push(newRecipe)
 }
 
 function deleteRecipe(nameRecipe) {
@@ -117,6 +117,7 @@ function recipeToHTML(recipe) {
 for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
+console.log(recipes)
 
 $(document).ready(function(){
     $("#vista_receta").hide();
@@ -126,6 +127,6 @@ $(function () {
     $("#btn-show").click(function (){
         $("#main").hide();
         $("#vista_receta").show();
-        $("#vista_receta_prueba").text("Receta = " + recipe[0].getName()); //, "Descripcion de la receta" , "image", "indegradiente, prep"
+        $("#vista_receta_prueba").text("Receta = "+ recipes[0].getName()); // , "Descripcion de la receta" , "image", "indegradiente, prep"
     });
 })
