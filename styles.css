@@ -7,3 +7,26 @@
         color: #E4D4B7;
         color: #FFF3D5;
 */
+body{
+    background-color: #005F84;
+}
+.iconUpperBar{
+    display: "inline-block"
+}
+
+.brandUpperBar{
+    display: "inline-block"
+}
+
+.alignToCenter{
+    align-items: center;
+}
+
+.card{
+    background-color: #0E2C3A;
+}
+
+.card-body{
+    background-color: #5996CF;
+
+}
