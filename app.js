@@ -78,7 +78,8 @@ for (let recipe of predefinedRecipes) {
 
 $(document).ready(function(){
     $("#vista_receta").hide();
-    for (let i=0; i<3; i++) {
+    $("#add").hide();
+    for (let i=0; i<recipes.length; i++) {
         $("#main").append(generateRecipe(i));
     }
 });
@@ -88,11 +89,18 @@ $(function () {
         $("#main").show();
         $("#buttons").show();
         $("#vista_receta").hide();
+        $("#add").hide();
     });
     i=3
-    $("#btn-add").click(function (){
+    $("#btn-add2").click(function (){
         $("#main").append(generateRecipe(i));
         i+=1
+    });
+    $("#btn-add").click(function (){
+        $("#main").hide();
+        $("#buttons").hide();
+        $("#vista_receta").hide();
+        $("#add").show();
     });
 })
 
