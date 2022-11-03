@@ -23,13 +23,11 @@ let predefinedRecipes = [
 ]
 
 class Recipe {
-
     name = ''
     description = ''
     images = new Array()
     ingredients = new Array()
     preparation = ''
-
     constructor(datos) {
         if (datos[0]) { this.name = datos[0] }
         if (datos[1]) { this.description = datos[1] }
@@ -37,35 +35,30 @@ class Recipe {
         if (datos[3]) { this.ingredients = datos[3] }
         if (datos[4]) { this.preparation = datos[4] }
     }
-
     getName(){
         return this.name
     }
     setName(name){
         this.name = name
     }
-
     getDescription(){
         return this.description
     }
     setDescription(description){
         this.description = description
     }
-
     getImages(){
         return this.images
     }
     setImages(images){
         this.images = images
     }
-
     getIngredients(){
         return this.ingredients
     }
     setIngredients(ingredients){
         this.ingredients = ingredients
     }
-
     getPreparation(){
         return this.preparation
     }
@@ -75,12 +68,10 @@ class Recipe {
 }
 
 recipes = new Array()
-
 function addRecipe(recipe) {
     let newRecipe = new Recipe(recipe)
     recipes.push(newRecipe)
 }
-
 for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
