@@ -139,7 +139,4 @@ $(function () {
         `);
         i+=1
     });
-    $("#btn-del"+i).click(function (i){
-        $("#del"+i).remove();
-    });
 })
