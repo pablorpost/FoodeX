@@ -89,6 +89,10 @@ $(function () {
         $("#main").show();
         $("#buttons").show();
         $("#vista_receta").hide();
+    });
+    $("#btn-back2").click(function (){
+        $("#main").show();
+        $("#buttons").show();
         $("#add").hide();
     });
     i=3
