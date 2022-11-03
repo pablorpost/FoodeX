@@ -1,5 +1,5 @@
 # FoodeX
     Por:
-        -Diego Isaac Fernández Conde
-        -David Pimentel Montes
-        -Pablo Requejo Postlbauer
+        -Diego Isaac Fernández Conde (GIS+GII)
+        -David Pimentel Montes (GIS+GII)
+        -Pablo Requejo Postlbauer (GIS+GII)
