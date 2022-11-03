@@ -1,4 +1,4 @@
-# FW-Practica1
+# FoodeX
     Por:
         -Diego Isaac Fernández Conde
         -David Pimentel Montes
