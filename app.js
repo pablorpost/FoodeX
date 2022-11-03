@@ -82,7 +82,7 @@ $(document).ready(function(){
     for (let i=0; i<recipes.length; i++) {
         $("#main").append(generateRecipe(i));
     }
-    
+
 });
 
 $(function () {
@@ -106,12 +106,16 @@ $(function () {
         $("#buttons").hide();
         $("#vista_receta").hide();
         $("#add").show();
+        add_steps_number = 0;
+        add_ingredients_number = 0;
     });
     $("#btn-addsteps").click(function (){
         $("#preparacion_input").append("<input id='stepinp' type='text'><br>");
+        add_steps_number += 1;
     });
     $("#btn-addingredients").click(function (){
         $("#ingredientes_input").append("<input id='ingredientinp' type='text'><br>");
+        add_ingredients_number += 1;
     });
 })
 
