@@ -94,22 +94,43 @@ $(function () {
         $("#main").hide();
         $("#vista_receta").show();
         recipe_id=0
-        ingredients=""
+        ingredients="<ul>"
         images=""
         n=0
         for (let image of recipes[recipe_id].getImages()){
             images += "<img src="+image+" alt="+recipes[recipe_id].getName()+n+"></img>";
             n+=1
         }
-
-        $("#vista_receta_cont").html(`<p class="card-text"> Descripcion: `+ recipes[recipe_id].getDescription()+` </p>
-                                    `+ images+`
-                                    <p> Ingredientes:  `+ ingredients+` </p>
-                                    <p> Preparacion: `+ recipes[recipe_id].getPreparation());
+        for (let ingredient of recipes[recipe_id].getIngredients()){
+            ingredients += '<li type="circle">'+ ingredient +"</li>";
+            n+=1
+        }
+        ingredients += "</ul>"
+        $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+' </p>'
+                                    + images+
+                                    '<p> Ingredientes:  '+ ingredients+' </p>'+
+                                    '<p> Preparacion: '+ recipes[recipe_id].getPreparation());
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
     });
     $("#btn-back").click(function (){
         $("#main").show();
         $("#vista_receta").hide();
     });
+    $("#btn-add").click(function (){
+        $("#main2").append(`
+                    <div class="col-md-4">
+                        <div class="card" style="width: 30rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                    the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+        `);
+        $("#vista_receta").hide();
+    });
+    
 })
