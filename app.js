@@ -80,11 +80,67 @@ $(document).ready(function(){
     $("#vista_receta").hide();
 });
 
+
 $(function () {
-    $("#btn-show").click(function (){
+    // $("#btn-show").click(function (){
+    //     $("#main").hide();
+    //     $("#buttons").hide();
+    //     $("#vista_receta").show();
+    //     recipe_id=0
+    //     ingredients="<ul>"
+    //     images=""
+    //     n=0
+    //     for (let image of recipes[recipe_id].getImages()){
+    //         images += "<img src="+image+" alt="+recipes[recipe_id].getName()+n+"></img>";
+    //         n+=1
+    //     }
+    //     for (let ingredient of recipes[recipe_id].getIngredients()){
+    //         ingredients += '<li type="circle">'+ ingredient +"</li>";
+    //         n+=1
+    //     }
+    //     ingredients += "</ul>"
+    //     $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+' </p>'
+    //                                 + images+
+    //                                 '<p> Ingredientes:  '+ ingredients+' </p>'+
+    //                                 '<p> Preparacion: '+ recipes[recipe_id].getPreparation());
+    //     $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
+    // });
+    $("#btn-back").click(function (){
+        $("#main").show();
+        $("#buttons").show();
+        $("#vista_receta").hide();
+    });
+    i=0
+    $("#btn-add").click(function (){
+        $("#main").append(`
+
+                        <div id="del`+ i+`" class="card" style="width: 30rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">`+recipes[i].getName()+`</h5>
+                                <p class="card-text">`+recipes[i].getDescription()+`</p>
+                                <a href="#" id="btn-show`+i+`" class="btn btn-primary">Go somewhere</a>
+                                <button id="btn-del`+i+`"" class="btn btn-primary">Del</button>
+                                <script>
+                                $("#btn-del`+i+`").click(function() {
+                                    $("#del`+i+`" ).remove();
+                                    });
+                                $("#btn-show`+i+`").click(function() {
+                                    showmore(`+i+`);
+                                    });
+                                </script>
+                            </div>
+                        </div>
+        `);
+        i+=1
+    });
+})
+
+function showmore(recipe_id){
+    jQuery(function($) {
         $("#main").hide();
+        $("#buttons").hide();
         $("#vista_receta").show();
-        recipe_id=0
         ingredients="<ul>"
         images=""
         n=0
@@ -102,32 +158,4 @@ $(function () {
                                     '<p> Ingredientes:  '+ ingredients+' </p>'+
                                     '<p> Preparacion: '+ recipes[recipe_id].getPreparation());
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
-    });
-    $("#btn-back").click(function (){
-        $("#main").show();
-        $("#vista_receta").hide();
-    });
-    i=0
-    $("#btn-add").click(function (){
-        $("#main2").append(`
-                    <div id="del`+ i+`" class="col-md-4">
-                        <div class="card" style="width: 30rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">`+i+`</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                    the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                <button id="btn-del`+i+`">Del</button>
-                                <script>
-                                $("#btn-del`+i+`").click(function() {
-                                $("#del`+i+`" ).remove();
-                                });
-                                </script>
-                            </div>
-                        </div>
-        `);
-        i+=1
-    });
-})
+})};
