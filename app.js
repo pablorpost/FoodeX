@@ -116,21 +116,30 @@ $(function () {
         $("#main").show();
         $("#vista_receta").hide();
     });
+    i=0
     $("#btn-add").click(function (){
         $("#main2").append(`
-                    <div class="col-md-4">
+                    <div id="del`+ i+`" class="col-md-4">
                         <div class="card" style="width: 30rem;">
                             <img src="..." class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
+                                <h5 class="card-title">`+i+`</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                                     the
                                     card's content.</p>
                                 <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <button id="btn-del`+i+`">Del</button>
+                                <script>
+                                $("#btn-del`+i+`").click(function() {
+                                $("#del`+i+`" ).remove();
+                                });
+                                </script>
                             </div>
                         </div>
         `);
-        $("#vista_receta").hide();
+        i+=1
     });
-    
+    $("#btn-del"+i).click(function (i){
+        $("#del"+i).remove();
+    });
 })
