@@ -121,7 +121,22 @@
                     <div class="card-body">
                         <h5  class="card-title">Add new recipe</h5>
                         <div>
-                            <p>Nombre: <input id='titulo' type='text'></p>
+                            <p>Nombre: <input id='tituloinp' type='text'></p>
+                            <p>Descripcion: <input id='descripcioninp' type='text'></p>
+                            <div id="ingredientes_input">
+                                <p>Ingredientes:</p>
+                                
+                            </div>
+                            <button id="btn-addingredients" class="btn btn-primary">New ingredient</button>
+                            <div id="preparacion_input">
+                                <p>Preparacion:</p>
+                                
+                            </div>
+                            <button id="btn-addsteps" class="btn btn-primary">New step</button>
+                            <div id="image_input">
+                                <p>Imagenes:</p>
+                                <input type="file" accept="image/" name="image">
+                            </div>
                         </div>
                         <div class="center centert">
                             <button id="btn-new" class="btn btn-primary">New Recipe</button>
