@@ -22,16 +22,12 @@ let predefinedRecipes = [
 
 ]
 
-//let content = document.getElementById('content');
-
 class Recipe {
-
     name = ''
     description = ''
     images = new Array()
     ingredients = new Array()
     preparation = ''
-
     constructor(datos) {
         if (datos[0]) { this.name = datos[0] }
         if (datos[1]) { this.description = datos[1] }
@@ -39,35 +35,30 @@ class Recipe {
         if (datos[3]) { this.ingredients = datos[3] }
         if (datos[4]) { this.preparation = datos[4] }
     }
-
     getName(){
         return this.name
     }
     setName(name){
         this.name = name
     }
-
     getDescription(){
         return this.description
     }
     setDescription(description){
         this.description = description
     }
-
     getImages(){
-        return this.image
+        return this.images
     }
-    setImages(image){
-        this.image = image
+    setImages(images){
+        this.images = images
     }
-
     getIngredients(){
         return this.ingredients
     }
     setIngredients(ingredients){
         this.ingredients = ingredients
     }
-
     getPreparation(){
         return this.preparation
     }
@@ -77,43 +68,10 @@ class Recipe {
 }
 
 recipes = new Array()
-
 function addRecipe(recipe) {
     let newRecipe = new Recipe(recipe)
     recipes.push(newRecipe)
 }
-
-function deleteRecipe(nameRecipe) {
-    /*
-    let element = document.getElementById('div-' + nameRecipe);
-    element.remove();*/
-}
-
-function recipeToHTML(recipe) {
-    /*
-    let div = document.createElement("div");
-    content.appendChild(div);
-    div.id = 'div-' + i;
-
-    let pTitulo = document.createElement("p");
-    div.appendChild(pTitulo);
-
-    pTitulo.textContent = recipe.name;
-
-    let recipe_info = document.createElement("button");
-    pTitulo.appendChild(recipe_info);
-    recipe_info.textContent = "Más info";
-    recipe_info.onclick = () => showHideMasInfo(i);
-
-    let deleteb = document.createElement("button");
-    pTitulo.appendChild(deleteb);
-    deleteb.textContent = "Borrar";
-    deleteb.onclick = () => deletee(i);*/
-
-
-}
-
-//cargar las recetas predefinidas en el array recetas, detnro de objetos del tipo Receta
 for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
@@ -127,24 +85,49 @@ $(function () {
         $("#main").hide();
         $("#vista_receta").show();
         recipe_id=0
+        ingredients="<ul>"
         images=""
         n=0
-        for (let image of recipes[recipe_id].getIngredients()){
+        for (let image of recipes[recipe_id].getImages()){
             images += "<img src="+image+" alt="+recipes[recipe_id].getName()+n+"></img>";
             n+=1
         }
-        $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+` </p>
-                                    <p> Ingredientes:  `+ recipes[recipe_id].getIngredients()+` </p>
-                                    `+ images+`
-                                    
-                                    
-                                    
-                                    
-                                    `); // , "Descripcion de la receta" , "image", "indegradiente, prep"
+        for (let ingredient of recipes[recipe_id].getIngredients()){
+            ingredients += '<li type="circle">'+ ingredient +"</li>";
+            n+=1
+        }
+        ingredients += "</ul>"
+        $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+' </p>'
+                                    + images+
+                                    '<p> Ingredientes:  '+ ingredients+' </p>'+
+                                    '<p> Preparacion: '+ recipes[recipe_id].getPreparation());
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
     });
     $("#btn-back").click(function (){
         $("#main").show();
         $("#vista_receta").hide();
+    });
+    i=0
+    $("#btn-add").click(function (){
+        $("#main2").append(`
+                    <div id="del`+ i+`" class="col-md-4">
+                        <div class="card" style="width: 30rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">`+i+`</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                    the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <button id="btn-del`+i+`">Del</button>
+                                <script>
+                                $("#btn-del`+i+`").click(function() {
+                                $("#del`+i+`" ).remove();
+                                });
+                                </script>
+                            </div>
+                        </div>
+        `);
+        i+=1
     });
 })

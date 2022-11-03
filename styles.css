@@ -35,3 +35,10 @@ body{
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.navbar-fixed-bottom{
+    background-color: #041826;
+    color:aliceblue;
+    align-items: center;
+    min-height:12px;
+}
