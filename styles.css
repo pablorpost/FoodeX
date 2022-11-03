@@ -30,3 +30,8 @@ body{
     background-color: #5996CF;
 
 }
+.cont-main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

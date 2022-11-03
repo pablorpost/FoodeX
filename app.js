@@ -133,7 +133,7 @@ $(function () {
             images += "<img src="+image+" alt="+recipes[recipe_id].getName()+n+"></img>";
             n+=1
         }
-        $("#vista_receta_cont").html(`<p class="card-text"> Descripcion: `+ recipes[recipe_id].getDescription()+` </p>
+        $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+` </p>
                                     <p> Ingredientes:  `+ recipes[recipe_id].getIngredients()+` </p>
                                     `+ images+`
                                     
