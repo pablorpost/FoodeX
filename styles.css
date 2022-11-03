@@ -35,4 +35,5 @@ body{
     background-color: #041826;
     color:aliceblue;
     align-items: center;
+    min-height:12px;
 }
