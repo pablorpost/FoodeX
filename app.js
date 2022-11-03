@@ -84,7 +84,6 @@ function addRecipe(recipe) {
 for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
-console.log(recipes)
 
 $(document).ready(function(){
     $("#vista_receta").hide();
