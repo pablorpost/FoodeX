@@ -78,63 +78,44 @@ for (let recipe of predefinedRecipes) {
 
 $(document).ready(function(){
     $("#vista_receta").hide();
+    for (let i=0; i<3; i++) {
+        $("#main").append(generateRecipe(i));
+    }
 });
 
-
 $(function () {
-    // $("#btn-show").click(function (){
-    //     $("#main").hide();
-    //     $("#buttons").hide();
-    //     $("#vista_receta").show();
-    //     recipe_id=0
-    //     ingredients="<ul>"
-    //     images=""
-    //     n=0
-    //     for (let image of recipes[recipe_id].getImages()){
-    //         images += "<img src="+image+" alt="+recipes[recipe_id].getName()+n+"></img>";
-    //         n+=1
-    //     }
-    //     for (let ingredient of recipes[recipe_id].getIngredients()){
-    //         ingredients += '<li type="circle">'+ ingredient +"</li>";
-    //         n+=1
-    //     }
-    //     ingredients += "</ul>"
-    //     $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+' </p>'
-    //                                 + images+
-    //                                 '<p> Ingredientes:  '+ ingredients+' </p>'+
-    //                                 '<p> Preparacion: '+ recipes[recipe_id].getPreparation());
-    //     $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
-    // });
     $("#btn-back").click(function (){
         $("#main").show();
         $("#buttons").show();
         $("#vista_receta").hide();
     });
-    i=0
+    i=3
     $("#btn-add").click(function (){
-        $("#main").append(`
-
-                        <div id="del`+ i+`" class="card" style="width: 30rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">`+recipes[i].getName()+`</h5>
-                                <p class="card-text">`+recipes[i].getDescription()+`</p>
-                                <a href="#" id="btn-show`+i+`" class="btn btn-primary">Go somewhere</a>
-                                <button id="btn-del`+i+`"" class="btn btn-primary">Del</button>
-                                <script>
-                                $("#btn-del`+i+`").click(function() {
-                                    $("#del`+i+`" ).remove();
-                                    });
-                                $("#btn-show`+i+`").click(function() {
-                                    showmore(`+i+`);
-                                    });
-                                </script>
-                            </div>
-                        </div>
-        `);
+        $("#main").append(generateRecipe(i));
         i+=1
     });
 })
+
+function generateRecipe(i){
+    return`
+    <div id="del`+ i+`" class="card" style="width: 30rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">`+recipes[i].getName()+`</h5>
+            <p class="card-text">`+recipes[i].getDescription()+`</p>
+            <a href="#" id="btn-show`+i+`" class="btn btn-primary">Go somewhere</a>
+            <button id="btn-del`+i+`"" class="btn btn-primary">Del</button>
+            <script>
+            $("#btn-del`+i+`").click(function() {
+                $("#del`+i+`" ).remove();
+                });
+            $("#btn-show`+i+`").click(function() {
+                showmore(`+i+`);
+                });
+            </script>
+        </div>
+    </div>
+`}
 
 function showmore(recipe_id){
     jQuery(function($) {
