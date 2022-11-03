@@ -129,4 +129,8 @@ $(function () {
         $("#vista_receta").show();
         $("#vista_receta_prueba").text("Receta = "+ recipes[0].getName()); // , "Descripcion de la receta" , "image", "indegradiente, prep"
     });
+    $("#btn-back").click(function (){
+        $("#main").show();
+        $("#vista_receta").hide();
+    });
 })
