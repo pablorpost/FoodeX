@@ -97,9 +97,14 @@ $(function () {
         $("#add").hide();
     });
     i=3
-    $("#btn-add2").click(function (){
+    $("#btn-new").click(function (){
+        addRecipe([$("#tituloinp").val(),"",[],[],]);
         $("#main").append(generateRecipe(i));
         i+=1
+        $("#main").show();
+        $("#buttons").show();
+        $("#add").hide();
+        ~("#tituloinp").val("");
     });
     $("#btn-add").click(function (){
         $("#main").hide();
