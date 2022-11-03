@@ -82,6 +82,7 @@ $(document).ready(function(){
     for (let i=0; i<recipes.length; i++) {
         $("#main").append(generateRecipe(i));
     }
+    
 });
 
 $(function () {
@@ -105,6 +106,12 @@ $(function () {
         $("#buttons").hide();
         $("#vista_receta").hide();
         $("#add").show();
+    });
+    $("#btn-addsteps").click(function (){
+        $("#preparacion_input").append("<input id='stepinp' type='text'><br>");
+    });
+    $("#btn-addingredients").click(function (){
+        $("#ingredientes_input").append("<input id='ingredientinp' type='text'><br>");
     });
 })
 
