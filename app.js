@@ -104,7 +104,7 @@ $(function () {
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
-        ~("#tituloinp").val("");
+        $("#tituloinp").val("");
     });
     $("#btn-add").click(function (){
         $("#main").hide();
