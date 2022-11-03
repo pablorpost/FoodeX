@@ -22,8 +22,6 @@ let predefinedRecipes = [
 
 ]
 
-//let content = document.getElementById('content');
-
 class Recipe {
 
     name = ''
@@ -55,10 +53,10 @@ class Recipe {
     }
 
     getImages(){
-        return this.image
+        return this.images
     }
-    setImages(image){
-        this.image = image
+    setImages(images){
+        this.images = images
     }
 
     getIngredients(){
@@ -83,37 +81,6 @@ function addRecipe(recipe) {
     recipes.push(newRecipe)
 }
 
-function deleteRecipe(nameRecipe) {
-    /*
-    let element = document.getElementById('div-' + nameRecipe);
-    element.remove();*/
-}
-
-function recipeToHTML(recipe) {
-    /*
-    let div = document.createElement("div");
-    content.appendChild(div);
-    div.id = 'div-' + i;
-
-    let pTitulo = document.createElement("p");
-    div.appendChild(pTitulo);
-
-    pTitulo.textContent = recipe.name;
-
-    let recipe_info = document.createElement("button");
-    pTitulo.appendChild(recipe_info);
-    recipe_info.textContent = "Más info";
-    recipe_info.onclick = () => showHideMasInfo(i);
-
-    let deleteb = document.createElement("button");
-    pTitulo.appendChild(deleteb);
-    deleteb.textContent = "Borrar";
-    deleteb.onclick = () => deletee(i);*/
-
-
-}
-
-//cargar las recetas predefinidas en el array recetas, detnro de objetos del tipo Receta
 for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
@@ -128,20 +95,18 @@ $(function () {
         $("#main").hide();
         $("#vista_receta").show();
         recipe_id=0
+        ingredients=""
         images=""
         n=0
-        for (let image of recipes[recipe_id].getIngredients()){
+        for (let image of recipes[recipe_id].getImages()){
             images += "<img src="+image+" alt="+recipes[recipe_id].getName()+n+"></img>";
             n+=1
         }
+
         $("#vista_receta_cont").html(`<p class="card-text"> Descripcion: `+ recipes[recipe_id].getDescription()+` </p>
-                                    <p> Ingredientes:  `+ recipes[recipe_id].getIngredients()+` </p>
                                     `+ images+`
-                                    
-                                    
-                                    
-                                    
-                                    `); // , "Descripcion de la receta" , "image", "indegradiente, prep"
+                                    <p> Ingredientes:  `+ ingredients+` </p>
+                                    <p> Preparacion: `+ recipes[recipe_id].getPreparation());
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
     });
     $("#btn-back").click(function (){
