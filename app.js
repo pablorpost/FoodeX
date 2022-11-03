@@ -126,7 +126,22 @@ $(function () {
     $("#btn-show").click(function (){
         $("#main").hide();
         $("#vista_receta").show();
-        $("#vista_receta_prueba").text("Receta = "+ recipes[0].getName()); // , "Descripcion de la receta" , "image", "indegradiente, prep"
+        recipe_id=0
+        images=""
+        n=0
+        for (let image of recipes[recipe_id].getIngredients()){
+            images += "<img src="+image+" alt="+recipes[recipe_id].getName()+n+"></img>";
+            n+=1
+        }
+        $("#vista_receta_cont").html(`<p class="card-text"> Descripcion: `+ recipes[recipe_id].getDescription()+` </p>
+                                    <p> Ingredientes:  `+ recipes[recipe_id].getIngredients()+` </p>
+                                    `+ images+`
+                                    
+                                    
+                                    
+                                    
+                                    `); // , "Descripcion de la receta" , "image", "indegradiente, prep"
+        $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
     });
     $("#btn-back").click(function (){
         $("#main").show();
