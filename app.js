@@ -115,11 +115,11 @@ $(function () {
         add_ingredients_number = 0;
     });
     $("#btn-addsteps").click(function (){
-        $("#preparacion_input").append("<input id='stepinp' type='text'><br>");
+        $("#lista_prep").append("<li><input id='stepinp' type='text'></li><br>");
         add_steps_number += 1;
     });
     $("#btn-addingredients").click(function (){
-        $("#ingredientes_input").append("<input id='ingredientinp' type='text'><br>");
+        $("#lista_ingredientes").append("<li><input id='ingredientinp' type='text'></li><br>");
         add_ingredients_number += 1;
     });
 })
