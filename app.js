@@ -2,24 +2,17 @@
 let predefinedRecipes = [
     ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', ['Resources/arrozConLeche1.jpg', 'Resources/arrozConLeche2.jpg', 'Resources/arrozConLeche3.jpg'],
         ['1 litro de Leche', '3 cucharadas de arroz', '4 cucharadas de Azúcar', 'Piel de ¼ de limón', 'Canela en rama'],
-        'Se hierve todo junto lentamente moviendo continuamente durante 40 min.'],
+        ['Se hierve todo junto lentamente moviendo continuamente durante 40 min.']],
 
     ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', ['Resources/bizcochoDeYogurt1.jpg', 'Resources/bizcochoDeYogurt2.jpg', 'Resources/bizcochoDeYogurt3.jpg'],
         ['1 yogurt de limón', '½ medida de aceite', '2 medidas de azúcar', '3 medidas de harina', '4 huevos', '½ sobre de levadura', 'Sal'],
-        `Se baten los huevos con sal.
-    Se añade el yogurt, el aceite y el azúcar.
-    Se añade la harina y la levadura.
-    
-    Hornear a 175 ºC durante 20 min.`],
+        ['Se baten los huevos con sal.','Se añade el yogurt, el aceite y el azúcar.','Se añade la harina y la levadura.',
+        'Hornear a 175 ºC durante 20 min.']],
 
     ['Tortitas', 'Delicioso desayuno, ideal para los domingos', ['Resources/tortitas1.jpg', 'Resources/tortitas2.jpg'],
         ['2 huevos', '1 cucharada de azúcar', '1 cucharada de aceite', '1,5 vasos de leche', '200 gr de harina (6 cucharadas grandes)', 'Levadura', 'Sal'],
-        `Se baten los huevos con sal.
-    Se añade el azúcar, el aceite y la leche y se bate.
-    Se añade la harina y la levadura y se bate.
-    
-    Reposar 15 min.`]
-
+        ['Se baten los huevos con sal.','Se añade el azúcar, el aceite y la leche y se bate.','Se añade la harina y la levadura y se bate.',
+        'Reposar 15 min.']]
 ]
 
 class Recipe {
@@ -27,7 +20,7 @@ class Recipe {
     description = ''
     images = new Array()
     ingredients = new Array()
-    preparation = ''
+    preparation = new Array()
     constructor(datos) {
         if (datos[0]) { this.name = datos[0] }
         if (datos[1]) { this.description = datos[1] }
@@ -153,6 +146,7 @@ function showmore(recipe_id){
         $("#buttons").hide();
         $("#vista_receta").show();
         ingredients="<ul>"
+        prepar="<ol>"
         images=""
         n=0
         for (let image of recipes[recipe_id].getImages()){
@@ -163,10 +157,15 @@ function showmore(recipe_id){
             ingredients += '<li type="circle">'+ ingredient +"</li>";
             n+=1
         }
+        for (let step of recipes[recipe_id].getPreparation()){
+            prepar += '<li>'+ step +"</li>";
+            n+=1
+        }
+        prepar += "</ol>"
         ingredients += "</ul>"
         $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+' </p>'
                                     + images+
                                     '<p> Ingredientes:  '+ ingredients+' </p>'+
-                                    '<p> Preparacion: '+ recipes[recipe_id].getPreparation());
+                                    '<p> Preparacion: '+ prepar+' </p>');
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
 })};
