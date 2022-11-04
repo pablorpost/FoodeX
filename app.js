@@ -133,8 +133,8 @@ function generateRecipe(i){
             <div class="card-body">
                 <h5 class="card-title"><strong>`+recipes[i].getName()+`</strong></h5>
                 <p class="card-text">`+recipes[i].getDescription()+`</p>
-                <a href="#" id="btn-show`+i+`" class="btn btn-primary">Go somewhere</a>
-            <button id="btn-del`+i+`"" class="btn btn-primary">Del</button>
+                <a href="#" id="btn-show`+i+`" class="btn btn-primary">Ver receta</a>
+            <button id="btn-del`+i+`"" class="btn btn-primary">Borrar</button>
             <script>
             $("#btn-del`+i+`").click(function() {
                 $("#del`+i+`" ).remove();
