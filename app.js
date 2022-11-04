@@ -1,10 +1,10 @@
 // Lista predefinida de 
 let predefinedRecipes = [
-    ['Arroz con Leche', '', ['Resources/arrozConLeche1.jpg', 'Resources/arrozConLeche2.jpg', 'Resources/arrozConLeche3.jpg'],
+    ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', ['Resources/arrozConLeche1.jpg', 'Resources/arrozConLeche2.jpg', 'Resources/arrozConLeche3.jpg'],
         ['1 litro de Leche', '3 cucharadas de arroz', '4 cucharadas de Azúcar', 'Piel de ¼ de limón', 'Canela en rama'],
         'Se hierve todo junto lentamente moviendo continuamente durante 40 min.'],
 
-    ['Bizcocho de Yogurt', '', ['Resources/bizcochoDeYogurt1.jpg', 'Resources/bizcochoDeYogurt2.jpg', 'Resources/bizcochoDeYogurt3.jpg'],
+    ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', ['Resources/bizcochoDeYogurt1.jpg', 'Resources/bizcochoDeYogurt2.jpg', 'Resources/bizcochoDeYogurt3.jpg'],
         ['1 yogurt de limón', '½ medida de aceite', '2 medidas de azúcar', '3 medidas de harina', '4 huevos', '½ sobre de levadura', 'Sal'],
         `Se baten los huevos con sal.
     Se añade el yogurt, el aceite y el azúcar.
@@ -12,7 +12,7 @@ let predefinedRecipes = [
     
     Hornear a 175 ºC durante 20 min.`],
 
-    ['Tortitas', '', ['Resources/tortitas1.jpg', 'Resources/tortitas2.jpg'],
+    ['Tortitas', 'Delicioso desayuno, ideal para los domingos', ['Resources/tortitas1.jpg', 'Resources/tortitas2.jpg'],
         ['2 huevos', '1 cucharada de azúcar', '1 cucharada de aceite', '1,5 vasos de leche', '200 gr de harina (6 cucharadas grandes)', 'Levadura', 'Sal'],
         `Se baten los huevos con sal.
     Se añade el azúcar, el aceite y la leche y se bate.
@@ -126,12 +126,14 @@ $(function () {
 
 function generateRecipe(i){
     return`
-    <div id="del`+ i+`" class="card" style="width: 30rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">`+recipes[i].getName()+`</h5>
-            <p class="card-text">`+recipes[i].getDescription()+`</p>
-            <a href="#" id="btn-show`+i+`" class="btn btn-primary">Go somewhere</a>
+
+    <div class="item">
+        <div id="del`+ i+`" class="card" style="width: 30rem;">
+            <img src="`+recipes[i].getImages()[0]+`" class="card-img-top img-responsive center" alt="..." height='300px' width='300px'>
+            <div class="card-body">
+                <h5 class="card-title"><strong>`+recipes[i].getName()+`</strong></h5>
+                <p class="card-text">`+recipes[i].getDescription()+`</p>
+                <a href="#" id="btn-show`+i+`" class="btn btn-primary">Go somewhere</a>
             <button id="btn-del`+i+`"" class="btn btn-primary">Del</button>
             <script>
             $("#btn-del`+i+`").click(function() {
