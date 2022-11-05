@@ -1,4 +1,4 @@
-// Lista predefinida de 
+// Lista predefinida de recetas
 let predefinedRecipes = [
     ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', ['Resources/arrozConLeche1.jpg', 'Resources/arrozConLeche2.jpg', 'Resources/arrozConLeche3.jpg'],
         ['1 litro de Leche', '3 cucharadas de arroz', '4 cucharadas de Azúcar', 'Piel de ¼ de limón', 'Canela en rama'],
@@ -15,12 +15,14 @@ let predefinedRecipes = [
         'Reposar 15 min.']]
 ]
 
+// Objeto receta que almacena los datos de una receta con geters y setters
 class Recipe {
     name = ''
     description = ''
     images = new Array()
     ingredients = new Array()
     preparation = new Array()
+
     constructor(datos) {
         if (datos[0]) { this.name = datos[0] }
         if (datos[1]) { this.description = datos[1] }
@@ -28,36 +30,21 @@ class Recipe {
         if (datos[3]) { this.ingredients = datos[3] }
         if (datos[4]) { this.preparation = datos[4] }
     }
-    getName(){
-        return this.name
-    }
-    setName(name){
-        this.name = name
-    }
-    getDescription(){
-        return this.description
-    }
-    setDescription(description){
-        this.description = description
-    }
-    getImages(){
-        return this.images
-    }
-    setImages(images){
-        this.images = images
-    }
-    getIngredients(){
-        return this.ingredients
-    }
-    setIngredients(ingredients){
-        this.ingredients = ingredients
-    }
-    getPreparation(){
-        return this.preparation
-    }
-    setPreparation(preparation){
-        this.preparation = preparation
-    }
+
+    getName = () => this.name
+    setName = name => this.name = name
+
+    getDescription = () => this.description
+    setDescription = description => this.description = description
+
+    getImages = () => this.images
+    setImages = images => this.images = images
+
+    getIngredients = () => this.ingredients
+    setIngredients = ingredients => this.ingredients = ingredients
+    
+    getPreparation = () => this.preparation
+    setPreparation = preparation => this.preparation = preparation
 }
 
 recipes = new Array()

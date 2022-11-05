@@ -7,47 +7,50 @@
         color: #E4D4B7;
         color: #FFF3D5;
 */
-body{
+
+body {
     background-color: #005F84;
 }
-#iconUpperBar{
+
+#iconUpperBar {
     display: "inline-block"
 }
 
-#brandUpperBar{
+#brandUpperBar {
     display: "inline-block"
 }
 
-.alignToCenter{
+.alignToCenter {
     align-items: center;
 }
 
-.card{
+.card {
     background-color: #0E2C3A;
 }
 
-.card-body{
+.card-body {
     background-color: #5996CF;
-
 }
-.cont-main{
+
+.cont-main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.navbar-fixed-bottom{
+.navbar-fixed-bottom {
     background-color: #041826;
-    color:aliceblue;
+    color: aliceblue;
     align-items: center;
-    min-height:12px;
+    min-height: 12px;
 }
+
 .center {
     margin: auto;
     width: 50%;
     padding: 10px;
 }
 
-.centert {
+.centerText {
     text-align: center;
 }

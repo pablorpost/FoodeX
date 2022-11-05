@@ -3,42 +3,40 @@
 
 <head>
     <title>FoodeX</title> <!-- Titulo página web -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <meta charset="utf-8"> <!-- Poder meter simbolos especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Bootstrap -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- JQuery -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> <!-- Bootstrap -->
     <link rel="icon" href="Resources/logoFondoRedondeado.PNG" type="image" /> <!-- Logo web -->
     <link type="text/css" rel="stylesheet" href="styles.css" /> <!-- Hoja de estilos -->
     <script src="app.js"></script> <!-- Scripts -->
 </head>
 
-
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse"> <!-- Barra de navegación de arriba -->
         <div class="container-fluid">
-            <div class="navbar-header">
-                <img id="iconUpperBar" src="Resources/logoSinFondoEstrecha.PNG" height="40px" weight="40px">
-                <a class="navbar-brand" href="#">
+            <div class="navbar-header"> <!-- Cabecera de la barra -->
+                <img id="iconUpperBar" src="Resources/logoSinFondoEstrecha.PNG" height="40px" weight="40px"> <!-- Imagen del logo -->
+                <a class="navbar-brand" href="#"> <!-- Titulo de la barra de arriba -->
                     <p id="brandUpperBar">FoodeX</p>
                 </a>
             </div>
             <div>
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">  <!-- Submenu de las recetas (único) -->
                     <li><a href="#">Recetas</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div id="main" class="container-fluid cont-main ">
-    </div>
+    <div id="main" class="container-fluid cont-main "> </div> <!-- Menu principal de la página donde se muestra la lista de recetas existentes -->
         
-    <div id="buttons" class="center centert">
+    <div id="buttons" class="center centerText"> <!-- Zona donde se encuentra el boton de añadir recetas -->
         <button id="btn-add">Nueva receta</button>
     </div>
 
-    <div id="vista_receta" class="container">
+    <div id="vista_receta" class="container"> <!-- Menu para ver los detalles de una receta -->
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card">
@@ -46,7 +44,7 @@
                         <h5 id="vista_receta_tit" class="card-title">Card title</h5>
                         <div id="vista_receta_cont">
                         </div>
-                        <div class="center centert">
+                        <div class="center centerText">
                             <button id="btn-back" class="btn btn-primary">Volver</button>
                         </div>
                         <br><br><br>
@@ -83,7 +81,7 @@
                                 <input type="file" accept="image/" name="image">
                             </div>
                         </div>
-                        <div class="center centert">
+                        <div class="center centerText">
                             <button id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
                             <button id="btn-back2" class="btn btn-primary">Volver</button>
                         </div>
@@ -94,7 +92,7 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
+    <nav class="navbar navbar-default navbar-fixed-bottom"> <!-- Pie de página -->
         <div class="navbar-inner navbar-content-center">
             <p class="text-center">&copy; Diego Isaac Fernández Conde,David Pimentel Montes,Pablo
                 Requejo Postlbauer. All rights reserved.</p>
