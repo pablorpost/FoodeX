@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div id="add" class="container">
+    <div id="add" class="container"> <!-- Formulario para añadir receta -->
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card">
@@ -62,23 +62,23 @@
                     <div class="card-body">
                         <h5  class="card-title"><strong>A&ntilde;adir nueva receta</strong></h5>
                         <div>
-                            <p>Nombre: <input id='tituloinp' type='text'></p>
-                            <p>Descripcion: <input id='descripcioninp' type='text'></p>
+                            <p>Nombre: <input id='tituloinp' type='text'></p> <!-- Input titulo -->
+                            <p>Descripcion: <input id='descripcioninp' type='text'></p> <!-- Input descripcion -->
                             <div id="ingredientes_input">
                                 <p>Ingredientes:</p>
-                                <ul id="lista_ingredientes">
+                                <ul id="lista_ingredientes"> <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
                                 </ul>
                             </div>
-                            <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button>
+                            <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button> <!-- Boton para añadir un ingrediente más -->
                             <div id="preparacion_input">
                                 <p>Preparacion:</p>
-                                <ol id="lista_prep">
+                                <ol id="lista_prep"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
                                 </ol>
                             </div>
-                            <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button>
+                            <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button> <!-- Boton para añadir un paso más -->
                             <div id="image_input">
                                 <p>Imagenes:</p>
-                                <input type="file" accept="image/" name="image">
+                                <input type="file" accept="image/" name="image"> <!-- Input imagenes -->
                             </div>
                         </div>
                         <div class="center centerText">
