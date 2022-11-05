@@ -56,6 +56,8 @@ for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
 
+// cuando el documento acaba de cargarse se escinden todas las paginas 
+// menos la principal y se añaden las vistas de las recertas predeterminadas
 $(document).ready(function(){
     $("#vista_receta").hide();
     $("#add").hide();
@@ -66,18 +68,18 @@ $(document).ready(function(){
 });
 
 $(function () {
-    $("#btn-back").click(function (){
+    $("#btn-back").click(function (){ //volver de vista receta
         $("#main").show();
         $("#buttons").show();
         $("#vista_receta").hide();
     });
-    $("#btn-back2").click(function (){
+    $("#btn-back2").click(function (){ // volver de add receta
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
     });
     i=3
-    $("#btn-new").click(function (){
+    $("#btn-new").click(function (){  // añadir receta con datos obtenidos
         addRecipe([$("#tituloinp").val(),"",[],[],]);
         $("#main").append(generateRecipe(i));
         i+=1
@@ -86,26 +88,27 @@ $(function () {
         $("#add").hide();
         $("#tituloinp").val("");
     });
-    $("#btn-add").click(function (){
+    $("#btn-add").click(function (){ //ir al formulario para añadir una receta
         $("#main").hide();
         $("#buttons").hide();
         $("#vista_receta").hide();
         $("#add").show();
-        add_steps_number = 0;
-        add_ingredients_number = 0;
+        add_steps_number = 0;               //se inicializan variables para saber cuantos pasos e
+        add_ingredients_number = 0;         //ingredientes habra que añadir
     });
-    $("#btn-addsteps").click(function (){
+    $("#btn-addsteps").click(function (){ //añadir un paso a la nueva receta
         $("#lista_prep").append("<li><input id='stepinp' type='text'></li><br>");
         add_steps_number += 1;
     });
-    $("#btn-addingredients").click(function (){
+    $("#btn-addingredients").click(function (){  //añadir un ingrediente a al nueva receta
         $("#lista_ingredientes").append("<li><input id='ingredientinp' type='text'></li><br>");
         add_ingredients_number += 1;
     });
 })
 
-function generateRecipe(i){
-    return`
+function generateRecipe(i){   //generar la carta de una receta, sus botones ver mas y borrar, ademas de las
+                              //funciones asociadas a ellos
+    return`                   
 
     <div class="item">
         <div id="del`+ i+`" class="card" style="width: 30rem;">
@@ -127,30 +130,30 @@ function generateRecipe(i){
     </div>
 `}
 
-function showmore(recipe_id){
+function showmore(recipe_id){   //generar la pagina de vista de la infroamcion completa de la receta, agrupando fotos, imagenes y pasos
     jQuery(function($) {
         $("#main").hide();
         $("#buttons").hide();
         $("#vista_receta").show();
-        ingredients="<ul>"
-        prepar="<ol>"
+        ingredients="<ul>" //principio lista sin orden
+        prepar="<ol>"      //principio lista ordenada
         images=""
         n=0
-        for (let image of recipes[recipe_id].getImages()){
+        for (let image of recipes[recipe_id].getImages()){ //agrupar direcciones de fotos
             images += "<img src="+image+" alt="+recipes[recipe_id].getName()+' photo '+n+" class='img-responsive' height='450px' width='450px'></img>";
             n+=1
         }
-        for (let ingredient of recipes[recipe_id].getIngredients()){
+        for (let ingredient of recipes[recipe_id].getIngredients()){ //punto lista ingredientes
             ingredients += '<li type="circle">'+ ingredient +"</li>";
             n+=1
         }
-        for (let step of recipes[recipe_id].getPreparation()){
+        for (let step of recipes[recipe_id].getPreparation()){  //punto lista pasos
             prepar += '<li>'+ step +"</li>";
             n+=1
         }
-        prepar += "</ol>"
-        ingredients += "</ul>"
-        $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+' </p>'
+        prepar += "</ol>"  //final lista ordenada
+        ingredients += "</ul>" //final lista sin orden
+        $("#vista_receta_cont").html('<p class="card-text"> Descripcion: '+ recipes[recipe_id].getDescription()+' </p>' //montado final
                                     + images+
                                     '<p> Ingredientes:  '+ ingredients+' </p>'+
                                     '<p> Preparacion: '+ prepar+' </p>');
