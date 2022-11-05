@@ -82,7 +82,7 @@ $(function () {
     $("#btn-new").click(function (){  // añadir receta con datos obtenidos
         addRecipe([$("#tituloinp").val(),"",[],[],]);
         $("#main").append(generateRecipe(i)); //añadirla a la vista principal
-        i+=1
+        i+=1  //id de receta
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
