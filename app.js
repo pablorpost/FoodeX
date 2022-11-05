@@ -109,7 +109,7 @@ function generateRecipe(i){
 
     <div class="item">
         <div id="del`+ i+`" class="card" style="width: 30rem;">
-            <img src="`+recipes[i].getImages()[0]+`" class="card-img-top img-responsive center" alt="..." height='300px' width='300px'>
+            <img src="`+recipes[i].getImages()[0]+`" class="card-img-top img-responsive center" alt="`+recipes[i].getName()+` photo">
             <div class="card-body">
                 <h5 class="card-title"><strong>`+recipes[i].getName()+`</strong></h5>
                 <p class="card-text">`+recipes[i].getDescription()+`</p>
@@ -137,7 +137,7 @@ function showmore(recipe_id){
         images=""
         n=0
         for (let image of recipes[recipe_id].getImages()){
-            images += "<img src="+image+" alt="+recipes[recipe_id].getName()+n+" class='img-responsive' height='450px' width='450px'></img>";
+            images += "<img src="+image+" alt="+recipes[recipe_id].getName()+' photo '+n+" class='img-responsive' height='450px' width='450px'></img>";
             n+=1
         }
         for (let ingredient of recipes[recipe_id].getIngredients()){
