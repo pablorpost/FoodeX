@@ -81,12 +81,12 @@ $(function () {
     i=3
     $("#btn-new").click(function (){  // añadir receta con datos obtenidos
         addRecipe([$("#tituloinp").val(),"",[],[],]);
-        $("#main").append(generateRecipe(i));
+        $("#main").append(generateRecipe(i)); //añadirla a la vista principal
         i+=1
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
-        $("#tituloinp").val("");
+        $("#tituloinp").val(""); //resetear valores de entrada para futuros formularios
     });
     $("#btn-add").click(function (){ //ir al formulario para añadir una receta
         $("#main").hide();
