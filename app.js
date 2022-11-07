@@ -56,7 +56,7 @@ for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
 
-// cuando el documento acaba de cargarse se escinden todas las paginas 
+// cuando el documento acaba de cargarse se esconden todas las paginas 
 // menos la principal y se añaden las vistas de las recertas predeterminadas
 $(document).ready(function(){
     $("#vista_receta").hide();
