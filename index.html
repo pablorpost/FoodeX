@@ -58,7 +58,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                    <br>
                     <div class="card-body">
                         <h5  class="card-title"><strong>A&ntilde;adir nueva receta</strong></h5>
                         <div>
@@ -76,10 +76,13 @@
                                 </ol>
                             </div>
                             <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button> <!-- Boton para añadir un paso más -->
-                            <div id="image_input">
+                            <div >
                                 <p>Imagenes:</p>
-                                <input type="file" accept="image/" name="image"> <!-- Input imagenes -->
+                                <ol id="image_input"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                                <li><input id="image0" type="file" accept="image/" name="image"></li> <!-- Input imagenes -->
+                            </ol>
                             </div>
+                            <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button> <!-- Boton para añadir una foto más -->
                         </div>
                         <div class="center centerText">
                             <button id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>

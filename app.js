@@ -93,16 +93,21 @@ $(function () {
         $("#buttons").hide();
         $("#vista_receta").hide();
         $("#add").show();
-        add_steps_number = 0;               //se inicializan variables para saber cuantos pasos e
+        add_steps_number = 0;               //se inicializan variables para saber cuantos pasos, fotos e
         add_ingredients_number = 0;         //ingredientes habra que añadir
+        add_photo_number = 1;
     });
     $("#btn-addsteps").click(function (){ //añadir un paso a la nueva receta
-        $("#lista_prep").append("<li><input id='stepinp' type='text'></li><br>");
+        $("#lista_prep").append("<li><input id='stepinp"+ add_steps_number +"' type='text'></li><br>");
         add_steps_number += 1;
     });
     $("#btn-addingredients").click(function (){  //añadir un ingrediente a al nueva receta
-        $("#lista_ingredientes").append("<li><input id='ingredientinp' type='text'></li><br>");
+        $("#lista_ingredientes").append("<li><input id='ingredientinp"+ add_ingredients_number +"' type='text'></li><br>");
         add_ingredients_number += 1;
+    });
+    $("#btn-addphoto").click(function (){  //añadir un ingrediente a al nueva receta
+        $("#image_input").append('<li><input id="image'+add_photo_number+'" type="file" accept="image/" name="image"></li>');
+        add_photo_number += 1;
     });
 })
 
