@@ -150,11 +150,9 @@ function showmore(recipe_id){   //generar la pagina de vista de la infroamcion c
         }
         for (let ingredient of recipes[recipe_id].getIngredients()){ //punto lista ingredientes
             ingredients += '<li type="circle">'+ ingredient +"</li>";
-            n+=1
         }
         for (let step of recipes[recipe_id].getPreparation()){  //punto lista pasos
             prepar += '<li>'+ step +"</li>";
-            n+=1
         }
         prepar += "</ol>"  //final lista ordenada
         ingredients += "</ul>" //final lista sin orden
