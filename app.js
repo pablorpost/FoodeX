@@ -165,12 +165,10 @@ function showmore(recipe_id){
         // Lista punteada ingredientes
         for (let ingredient of recipes[recipe_id].getIngredients()){ 
             ingredients += '<li type="circle">' + ingredient + "</li>";
-            n += 1
         }
         // Lista numerada pasos
         for (let step of recipes[recipe_id].getPreparation()){  
             prepar += '<li>'+ step + "</li>";
-            n += 1
         }
         ingredients += "</ul>" // Final de la lista sin orden
         prepar += "</ol>"  // Final de la lista ordenada
