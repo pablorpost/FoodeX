@@ -105,7 +105,7 @@ $(function () {
         $("#lista_ingredientes").append("<li><input id='ingredientinp"+ add_ingredients_number +"' type='text'></li><br>");
         add_ingredients_number += 1;
     });
-    $("#btn-addphoto").click(function (){  //añadir un ingrediente a al nueva receta
+    $("#btn-addphoto").click(function (){  //añadir una foto a al nueva receta
         $("#image_input").append('<li><input id="image'+add_photo_number+'" type="file" accept="image/" name="image"></li>');
         add_photo_number += 1;
     });
