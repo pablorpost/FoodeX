@@ -6,13 +6,13 @@ let predefinedRecipes = [
 
     ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', ['Resources/bizcochoDeYogurt1.jpg', 'Resources/bizcochoDeYogurt2.jpg', 'Resources/bizcochoDeYogurt3.jpg'],
         ['1 yogurt de limón', '½ medida de aceite', '2 medidas de azúcar', '3 medidas de harina', '4 huevos', '½ sobre de levadura', 'Sal'],
-        ['Se baten los huevos con sal.','Se añade el yogurt, el aceite y el azúcar.','Se añade la harina y la levadura.',
-        'Hornear a 175 ºC durante 20 min.']],
+        ['Se baten los huevos con sal.', 'Se añade el yogurt, el aceite y el azúcar.', 'Se añade la harina y la levadura.',
+            'Hornear a 175 ºC durante 20 min.']],
 
     ['Tortitas', 'Delicioso desayuno, ideal para los domingos', ['Resources/tortitas1.jpg', 'Resources/tortitas2.jpg'],
         ['2 huevos', '1 cucharada de azúcar', '1 cucharada de aceite', '1,5 vasos de leche', '200 gr de harina (6 cucharadas grandes)', 'Levadura', 'Sal'],
-        ['Se baten los huevos con sal.','Se añade el azúcar, el aceite y la leche y se bate.','Se añade la harina y la levadura y se bate.',
-        'Reposar 15 min.']]
+        ['Se baten los huevos con sal.', 'Se añade el azúcar, el aceite y la leche y se bate.', 'Se añade la harina y la levadura y se bate.',
+            'Reposar 15 min.']]
 ]
 
 // Objeto receta que almacena los datos de una receta con geters y setters
@@ -42,7 +42,7 @@ class Recipe {
 
     getIngredients = () => this.ingredients
     setIngredients = ingredients => this.ingredients = ingredients
-    
+
     getPreparation = () => this.preparation
     setPreparation = preparation => this.preparation = preparation
 }
@@ -102,18 +102,17 @@ $(function () {
     // Id de las recetas añadidas después
     i = predefinedRecipes.length
     // Añadir receta con datos obtenidos
-    $("#btn-new").click(function (){  
+    $("#btn-new").click(function () {
         newpasos = new Array
         newingredients = new Array
-        newphotos = new Array
-        for(let i=0; i<add_steps_number;i++){
-            newpasos[i]=$("#stepinp"+i).val()
+        
+        for (let i = 0; i < add_steps_number; i++) {
+            newpasos[i] = $("#stepinp" + i).val()
         }
-        for(let i=0; i<add_ingredients_number;i++){
-            newpasos[i]=$("#ingredientinp"+i).val()
+        for (let i = 0; i < add_ingredients_number; i++) {
+            newpasos[i] = $("#ingredientinp" + i).val()
         }
-        newphotos[0]=$("image0").val();
-        addRecipe([$("#tituloinp").val(),$("#descripcioninp").val(),newphotos,newingredients,newpasos]);
+        addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
         $("#main").append(generateRecipe(i)); // Añadirla a la vista principal
         i += 1  // Id de receta
         $("#main").show();
@@ -123,7 +122,7 @@ $(function () {
         $("#descripcioninp").val("");
     });
     // Ir al formulario para añadir una receta
-    $("#btn-add").click(function (){ 
+    $("#btn-add").click(function () {
         $("#main").hide();
         $("#buttons").hide();
         $("#vista_receta").hide();
@@ -131,25 +130,37 @@ $(function () {
         add_steps_number = 0;               //se inicializan variables para saber cuantos pasos, fotos e
         add_ingredients_number = 0;         //ingredientes habra que añadir
         add_photo_number = 1;
+        newphotos = new Array
     });
     // Añadir un paso a la nueva receta
-    $("#btn-addsteps").click(function (){ 
-        $("#lista_prep").append("<li><input id='stepinp"+ add_steps_number +"' type='text'></li><br>");
+    $("#btn-addsteps").click(function () {
+        $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>");
         add_steps_number += 1;
     });
     // Añadir un ingrediente a al nueva receta
-    $("#btn-addingredients").click(function (){  
-        $("#lista_ingredientes").append("<li><input id='ingredientinp"+ add_ingredients_number +"' type='text'></li><br>");
+    $("#btn-addingredients").click(function () {
+        $("#lista_ingredientes").append("<li><input id='ingredientinp" + add_ingredients_number + "' type='text'></li><br>");
         add_ingredients_number += 1;
     });
-    $("#btn-addphoto").click(function (){  //añadir una foto a al nueva receta
-        $("#image_input").append('<li><input id="image'+add_photo_number+'" type="file" accept="image/" name="image"></li>');
+    $("#btn-addphoto").click(function () {  //añadir una foto a al nueva receta
+        $("#image_input").append(`
+        <li><input id="inputFileToLoad`+add_photo_number+`" type="file" onchange="encodeImageFileAsURL(`+add_photo_number+`);" />
+        <div id="imgTest`+add_photo_number+`"></div></li>
+        `)
         add_photo_number += 1;
     });
 
     eventFunctionDelShow();
 
 });
+
+function addImagetoArray(data,n_photo,arr){
+    arr[n_photo-1]=data
+}
+
+function addImagetoArray(data,n_photo,arr){
+    arr[n_photo-1]=data
+}
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
 function generateRecipe(i){   
@@ -165,8 +176,8 @@ function generateRecipe(i){
 `}
 
 // Generar la pagina de vista de la información completa de la receta, agrupando fotos, imagenes y pasos
-function showmore(recipe_id){   
-    jQuery(function($) {
+function showmore(recipe_id) {
+    jQuery(function ($) {
         $("#main").hide();
         $("#buttons").hide();
         $("#vista_receta").show();
@@ -175,28 +186,49 @@ function showmore(recipe_id){
         images = ""
         n = 0
         // Agrupar direcciones de fotos
-        for (let image of recipes[recipe_id].getImages()){ 
+        for (let image of recipes[recipe_id].getImages()) {
             images += "<img src=" + image + " alt=" + recipes[recipe_id].getName() + ' photo ' + n + " class='img-responsive' height='450px' width='450px'></img>";
+            console.log("imagen")
             n += 1
         }
         // Lista punteada ingredientes
-        for (let ingredient of recipes[recipe_id].getIngredients()){ 
+        for (let ingredient of recipes[recipe_id].getIngredients()) {
             ingredients += '<li type="circle">' + ingredient + "</li>";
         }
         // Lista numerada pasos
-        for (let step of recipes[recipe_id].getPreparation()){  
-            prepar += '<li>'+ step + "</li>";
+        for (let step of recipes[recipe_id].getPreparation()) {
+            prepar += '<li>' + step + "</li>";
         }
         ingredients += "</ul>" // Final de la lista sin orden
         prepar += "</ol>"  // Final de la lista ordenada
         // Montar final
-        $("#vista_receta_cont").html('<p class="card-text"> Descripcion: ' + recipes[recipe_id].getDescription() + ' </p>' +
+        $("#vista_receta_cont").html('<p class="description"> Descripcion: ' + recipes[recipe_id].getDescription() + ' </p>' +
                                     images +
-                                    '<p> Ingredientes:  ' + ingredients + ' </p>' +
-                                    '<p> Preparacion: ' + prepar + ' </p>');
-        $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
+                                    '<p class="ingredientsTitle"> Ingredientes:  ' + ingredients + ' </p>' +
+                                    '<p class="preparationTitle"> Preparacion: ' + prepar + ' </p>');
+        $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName()).addClass();
         $("#vista_recta_buttons").html('<button id="btn-nshowM" class="btn btn-primary">Volver</button>' +
                                        '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +
                                        '<button id="btn-del-nshowM-' + recipe_id + '" class="btn btn-primary">Borrar</button>');
         eventFunctionDelShow();
 })};
+
+function encodeImageFileAsURL(i) {
+    let filesSelected = document.getElementById("inputFileToLoad"+i).files;    
+    if (filesSelected.length > 0) {
+        let fileToLoad = filesSelected[0];
+
+        let fileReader = new FileReader();
+
+        fileReader.onload = function(fileLoadedEvent) {
+            let srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+            let newImage = document.createElement('img');
+            newImage.src = srcData;
+            addImagetoArray(srcData,add_photo_number,newphotos);
+
+            document.getElementById("imgTest"+i).innerHTML = newImage.outerHTML;
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    }
+}

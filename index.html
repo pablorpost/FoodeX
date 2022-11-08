@@ -42,7 +42,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 id="vista_receta_tit" class="card-title">Card title</h5>
+                        <h5 id="vista_receta_tit" class="recipe-title">Recipe title</h5>
                         <div id="vista_receta_cont">
                         </div>
                         <div id="vista_recta_buttons" class="center centerText">
@@ -79,7 +79,8 @@
                             <div >
                                 <p>Imagenes:</p>
                                 <ol id="image_input"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
-                                <li><input id="image0" type="file" accept="image/" name="image"></li> <!-- Input imagenes -->
+                                    <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);"/>
+                                    <div id="imgTest0"></div></li>
                                 </ol>
                             </div>
                             <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button> <!-- Boton para añadir una foto más -->
