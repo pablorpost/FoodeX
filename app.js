@@ -158,10 +158,6 @@ function addImagetoArray(data,n_photo,arr){
     arr[n_photo-1]=data
 }
 
-function addImagetoArray(data,n_photo,arr){
-    arr[n_photo-1]=data
-}
-
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
 function generateRecipe(i){   
     return`                   
@@ -208,8 +204,8 @@ function showmore(recipe_id) {
                                     '<p class="preparationTitle"> Preparacion: ' + prepar + ' </p>');
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName()).addClass();
         $("#vista_recta_buttons").html('<button id="btn-nshowM" class="btn btn-primary">Volver</button>' +
-                                       '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +
-                                       '<button id="btn-del-nshowM-' + recipe_id + '" class="btn btn-primary">Borrar</button>');
+                                        '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +
+                                        '<button id="btn-del-nshowM-' + recipe_id + '" class="btn btn-primary">Borrar</button>');
         eventFunctionDelShow();
 })};
 
