@@ -40,6 +40,10 @@ body {
     justify-content: space-between;
 }
 
+.item-text-inner {
+    align-items: stretch;
+}
+
 .navbar-fixed-bottom {
     background-color: #041826;
     color: aliceblue;
