@@ -214,7 +214,7 @@ function encodeImageFileAsURL(i) {
 
                 let newImage = document.createElement('img');
                 newImage.src = srcData;
-                addImagetoArray(newImage.outerHTML,add_photo_number,newphotos);
+                addImagetoArray(srcData,add_photo_number,newphotos);
 
                 document.getElementById("imgTest"+i).innerHTML = newImage.outerHTML;
             }
