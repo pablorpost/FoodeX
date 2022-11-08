@@ -138,26 +138,26 @@ $(function () {
 function generateRecipe(i){   
     return`                   
 
-    <div id="del`+ i+`" class="item">
-        <div class="card" style="width: 30rem;">
+        <div id="del`+ i+`" class="card item" style="width: 30rem;">
             <img src="`+recipes[i].getImages()[0]+`" class="card-img-top img-responsive center" alt="`+recipes[i].getName()+` photo">
             <div class="card-body">
                 <h5 class="card-title"><strong>`+recipes[i].getName()+`</strong></h5>
                 <p class="card-text">`+recipes[i].getDescription()+`</p>
                 <a href="#" id="btn-show`+i+`" class="btn btn-primary">Ver receta</a>
-            <button id="btn-del`+i+`"" class="btn btn-primary">Borrar</button>
-            <script>
-            $("#btn-del`+i+`").click(function() {
-                let r = confirm ("¿Seguro que quieres borrar la receta?");
-                if (r == true){
-                    $("#del`+i+`" ).remove();}
-                });
-            $("#btn-show`+i+`").click(function() {
-                showmore(`+i+`);
-                });
-            </script>
+                <button id="btn-del`+i+`"" class="btn btn-primary">Borrar</button>
+                <script>
+                    $("#btn-del`+i+`").click(function() {
+                        let r = confirm ("¿Seguro que quieres borrar la receta?");
+                        if (r == true){
+                            $("#del`+i+`" ).remove();}
+                    });
+                    $("#btn-show`+i+`").click(function() {
+                        showmore(`+i+`);
+                    });
+                </script>
+            </div>
         </div>
-    </div>
+
 `}
 
 // Generar la pagina de vista de la información completa de la receta, agrupando fotos, imagenes y pasos
