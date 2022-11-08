@@ -37,7 +37,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .navbar-fixed-bottom {
