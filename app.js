@@ -89,13 +89,24 @@ $(function () {
     i = predefinedRecipes.length
     // Añadir receta con datos obtenidos
     $("#btn-new").click(function (){  
-        addRecipe([$("#tituloinp").val(),"",[],[],]);
+        newpasos = new Array
+        newingredients = new Array
+        newphotos = new Array
+        for(let i=0; i<add_steps_number;i++){
+            newpasos[i]=$("#stepinp"+i).val()
+        }
+        for(let i=0; i<add_ingredients_number;i++){
+            newpasos[i]=$("#ingredientinp"+i).val()
+        }
+        newphotos[0]=$("image0").val();
+        addRecipe([$("#tituloinp").val(),$("#descripcioninp").val(),newphotos,newingredients,newpasos]);
         $("#main").append(generateRecipe(i)); // Añadirla a la vista principal
         i+=1  // Id de receta
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
         $("#tituloinp").val(""); // Resetear valores de entrada para futuros formularios
+        $("#descripcioninp").val("");
     });
     // Ir al formulario para añadir una receta
     $("#btn-add").click(function (){ 
@@ -127,8 +138,8 @@ $(function () {
 function generateRecipe(i){   
     return`                   
 
-    <div class="item">
-        <div id="del`+ i+`" class="card" style="width: 30rem;">
+    <div id="del`+ i+`" class="item">
+        <div class="card" style="width: 30rem;">
             <img src="`+recipes[i].getImages()[0]+`" class="card-img-top img-responsive center" alt="`+recipes[i].getName()+` photo">
             <div class="card-body">
                 <h5 class="card-title"><strong>`+recipes[i].getName()+`</strong></h5>
