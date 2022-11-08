@@ -148,7 +148,9 @@ function generateRecipe(i){
             <button id="btn-del`+i+`"" class="btn btn-primary">Borrar</button>
             <script>
             $("#btn-del`+i+`").click(function() {
-                $("#del`+i+`" ).remove();
+                let r = confirm ("¿Seguro que quieres borrar la receta?");
+                if (r == true){
+                    $("#del`+i+`" ).remove();}
                 });
             $("#btn-show`+i+`").click(function() {
                 showmore(`+i+`);
