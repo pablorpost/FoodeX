@@ -60,31 +60,45 @@ for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
 
-// cuando el documento acaba de cargarse se esconden todas las paginas 
-// menos la principal y se añaden las vistas de las recertas predeterminadas
-$(document).ready(function(){
-    $("#vista_receta").hide();
-    $("#add").hide();
-    for (let i=0; i<recipes.length; i++) {
-        $("#main").append(generateRecipe(i));
-    }
+function eventFunctionDelShow(){
+    $('.btn').on('click', function(event) {
+        let nameButtonPressed = event.target.id.split('-')
+        let numberOfId = nameButtonPressed[nameButtonPressed.length - 1]
+        console.log(nameButtonPressed)
+        if (nameButtonPressed[0] == 'btn'){
+            if (nameButtonPressed.includes('del')){
+                if (confirm("¿Seguro que quieres borrar la receta?") == true){
+                    $('#del-' + numberOfId).remove();
+                }
+                console.log('del')
+            }
+            if (nameButtonPressed.includes('show')){
+                showmore(numberOfId);
+                console.log('show')
+            }
+            else if (nameButtonPressed.includes('nshowM')){
+                $("#main").show();
+                $("#buttons").show();
+                $("#vista_receta").hide();
+            }
+            if (nameButtonPressed.includes('nshowA')){
+                $("#main").show();
+                $("#buttons").show();
+                $("#add").hide();
+            }
+        }
+    });
+}
 
-});
 
 $(function () {
-    //volver de vista receta activando la pagina principal y los botones
-    $("#btn-back").click(function (){ 
-        $("#main").show();
-        $("#buttons").show();
-        $("#vista_receta").hide();
-    });
-    // volver de add receta activando la pagina principal y los botones
-    $("#btn-back2").click(function (){ 
-        $("#main").show();
-        $("#buttons").show();
-        $("#add").hide();
-    });
-
+    // Esconden todas las paginas menos la principal
+    $("#vista_receta").hide();
+    $("#add").hide();
+    // Se añaden las vistas de las recertas predeterminadas
+    for (let i = 0; i < recipes.length; i++) {
+        $("#main").append(generateRecipe(i));
+    }
     // Id de las recetas añadidas después
     i = predefinedRecipes.length
     // Añadir receta con datos obtenidos
@@ -101,7 +115,7 @@ $(function () {
         newphotos[0]=$("image0").val();
         addRecipe([$("#tituloinp").val(),$("#descripcioninp").val(),newphotos,newingredients,newpasos]);
         $("#main").append(generateRecipe(i)); // Añadirla a la vista principal
-        i+=1  // Id de receta
+        i += 1  // Id de receta
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
@@ -132,32 +146,22 @@ $(function () {
         $("#image_input").append('<li><input id="image'+add_photo_number+'" type="file" accept="image/" name="image"></li>');
         add_photo_number += 1;
     });
-})
+
+    eventFunctionDelShow();
+
+});
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
 function generateRecipe(i){   
     return`                   
-
-        <div id="del`+ i+`" class="card item" style="width: 30rem;">
+        <div id="del-`+ i+`" class="card item" style="width: 30rem;">
             <img src="`+recipes[i].getImages()[0]+`" class="card-img-top img-responsive center" alt="`+recipes[i].getName()+` photo">
             <div class="card-body">
                 <h5 class="card-title"><strong>`+recipes[i].getName()+`</strong></h5>
                 <p class="card-text">`+recipes[i].getDescription()+`</p>
-                <a href="#" id="btn-show`+i+`" class="btn btn-primary">Ver receta</a>
-                <button id="btn-del`+i+`"" class="btn btn-primary">Borrar</button>
-                <script>
-                    $("#btn-del`+i+`").click(function() {
-                        let r = confirm ("¿Seguro que quieres borrar la receta?");
-                        if (r == true){
-                            $("#del`+i+`" ).remove();}
-                    });
-                    $("#btn-show`+i+`").click(function() {
-                        showmore(`+i+`);
-                    });
-                </script>
+                <a href="#" id="btn-show-`+i+`" class="btn btn-primary">Ver receta</a>
             </div>
         </div>
-
 `}
 
 // Generar la pagina de vista de la información completa de la receta, agrupando fotos, imagenes y pasos
@@ -191,4 +195,8 @@ function showmore(recipe_id){
                                     '<p> Ingredientes:  ' + ingredients + ' </p>' +
                                     '<p> Preparacion: ' + prepar + ' </p>');
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
+        $("#vista_recta_buttons").html('<button id="btn-nshowM" class="btn btn-primary">Volver</button>' +
+                                       '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +
+                                       '<button id="btn-del-nshowM-' + recipe_id + '" class="btn btn-primary">Borrar</button>');
+        eventFunctionDelShow();
 })};
