@@ -186,9 +186,9 @@ function showmore(recipe_id){
         ingredients += "</ul>" // Final de la lista sin orden
         prepar += "</ol>"  // Final de la lista ordenada
         // Montar final
-        $("#vista_receta_cont").html('<p class="card-text"> Descripcion: ' + recipes[recipe_id].getDescription() + ' </p>' +
+        $("#vista_receta_cont").html('<p class="description"> Descripcion: ' + recipes[recipe_id].getDescription() + ' </p>' +
                                     images +
-                                    '<p> Ingredientes:  ' + ingredients + ' </p>' +
-                                    '<p> Preparacion: ' + prepar + ' </p>');
-        $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
+                                    '<p class="ingredientsTitle"> Ingredientes:  ' + ingredients + ' </p>' +
+                                    '<p class="preparationTitle"> Preparacion: ' + prepar + ' </p>');
+        $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName()).addClass();
 })};
