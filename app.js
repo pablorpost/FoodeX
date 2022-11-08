@@ -139,7 +139,7 @@ $(function () {
 })
 
 function addImagetoArray(data,n_photo,arr){
-    arr[n_photo]=data
+    arr[n_photo-1]=data
 }
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
@@ -181,6 +181,7 @@ function showmore(recipe_id) {
         // Agrupar direcciones de fotos
         for (let image of recipes[recipe_id].getImages()) {
             images += "<img src=" + image + " alt=" + recipes[recipe_id].getName() + ' photo ' + n + " class='img-responsive' height='450px' width='450px'></img>";
+            console.log("imagen")
             n += 1
         }
         // Lista punteada ingredientes
