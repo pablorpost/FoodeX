@@ -77,6 +77,10 @@ function eventFunctionDelShow(){
                 showmore(numberOfId);
                 console.log('show')
             }
+            else if (nameButtonPressed.includes('edit')){
+                editrecipe(numberOfId);
+                console.log('edit')
+            }
             else if (nameButtonPressed.includes('nshowM')){
                 $("#main").show();
                 $("#buttons").show();
@@ -128,6 +132,7 @@ $(function () {
         $("#buttons").hide();
         $("#vista_receta").hide();
         $("#add").show();
+        $('#tituloadd').html('A&ntilde;adir nueva receta')
         add_steps_number = 0;               //se inicializan variables para saber cuantos pasos, fotos e
         add_ingredients_number = 0;         //ingredientes habra que añadir
         add_photo_number = 1;
@@ -154,6 +159,21 @@ $(function () {
     eventFunctionDelShow();
 
 });
+
+//enseñar la pagina formulario rellanada con los datos de la receta a modificar
+function editrecipe(recipe_id){
+    $("#main").hide();
+    $("#buttons").hide();
+    $("#vista_receta").hide();
+    $("#add").show();
+    $('#tituloadd').html('Modificar receta')
+    $("#tituloinp").val(recipes[recipe_id].getName());
+    $("#descripcioninp").val(recipes[recipe_id].getDescription());
+}
+
+function addImagetoArray(data,n_photo,arr){
+    arr[n_photo-1]=data
+}
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
 function generateRecipe(i){   
