@@ -60,6 +60,7 @@ for (let recipe of predefinedRecipes) {
     addRecipe(recipe)
 }
 
+// Función para asignar funciones a los botones de mostrar mas info y borrar elementos
 function eventFunctionDelShow(){
     $('.btn').on('click', function(event) {
         let nameButtonPressed = event.target.id.split('-')
@@ -90,7 +91,7 @@ function eventFunctionDelShow(){
     });
 }
 
-
+// Se ejecutan al finalizar la carga del html
 $(function () {
     // Esconden todas las paginas menos la principal
     $("#vista_receta").hide();
@@ -154,19 +155,15 @@ $(function () {
 
 });
 
-function addImagetoArray(data,n_photo,arr){
-    arr[n_photo-1]=data
-}
-
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
 function generateRecipe(i){   
     return`                   
-        <div id="del-`+ i+`" class="card item" style="width: 30rem;">
-            <img src="`+recipes[i].getImages()[0]+`" class="card-img-top img-responsive center" alt="`+recipes[i].getName()+` photo">
+        <div id="del-` + i + `" class="card item" style="width: 30rem;">
+            <img src="` + recipes[i].getImages()[0] + `" class="card-img-top img-responsive center" alt="` + recipes[i].getName() + ` photo">
             <div class="card-body">
-                <h5 class="card-title"><strong>`+recipes[i].getName()+`</strong></h5>
-                <p class="card-text">`+recipes[i].getDescription()+`</p>
-                <a href="#" id="btn-show-`+i+`" class="btn btn-primary">Ver receta</a>
+                <h5 class="card-title"><strong>` + recipes[i].getName() + `</strong></h5>
+                <p class="card-text">` + recipes[i].getDescription() + `</p>
+                <a href="#" id="btn-show-` + i + `" class="btn btn-primary">Ver receta</a>
             </div>
         </div>
 `}
@@ -221,7 +218,7 @@ function encodeImageFileAsURL(i) {
 
             let newImage = document.createElement('img');
             newImage.src = srcData;
-            addImagetoArray(srcData,add_photo_number,newphotos);
+            newphotos[add_photo_number - 1] = srcData; // Añadir elemento al array
 
             document.getElementById("imgTest"+i).innerHTML = newImage.outerHTML;
         }
