@@ -175,6 +175,7 @@ function editrecipe(recipe_id){
     $("#tituloadd").html('Modificar receta')
     $("#btn-addphoto").remove()
     $("#image_input").remove()
+    newphotos=recipes[recipe_id].getImages();
     $("#tituloinp").val(recipes[recipe_id].getName());
     $("#descripcioninp").val(recipes[recipe_id].getDescription());
     add_steps_number=0
