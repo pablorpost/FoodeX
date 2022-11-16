@@ -90,6 +90,7 @@ function eventFunctionDelShow(){
                 $("#main").show();
                 $("#buttons").show();
                 $("#add").hide();
+                resetadd();
             }
         }
     });
@@ -105,7 +106,7 @@ $(function () {
         $("#main").append(generateRecipe(i));
     }
     // Id de las recetas añadidas después
-    let idNumber = predefinedRecipes.length
+    i = predefinedRecipes.length
     // Añadir receta con datos obtenidos
     $("#btn-new").click(function () {
         newpasos = new Array
@@ -118,8 +119,8 @@ $(function () {
             newpasos[i] = $("#ingredientinp" + i).val()
         }
         addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
-        $("#main").append(generateRecipe(idNumber)); // Añadirla a la vista principal
-        idNumber += 1  // Id de receta
+        $("#main").append(generateRecipe(i)); // Añadirla a la vista principal
+        i += 1  // Id de receta
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
@@ -169,6 +170,19 @@ function editrecipe(recipe_id){
     $('#tituloadd').html('Modificar receta')
     $("#tituloinp").val(recipes[recipe_id].getName());
     $("#descripcioninp").val(recipes[recipe_id].getDescription());
+    add_steps_number=0
+    add_ingredients_number=0
+    for (let ingredient of recipes[recipe_id].getIngredients()) {
+        $("#lista_ingredientes").append("<li><input id='ingredientinp" + add_ingredients_number + "' type='text'></li><br>");
+        $('#ingredientinp'+add_ingredients_number).val(ingredient);
+        add_ingredients_number += 1;
+    }
+    for (let step of recipes[recipe_id].getPreparation()) {
+        $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>");
+        $('#stepinp'+add_steps_number).val(step);
+        add_steps_number += 1;
+            }
+    
 }
 
 function addImagetoArray(data,n_photo,arr){
@@ -244,4 +258,48 @@ function encodeImageFileAsURL(i) {
         }
         fileReader.readAsDataURL(fileToLoad);
     }
+}
+
+function resetadd(){
+    $("#add").html(`
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <br>
+                    <div class="card-body">
+                        <h5  class="card-title"><strong id="tituloadd"></strong></h5>
+                        <div>
+                            <p>Nombre: <input id='tituloinp' type='text'></p> <!-- Input titulo -->
+                            <p>Descripcion: <input id='descripcioninp' type='text'></p> <!-- Input descripcion -->
+                            <div id="ingredientes_input">
+                                <p>Ingredientes:</p>
+                                <ul id="lista_ingredientes"> <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
+                                </ul>
+                            </div>
+                            <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button> <!-- Boton para añadir un ingrediente más -->
+                            <div id="preparacion_input">
+                                <p>Preparacion:</p>
+                                <ol id="lista_prep"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                                </ol>
+                            </div>
+                            <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button> <!-- Boton para añadir un paso más -->
+                            <div >
+                                <p>Imagenes:</p>
+                                <ol id="image_input"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                                    <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);"/>
+                                    <div id="imgTest0"></div></li>
+                                </ol>
+                            </div>
+                            <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button> <!-- Boton para añadir una foto más -->
+                        </div>
+                        <div class="center centerText">
+                            <button id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
+                            <button id="btn-nshowA" class="btn btn-primary">Volver</button>
+                        </div>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `)
 }
