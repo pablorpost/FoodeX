@@ -302,4 +302,5 @@ function resetadd(){
             </div>
         </div>
     `)
+    eventFunctionDelShow();
 }
