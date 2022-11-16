@@ -192,6 +192,7 @@ function editrecipe(recipe_id){
             }
     $("#mensajito").html("<strong>New photos cannot be added</strong>")
     $("#btn-new").html("Aplicar cambios")
+    $('#del-' + recipe_id).remove();
 }
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
