@@ -62,8 +62,6 @@ body {
 }
 
 
-
-
 .recipe-title{
     text-align: center;
     font-weight: bold;
@@ -83,5 +81,14 @@ body {
 }
 
 .preparationTitle{
+
+}
+
+.ingredientsContent{
+
+
+}
+
+.preparationContent{
 
 }

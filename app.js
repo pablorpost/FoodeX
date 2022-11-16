@@ -197,16 +197,20 @@ function editrecipe(recipe_id){
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
 function generateRecipe(i){   
-    return`                   
+    return`
+    <div class="col mb-5">                   
         <div id="del-` + i + `" class="card";">
             <img src="` + recipes[i].getImages()[0] + `" class="card-img-top" alt="` + recipes[i].getName() + ` photo">
             <div class="card-body">
-                <h5 class="card-title"><strong>` + recipes[i].getName() + `</strong></h5>
-                <p class="card-text">` + recipes[i].getDescription() + `</p>
+                <h3 class="card-title"><strong>` + recipes[i].getName() + `</strong></h3>
+                <h6 class="card-text">` + recipes[i].getDescription() + `</h6>
                 <a href="#" id="btn-show-` + i + `" class="btn btn-primary">Ver receta</a>
             </div>
         </div>
+    </div>    
 `}
+
+
 
 // Generar la pagina de vista de la información completa de la receta, agrupando fotos, imagenes y pasos
 function showmore(recipe_id) {
@@ -235,8 +239,8 @@ function showmore(recipe_id) {
         ingredients += "</ul>" // Final de la lista sin orden
         prepar += "</ol>"  // Final de la lista ordenada
         // Montar final
-        $("#vista_receta_cont").html('<p class="description"> Descripcion: ' + recipes[recipe_id].getDescription() + ' </p>' +
-                                    images +
+        $("#vista_receta_gallery").html(images);
+        $("#vista_receta_cont").html('<h2 class="description"> Descripcion: ' + recipes[recipe_id].getDescription() + ' </h2>'+
                                     '<p class="ingredientsTitle"> Ingredientes:  ' + ingredients + ' </p>' +
                                     '<p class="preparationTitle"> Preparacion: ' + prepar + ' </p>');
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName()).addClass();
