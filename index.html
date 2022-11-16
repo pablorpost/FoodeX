@@ -10,30 +10,66 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> <!-- Bootstrap -->
     <link rel="icon" href="Resources/logoFondoRedondeado.PNG" type="image" /> <!-- Logo web -->
     <link type="text/css" rel="stylesheet" href="styles.css" /> <!-- Hoja de estilos -->
-    <link type="text/css" rel="stylesheet" href="stylesBootstrap.css" /> <!-- Hoja de estilos template Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="stylesBootstrap.css" /> <!-- Hoja de estilos con Bootstrap -->
     <script src="app.js"></script> <!-- Scripts -->
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse"> <!-- Barra de navegación de arriba -->
+    <!--
+    <nav class="navbar navbar-inverse"> 
         <div class="container-fluid">
-            <div class="navbar-header"> <!-- Cabecera de la barra -->
-                <a class="navbar-brand" href="#"> <!-- Imagen del logo -->
+            <div class="navbar-header"> 
+                <a class="navbar-brand" href="#"> 
                     <img id="iconUpperBar" src="Resources/logoSinFondoEstrecha.PNG" height="30px" weight="30px"> 
                 </a>
-                <a class="navbar-brand" href="#"> <!-- Titulo de la barra de arriba -->
+                <a class="navbar-brand" href="#"> 
                     <p id="brandUpperBar">FoodeX</p>
                 </a>
             </div>
             <div>
-                <ul class="nav navbar-nav">  <!-- Submenu de las recetas (único) -->
+                <ul class="nav navbar-nav">   Submenu de las recetas (único) 
                     <li><a href="#">Recetas</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    -->
 
-    <div id="main" class="container-fluid cont-main "> </div> <!-- Menu principal de la página donde se muestra la lista de recetas existentes -->
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">FoodeX</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">FoodeX</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Tus recetas a un solo click</p>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Menu principal de la página donde se muestra la lista de recetas existentes -->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            </div>
+        </div>
+    </section>
+
+
+    
+
+    <div id="main" class="container-fluid cont-main "> </div> 
         
     <div id="buttons" class="center centerText"> <!-- Zona donde se encuentra el boton de añadir recetas -->
         <br><button id="btn-add">Nueva receta</button><br><br><br><br>
@@ -54,6 +90,8 @@
                 </div>
             </div>
     </div>
+
+    
 
     <div id="add" class="container"> <!-- Formulario para añadir receta -->
         <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -97,12 +135,11 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom"> <!-- Pie de página -->
-        <div class="navbar-inner navbar-content-center">
-            <p class="text-center">&copy; Diego Isaac Fernández Conde,David Pimentel Montes,Pablo
-                Requejo Postlbauer. All rights reserved.</p>
-        </div>
-    </nav>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Diego Isaac Fernández Conde,David Pimentel Montes,Pablo
+            Requejo Postlbauer. All rights reserved.</p></div>
+    </footer>
 </body>
 
 </html>

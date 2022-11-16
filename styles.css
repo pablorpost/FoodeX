@@ -6,11 +6,6 @@
         color: #5996CF;
         color: #E4D4B7;
         color: #FFF3D5;
-*/
-
-body {
-    background-color: #005F84;
-}
 
 #iconUpperBar {
     display: "inline-block"
@@ -19,6 +14,19 @@ body {
 #brandUpperBar {
     display: "inline-block"
 }
+.cont-main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+}
+*/
+
+body {
+    background-color: #005F84;
+}
+
 
 .card-title{
     font-size: 1,25em;
@@ -39,24 +47,13 @@ body {
     background-color: #5996CF;
 }
 
-.cont-main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: space-between;
-}
+
 
 .item-text-inner {
     align-items: stretch;
 }
 
-.navbar-fixed-bottom {
-    background-color: #041826;
-    color: aliceblue;
-    align-items: center;
-    min-height: 12px;
-}
+
 
 .center {
     margin: auto;
