@@ -146,7 +146,7 @@ $(function () {
         $("#add").hide();
         $("#tituloinp").val(""); // Resetear valores de entrada para futuros formularios
         $("#descripcioninp").val("");
-        eventFunctionDelShow();
+        resetadd()
     });
     // Ir al formulario para añadir una receta
     $("#btn-add").click(function () {
