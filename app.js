@@ -105,7 +105,7 @@ $(function () {
         $("#main").append(generateRecipe(i));
     }
     // Id de las recetas añadidas después
-    i = predefinedRecipes.length
+    let idNumber = predefinedRecipes.length
     // Añadir receta con datos obtenidos
     $("#btn-new").click(function () {
         newpasos = new Array
@@ -118,8 +118,8 @@ $(function () {
             newpasos[i] = $("#ingredientinp" + i).val()
         }
         addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
-        $("#main").append(generateRecipe(i)); // Añadirla a la vista principal
-        i += 1  // Id de receta
+        $("#main").append(generateRecipe(idNumber)); // Añadirla a la vista principal
+        idNumber += 1  // Id de receta
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
