@@ -241,7 +241,6 @@ function showmore(recipe_id) {
         $("#vista_recta_buttons").html('<button id="btn-nshowM" class="btn btn-primary">Volver</button>' +
                                         '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +
                                         '<button id="btn-del-nshowM-' + recipe_id + '" class="btn btn-primary">Borrar</button>');
-        buttonsAddElementsInListAddEdit();
         eventFunctionDelShow();
 })};
 
