@@ -96,6 +96,26 @@ function eventFunctionDelShow(){
     });
 }
 
+function buttonsAddElementsInListAddEdit(){
+    // Añadir un paso a la nueva receta
+    $("#btn-addsteps").click(function () {
+        $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>");
+        add_steps_number += 1;
+    });
+    // Añadir un ingrediente a al nueva receta
+    $("#btn-addingredients").click(function () {
+        $("#lista_ingredientes").append("<li><input id='ingredientinp" + add_ingredients_number + "' type='text'></li><br>");
+        add_ingredients_number += 1;
+    });
+    $("#btn-addphoto").click(function () {  //añadir una foto a al nueva receta
+        $("#image_input").append(`
+        <li><input id="inputFileToLoad`+add_photo_number+`" type="file" onchange="encodeImageFileAsURL(`+add_photo_number+`);" />
+        <div id="imgTest`+add_photo_number+`"></div></li>
+        `)
+        add_photo_number += 1;
+    });
+}
+
 // Se ejecutan al finalizar la carga del html
 $(function () {
     // Esconden todas las paginas menos la principal
@@ -140,23 +160,7 @@ $(function () {
         add_photo_number = 1;
         newphotos = new Array
     });
-    // Añadir un paso a la nueva receta
-    $("#btn-addsteps").click(function () {
-        $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>");
-        add_steps_number += 1;
-    });
-    // Añadir un ingrediente a al nueva receta
-    $("#btn-addingredients").click(function () {
-        $("#lista_ingredientes").append("<li><input id='ingredientinp" + add_ingredients_number + "' type='text'></li><br>");
-        add_ingredients_number += 1;
-    });
-    $("#btn-addphoto").click(function () {  //añadir una foto a al nueva receta
-        $("#image_input").append(`
-        <li><input id="inputFileToLoad`+add_photo_number+`" type="file" onchange="encodeImageFileAsURL(`+add_photo_number+`);" />
-        <div id="imgTest`+add_photo_number+`"></div></li>
-        `)
-        add_photo_number += 1;
-    });
+    
 
     eventFunctionDelShow();
 
@@ -237,7 +241,8 @@ function showmore(recipe_id) {
         $("#vista_recta_buttons").html('<button id="btn-nshowM" class="btn btn-primary">Volver</button>' +
                                         '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +
                                         '<button id="btn-del-nshowM-' + recipe_id + '" class="btn btn-primary">Borrar</button>');
-        $(eventFunctionDelShow());
+        buttonsAddElementsInListAddEdit();
+        eventFunctionDelShow();
 })};
 
 function encodeImageFileAsURL(i) {
@@ -303,5 +308,6 @@ function resetadd(){
         </div>
     </div>
     `)
+    buttonsAddElementsInListAddEdit();
     eventFunctionDelShow();
 }
