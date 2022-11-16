@@ -161,7 +161,7 @@ $(function () {
         newphotos = new Array
     });
     
-
+    buttonsAddElementsInListAddEdit();
     eventFunctionDelShow();
 
 });
