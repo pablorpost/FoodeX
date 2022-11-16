@@ -178,8 +178,8 @@ function addImagetoArray(data,n_photo,arr){
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
 function generateRecipe(i){   
     return`                   
-        <div id="del-` + i + `" class="card item" style="width: 30rem;">
-            <img src="` + recipes[i].getImages()[0] + `" class="card-img-top img-responsive center" alt="` + recipes[i].getName() + ` photo">
+        <div id="del-` + i + `" class="card";">
+            <img src="` + recipes[i].getImages()[0] + `" class="card-img-top" alt="` + recipes[i].getName() + ` photo">
             <div class="card-body">
                 <h5 class="card-title"><strong>` + recipes[i].getName() + `</strong></h5>
                 <p class="card-text">` + recipes[i].getDescription() + `</p>

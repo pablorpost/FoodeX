@@ -20,33 +20,13 @@
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: space-between;
-}
-*/
 
 body {
     background-color: #005F84;
 }
-
-
-.card-title{
-    font-size: 1,25em;
-
-}
-
-
 .alignToCenter {
     align-items: center;
 }
-
-.card {
-    background-color: #0E2C3A;
-    border-radius: 15%;
-}
-
-.card-body {
-    background-color: #5996CF;
-}
-
 
 
 .item-text-inner {
@@ -54,7 +34,13 @@ body {
 }
 
 
+}
+*/
 
+.navbar-brand{
+    font-size: 2rem;
+
+}
 .center {
     margin: auto;
     width: 50%;
@@ -64,6 +50,19 @@ body {
 .centerText {
     text-align: center;
 }
+
+.card-title{
+    font-size: 1,25em;
+
+}
+
+.card-body {
+    background-color: #5996CF;
+    color:aliceblue;
+}
+
+
+
 
 .recipe-title{
     text-align: center;
