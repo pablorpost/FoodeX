@@ -168,7 +168,9 @@ function editrecipe(recipe_id){
     $("#buttons").hide();
     $("#vista_receta").hide();
     $("#add").show();
-    $('#tituloadd').html('Modificar receta')
+    $("#tituloadd").html('Modificar receta')
+    $("#btn-addphoto").remove()
+    $("#image_input").remove()
     $("#tituloinp").val(recipes[recipe_id].getName());
     $("#descripcioninp").val(recipes[recipe_id].getDescription());
     add_steps_number=0
@@ -183,7 +185,8 @@ function editrecipe(recipe_id){
         $('#stepinp'+add_steps_number).val(step);
         add_steps_number += 1;
             }
-    
+    $("#mensajito").html("<strong>New photos cannot be added</strong>")
+    $("#btn_new").html("Aplicar cambios")
 }
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
