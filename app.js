@@ -125,6 +125,7 @@ $(function () {
         $("#add").hide();
         $("#tituloinp").val(""); // Resetear valores de entrada para futuros formularios
         $("#descripcioninp").val("");
+        eventFunctionDelShow();
     });
     // Ir al formulario para añadir una receta
     $("#btn-add").click(function () {
@@ -169,10 +170,6 @@ function editrecipe(recipe_id){
     $('#tituloadd').html('Modificar receta')
     $("#tituloinp").val(recipes[recipe_id].getName());
     $("#descripcioninp").val(recipes[recipe_id].getDescription());
-}
-
-function addImagetoArray(data,n_photo,arr){
-    arr[n_photo-1]=data
 }
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
@@ -223,7 +220,7 @@ function showmore(recipe_id) {
         $("#vista_recta_buttons").html('<button id="btn-nshowM" class="btn btn-primary">Volver</button>' +
                                         '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +
                                         '<button id="btn-del-nshowM-' + recipe_id + '" class="btn btn-primary">Borrar</button>');
-        eventFunctionDelShow();
+        $(eventFunctionDelShow());
 })};
 
 function encodeImageFileAsURL(i) {
