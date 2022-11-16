@@ -90,54 +90,13 @@ function eventFunctionDelShow(){
                 $("#main").show();
                 $("#buttons").show();
                 $("#add").hide();
+                resetadd();
             }
         }
     });
 }
 
-// Se ejecutan al finalizar la carga del html
-$(function () {
-    // Esconden todas las paginas menos la principal
-    $("#vista_receta").hide();
-    $("#add").hide();
-    // Se añaden las vistas de las recertas predeterminadas
-    for (let i = 0; i < recipes.length; i++) {
-        $("#main").append(generateRecipe(i));
-    }
-    // Id de las recetas añadidas después
-    let idNumber = predefinedRecipes.length
-    // Añadir receta con datos obtenidos
-    $("#btn-new").click(function () {
-        newpasos = new Array
-        newingredients = new Array
-        
-        for (let i = 0; i < add_steps_number; i++) {
-            newpasos[i] = $("#stepinp" + i).val()
-        }
-        for (let i = 0; i < add_ingredients_number; i++) {
-            newpasos[i] = $("#ingredientinp" + i).val()
-        }
-        addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
-        $("#main").append(generateRecipe(idNumber)); // Añadirla a la vista principal
-        idNumber += 1  // Id de receta
-        $("#main").show();
-        $("#buttons").show();
-        $("#add").hide();
-        $("#tituloinp").val(""); // Resetear valores de entrada para futuros formularios
-        $("#descripcioninp").val("");
-    });
-    // Ir al formulario para añadir una receta
-    $("#btn-add").click(function () {
-        $("#main").hide();
-        $("#buttons").hide();
-        $("#vista_receta").hide();
-        $("#add").show();
-        $('#tituloadd').html('A&ntilde;adir nueva receta')
-        add_steps_number = 0;               //se inicializan variables para saber cuantos pasos, fotos e
-        add_ingredients_number = 0;         //ingredientes habra que añadir
-        add_photo_number = 1;
-        newphotos = new Array
-    });
+function buttonsAddElementsInListAddEdit(){
     // Añadir un paso a la nueva receta
     $("#btn-addsteps").click(function () {
         $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>");
@@ -155,7 +114,54 @@ $(function () {
         `)
         add_photo_number += 1;
     });
+}
 
+// Se ejecutan al finalizar la carga del html
+$(function () {
+    // Esconden todas las paginas menos la principal
+    $("#vista_receta").hide();
+    $("#add").hide();
+    // Se añaden las vistas de las recertas predeterminadas
+    for (let i = 0; i < recipes.length; i++) {
+        $("#main").append(generateRecipe(i));
+    }
+    // Id de las recetas añadidas después
+    i = predefinedRecipes.length
+    // Añadir receta con datos obtenidos
+    $("#btn-new").click(function () {
+        newpasos = new Array
+        newingredients = new Array
+        
+        for (let i = 0; i < add_steps_number; i++) {
+            newpasos[i] = $("#stepinp" + i).val()
+        }
+        for (let i = 0; i < add_ingredients_number; i++) {
+            newpasos[i] = $("#ingredientinp" + i).val()
+        }
+        addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
+        $("#main").append(generateRecipe(i)); // Añadirla a la vista principal
+        i += 1  // Id de receta
+        $("#main").show();
+        $("#buttons").show();
+        $("#add").hide();
+        $("#tituloinp").val(""); // Resetear valores de entrada para futuros formularios
+        $("#descripcioninp").val("");
+        resetadd()
+    });
+    // Ir al formulario para añadir una receta
+    $("#btn-add").click(function () {
+        $("#main").hide();
+        $("#buttons").hide();
+        $("#vista_receta").hide();
+        $("#add").show();
+        $('#tituloadd').html('A&ntilde;adir nueva receta')
+        add_steps_number = 0;               //se inicializan variables para saber cuantos pasos, fotos e
+        add_ingredients_number = 0;         //ingredientes habra que añadir
+        add_photo_number = 1;
+        newphotos = new Array
+    });
+    
+    buttonsAddElementsInListAddEdit();
     eventFunctionDelShow();
 
 });
@@ -166,13 +172,27 @@ function editrecipe(recipe_id){
     $("#buttons").hide();
     $("#vista_receta").hide();
     $("#add").show();
-    $('#tituloadd').html('Modificar receta')
+    $("#tituloadd").html('Modificar receta')
+    $("#btn-addphoto").remove()
+    $("#image_input").remove()
+    newphotos=recipes[recipe_id].getImages();
     $("#tituloinp").val(recipes[recipe_id].getName());
     $("#descripcioninp").val(recipes[recipe_id].getDescription());
-}
-
-function addImagetoArray(data,n_photo,arr){
-    arr[n_photo-1]=data
+    add_steps_number=0
+    add_ingredients_number=0
+    for (let ingredient of recipes[recipe_id].getIngredients()) {
+        $("#lista_ingredientes").append("<li><input id='ingredientinp" + add_ingredients_number + "' type='text'></li><br>");
+        $('#ingredientinp'+add_ingredients_number).val(ingredient);
+        add_ingredients_number += 1;
+    }
+    for (let step of recipes[recipe_id].getPreparation()) {
+        $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>");
+        $('#stepinp'+add_steps_number).val(step);
+        add_steps_number += 1;
+            }
+    $("#mensajito").html("<strong>New photos cannot be added</strong>")
+    $("#btn-new").html("Aplicar cambios")
+    $('#del-' + recipe_id).remove();
 }
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
@@ -244,4 +264,51 @@ function encodeImageFileAsURL(i) {
         }
         fileReader.readAsDataURL(fileToLoad);
     }
+}
+
+function resetadd(){
+    $("#add").html(`
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card">
+                <br>
+                <div class="card-body">
+                    <h5  class="card-title"><strong id="tituloadd"></strong></h5>
+                    <div>
+                        <p>Nombre: <input id='tituloinp' type='text'></p> <!-- Input titulo -->
+                        <p>Descripcion: <input id='descripcioninp' type='text'></p> <!-- Input descripcion -->
+                        <div id="ingredientes_input">
+                            <p>Ingredientes:</p>
+                            <ul id="lista_ingredientes"> <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
+                            </ul>
+                        </div>
+                        <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button> <!-- Boton para añadir un ingrediente más -->
+                        <div id="preparacion_input">
+                            <p>Preparacion:</p>
+                            <ol id="lista_prep"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                            </ol>
+                        </div>
+                        <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button> <!-- Boton para añadir un paso más -->
+                        <div >
+                            <p>Imagenes:</p>
+                            <ol id="image_input"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                                <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);"/>
+                                <div id="imgTest0"></div></li>
+                            </ol>
+                        </div>
+                        <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button> <!-- Boton para añadir una foto más -->
+                    </div>
+                    <p id="mensajito"></p>
+                    <div class="center centerText">
+                        <button id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
+                        <button id="btn-nshowA" class="btn btn-primary">Volver</button>
+                    </div>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    `)
+    buttonsAddElementsInListAddEdit();
+    eventFunctionDelShow();
 }
