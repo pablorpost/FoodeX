@@ -141,6 +141,10 @@ $(function () {
         addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
         $("#main").append(generateRecipe(i)); // Añadirla a la vista principal
         i += 1  // Id de receta
+        console.log($("#tituloadd").html())
+        if ($("#tituloadd").html()===('Modificar receta')){
+            $('#del-' + todel).remove();
+        }
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
@@ -192,7 +196,7 @@ function editrecipe(recipe_id){
             }
     $("#mensajito").html("<strong>New photos cannot be added</strong>")
     $("#btn-new").html("Aplicar cambios")
-    $('#del-' + recipe_id).remove();
+    todel = recipe_id
 }
 
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
