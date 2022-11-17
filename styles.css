@@ -38,7 +38,7 @@ body {
 */
 
 .navbar-brand{
-    font-size: 2rem;
+    font-size: 4rem;
 
 }
 .center {
@@ -62,8 +62,6 @@ body {
 }
 
 
-
-
 .recipe-title{
     text-align: center;
     font-weight: bold;
@@ -83,5 +81,14 @@ body {
 }
 
 .preparationTitle{
+
+}
+
+.ingredientsContent{
+
+
+}
+
+.preparationContent{
 
 }
