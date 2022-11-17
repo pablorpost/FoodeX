@@ -245,8 +245,15 @@ function showmore(recipe_id) {
         // Montar final
         $("#vista_receta_gallery").html(images);
         $("#vista_receta_cont").html('<h2 class="description"> Descripcion: ' + recipes[recipe_id].getDescription() + ' </h2>'+
-                                    '<p class="ingredientsTitle"> Ingredientes:  ' + ingredients + ' </p>' +
-                                    '<p class="preparationTitle"> Preparacion: ' + prepar + ' </p>');
+                                    '<div class="listContent">' +
+                                        '<div class="list">' +
+                                            '<h3 class="ingredientsTitle"> Ingredientes:  </h3>' +'<h6 class="ingredientsContent">' + ingredients + ' </h6>' +
+                                        '</div>' +
+                                        '<div class="list">' + 
+                                            '<h3 class="preparationTitle"> Preparacion: </h3>'  +'<h6 class="preparationContent">'+ prepar + ' </h3>' +
+                                        '</div>' +
+                                    '</div>');
+
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName()).addClass();
         $("#vista_recta_buttons").html('<button id="btn-nshowM" class="btn btn-primary">Volver</button>' +
                                         '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +

@@ -67,7 +67,6 @@ body {
     font-weight: bold;
     color:bisque;
     font-size: 5em;
-
 }
 .description{
     text-align: center;
@@ -76,19 +75,25 @@ body {
 }
 
 .ingredientsTitle{
-
-
+    font-size: 6em;
+    text-align: center;
 }
 
 .preparationTitle{
-
+    font-size: 6em;
+    text-align: center;
 }
 
 .ingredientsContent{
-
-
+    font-size: 2em;
 }
 
 .preparationContent{
-
+    font-size: 2em;
 }
+
+.listContent{
+    display:flex;
+    justify-content: space-around;
+}
+
