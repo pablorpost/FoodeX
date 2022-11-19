@@ -114,6 +114,7 @@ function buttonsAddElementsInListAddEdit(){
         `)
         add_photo_number += 1;
     });
+        // Añadir receta con datos obtenidos
     $("#btn-new").click(function () {
         newpasos = new Array
         newingredients = new Array
@@ -152,8 +153,6 @@ $(function () {
     }
     // Id de las recetas añadidas después
     i = predefinedRecipes.length
-    // Añadir receta con datos obtenidos
-    
     // Ir al formulario para añadir una receta
     $("#btn-add").click(function () {
         $("#main").hide();
