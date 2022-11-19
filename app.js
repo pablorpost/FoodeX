@@ -125,7 +125,7 @@ function buttonsAddElementsInListAddEdit(){
         for (let i = 0; i < add_ingredients_number; i++) {
             newpasos[i] = $("#ingredientinp" + i).val()
         }
-        addRecipe([$("#tituloinp").val().css("color", "black"), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
+        addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
         $("#main").append(generateRecipe(i)); // Añadirla a la vista principal
         i += 1  // Id de receta
         console.log($("#tituloadd").html())
