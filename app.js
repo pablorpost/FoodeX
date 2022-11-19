@@ -99,12 +99,12 @@ function eventFunctionDelShow(){
 function buttonsAddElementsInListAddEdit(){
     // Añadir un paso a la nueva receta
     $("#btn-addsteps").click(function () {
-        $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>");
+        $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>").css("color", "black");;
         add_steps_number += 1;
     });
     // Añadir un ingrediente a al nueva receta
     $("#btn-addingredients").click(function () {
-        $("#lista_ingredientes").append("<li><input id='ingredientinp" + add_ingredients_number + "' type='text'></li><br>");
+        $("#lista_ingredientes").append("<li><input id='ingredientinp" + add_ingredients_number + "' type='text'></li><br>").css("color", "black");;
         add_ingredients_number += 1;
     });
     $("#btn-addphoto").click(function () {  //añadir una foto a al nueva receta
