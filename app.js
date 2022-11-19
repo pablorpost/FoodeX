@@ -181,18 +181,18 @@ function editrecipe(recipe_id){
     $("#btn-addphoto").remove()
     $("#image_input").remove()
     newphotos=recipes[recipe_id].getImages();
-    $("#tituloinp").val(recipes[recipe_id].getName());
-    $("#descripcioninp").val(recipes[recipe_id].getDescription());
+    $("#tituloinp").val(recipes[recipe_id].getName()).css("color", "black");
+    $("#descripcioninp").val(recipes[recipe_id].getDescription()).css("color", "black");
     add_steps_number=0
     add_ingredients_number=0
     for (let ingredient of recipes[recipe_id].getIngredients()) {
         $("#lista_ingredientes").append("<li><input id='ingredientinp" + add_ingredients_number + "' type='text'></li><br>");
-        $('#ingredientinp'+add_ingredients_number).val(ingredient);
+        $('#ingredientinp'+add_ingredients_number).val(ingredient).css("color", "black");
         add_ingredients_number += 1;
     }
     for (let step of recipes[recipe_id].getPreparation()) {
         $("#lista_prep").append("<li><input id='stepinp" + add_steps_number + "' type='text'></li><br>");
-        $('#stepinp'+add_steps_number).val(step);
+        $('#stepinp'+add_steps_number).val(step).css("color", "black");
         add_steps_number += 1;
             }
     $("#mensajito").html("<strong>New photos cannot be added</strong>")
