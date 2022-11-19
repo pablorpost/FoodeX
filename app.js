@@ -181,8 +181,8 @@ function editrecipe(recipe_id){
     $("#btn-addphoto").remove()
     $("#image_input").remove()
     newphotos=recipes[recipe_id].getImages();
-    $("#tituloinp").val(recipes[recipe_id].getName()).css("color", "black");
-    $("#descripcioninp").val(recipes[recipe_id].getDescription()).css("color", "black");
+    $("#tituloinp").val(recipes[recipe_id].getName());
+    $("#descripcioninp").val(recipes[recipe_id].getDescription());
     add_steps_number=0
     add_ingredients_number=0
     for (let ingredient of recipes[recipe_id].getIngredients()) {
