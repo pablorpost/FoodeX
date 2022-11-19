@@ -36,9 +36,17 @@ body {
 
 }
 */
+.navbar-text{
+    font-size: 3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.4rem;
+}
 
 .navbar-brand{
-    font-size: 4rem;
+    font-size: 5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-right: 0,2rem;
 
 }
 .center {
@@ -57,7 +65,6 @@ body {
 
 .card-title{
     font-size: 1,25em;
-
 }
 
 .card-body {
@@ -65,13 +72,13 @@ body {
     color:aliceblue;
 }
 
-
 .recipe-title{
     text-align: center;
     font-weight: bold;
     color:bisque;
     font-size: 5em;
 }
+
 .description{
     text-align: center;
     color:aliceblue;
