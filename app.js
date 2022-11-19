@@ -114,20 +114,6 @@ function buttonsAddElementsInListAddEdit(){
         `)
         add_photo_number += 1;
     });
-}
-
-// Se ejecutan al finalizar la carga del html
-$(function () {
-    // Esconden todas las paginas menos la principal
-    $("#vista_receta").hide();
-    $("#add").hide();
-    // Se añaden las vistas de las recertas predeterminadas
-    for (let i = 0; i < recipes.length; i++) {
-        $("#main").append(generateRecipe(i));
-    }
-    // Id de las recetas añadidas después
-    i = predefinedRecipes.length
-    // Añadir receta con datos obtenidos
     $("#btn-new").click(function () {
         newpasos = new Array
         newingredients = new Array
@@ -152,6 +138,22 @@ $(function () {
         $("#descripcioninp").val("");
         resetadd()
     });
+}
+
+// Se ejecutan al finalizar la carga del html
+$(function () {
+    // Esconden todas las paginas menos la principal
+    $("#vista_receta").hide();
+    $("#add").hide();
+    resetadd();
+    // Se añaden las vistas de las recertas predeterminadas
+    for (let i = 0; i < recipes.length; i++) {
+        $("#main").append(generateRecipe(i));
+    }
+    // Id de las recetas añadidas después
+    i = predefinedRecipes.length
+    // Añadir receta con datos obtenidos
+    
     // Ir al formulario para añadir una receta
     $("#btn-add").click(function () {
         $("#main").hide();
@@ -326,4 +328,5 @@ function resetadd(){
     `)
     buttonsAddElementsInListAddEdit();
     eventFunctionDelShow();
+    console.log('resetada')
 }
