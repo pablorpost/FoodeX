@@ -204,7 +204,7 @@ function editrecipe(recipe_id){
 function generateRecipe(i){   
     return`
     <div id="del-` + i + `" class="col mb-5">                   
-        <div class="card";">
+        <div class="card">
             <img src="` + recipes[i].getImages()[0] + `" class="card-img-top" alt="` + recipes[i].getName() + ` photo">
             <div class="card-body">
                 <h3 class="card-title"><strong>` + recipes[i].getName() + `</strong></h3>
