@@ -121,4 +121,10 @@ body {
     color:black;
 }
 
+#noElementsMessage{
+    font-size: 4em;
+    text-align: left;
+    color:aliceblue;
+}
+
 
