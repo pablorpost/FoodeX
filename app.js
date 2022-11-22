@@ -203,8 +203,8 @@ function editrecipe(recipe_id){
 // Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
 function generateRecipe(i){   
     return`
-    <div class="col mb-5">                   
-        <div id="del-` + i + `" class="card";">
+    <div id="del-` + i + `" class="col mb-5">                   
+        <div class="card";">
             <img src="` + recipes[i].getImages()[0] + `" class="card-img-top" alt="` + recipes[i].getName() + ` photo">
             <div class="card-body">
                 <h3 class="card-title"><strong>` + recipes[i].getName() + `</strong></h3>
