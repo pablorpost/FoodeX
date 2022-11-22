@@ -296,8 +296,7 @@ function encodeImageFileAsURL(i) {
 
 function resetadd(){
     $("#add").html(`
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
+        <div class="col ">
             <div class="card">
                 <br>
                 <div class="card-body">
@@ -334,7 +333,6 @@ function resetadd(){
                     <br><br><br>
                 </div>
             </div>
-        </div>
     </div>
     `)
     buttonsAddElementsInListAddEdit();
