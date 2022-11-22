@@ -49,6 +49,10 @@ class Recipe {
 
 recipes = new Array()
 
+let add_steps_number = 0
+let add_ingredients_number = 0
+let add_photo_number = 0
+
 // Añade una reeceta a la lista de objetos receta
 function addRecipe(recipe) {
     let newRecipe = new Recipe(recipe)
@@ -96,6 +100,7 @@ function eventFunctionDelShow(){
     });
 }
 
+
 function buttonsAddElementsInListAddEdit(){
     // Añadir un paso a la nueva receta
     $("#btn-addsteps").click(function () {
@@ -114,12 +119,19 @@ function buttonsAddElementsInListAddEdit(){
         `)
         add_photo_number += 1;
     });
+
+    $("#btn-remove").on('click','li', function () {
+        $("this").remove();
+    });
+
+
         // Añadir receta con datos obtenidos
     $("#btn-new").click(function () {
         newpasos = new Array
         newingredients = new Array
         
         for (let i = 0; i < add_steps_number; i++) {
+            
             newpasos[i] = $("#stepinp" + i).val()
         }
         for (let i = 0; i < add_ingredients_number; i++) {
