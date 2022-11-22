@@ -180,6 +180,10 @@ function buttonsAddElementsInListAddEdit(){
             $('#del-' + todel).remove();
             console.log('bbbbbbbbbbbbbb')
         }
+        //si no hay fotos añadir foto predeterminada
+        if (!newphotos.length){
+            newphotos.push('Resources/logoFondo.jpg')
+        }
         addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
         $("#main").append(generateRecipe(recipes.length - 1)); // Añadirla a la vista principal
         
