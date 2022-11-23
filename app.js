@@ -234,23 +234,24 @@ $(function () {
     for (let i = 0; i < recipes.length; i++) {
         $("#main").append(generateRecipe(i));
     }
-    // Ir al formulario para añadir una receta
+    // Añadir la funcionalidad al boton para ir al formulario y añadir una receta
     $("#btn-add").click(function () {
         $("#main").hide();
         $("#buttons").hide();
         $("#vista_receta").hide();
         $("#add").show();
         $('#addTitle').html('A&ntilde;adir nueva receta')
-        add_steps_number = 0;               //se inicializan variables para saber cuantos pasos, fotos e
-        add_ingredients_number = 0;         //ingredientes habra que añadir
+        // reseteear variables auxiliares
+        add_steps_number = 0;            
+        add_ingredients_number = 0;         
         add_photo_number = 1;
-        newPhotos = new Array
+        newPhotos = new Array()
     });
     // dar valor a los botones creados
     eventFunctionDelShow();
 });
 
-//enseñar la pagina formulario rellanada con los datos de la receta a modificar
+// enseñar la pagina formulario rellanada con los datos de la receta a modificar
 function editRecipe(recipe_id){
     $("#main").hide();
     $("#buttons").hide();
@@ -259,28 +260,33 @@ function editRecipe(recipe_id){
     $("#addTitle").html('Modificar receta')
     $("#btn-addphoto").hide()
     $("#image_input").hide()
+    // obtiene las imagenes de la receta a modificar
     newPhotos = recipes[recipe_id].getImages();
     $("#tituloinp").val(recipes[recipe_id].getName());
     $("#descripcioninp").val(recipes[recipe_id].getDescription());
-
+    // alamcena la cantidad de ingredientes
     add_ingredients_number = recipes[recipe_id].getIngredients().length
+    // alamcena la cantidad de pasos
     add_steps_number = recipes[recipe_id].getPreparation().length
-
+    // obtiene los ingredientes de la receta a modificar
     let ingredientsArray = recipes[recipe_id].getIngredients()
+    // obtiene los pasos de la receta a modificar
     let preparationArray = recipes[recipe_id].getPreparation()
     
     for (let i = 0; i < ingredientsArray.length; i++) {
         newIngredientInp(ingredientsArray[i], i)
     }
+
     for (let i = 0; i < preparationArray.length; i++) {
         newStepInp(preparationArray[i], i)
     }
+
     $("#notImageEditMessage").html("<strong>New photos cannot be added</strong>")
     $("#btn-new").html("Aplicar cambios")
     idToModify = recipe_id
 }
 
-// Generar la carta de una receta, sus botones, ver mas y borrar, además de las funciones asociadas a ellos
+// Generar la carta de una receta, sus botones, ver mas y borrar
 function generateRecipe(i){   
     $('#noElementsMessage').hide()
     return`
@@ -296,16 +302,16 @@ function generateRecipe(i){
     </div>    
 `}
 
-
-
 // Generar la pagina de vista de la información completa de la receta, agrupando fotos, imagenes y pasos
 function showMore(recipe_id) {
     jQuery(function ($) {
         $("#main").hide();
         $("#buttons").hide();
         $("#vista_receta").show();
-        ingredients = "<ul>" //principio lista sin orden
-        prepar = "<ol>"      //principio lista ordenada
+        // principio lista sin orden
+        ingredients = "<ul>" 
+        // principio lista ordenada
+        prepar = "<ol>"      
         images = ""
         n = 0
         // Agrupar direcciones de fotos
@@ -315,15 +321,16 @@ function showMore(recipe_id) {
         }
         // Lista punteada ingredientes
         for (let ingredient of recipes[recipe_id].getIngredients()) {
-
             ingredients += '<li type="circle">' + ingredient + "</li>";
         }
         // Lista numerada pasos
         for (let step of recipes[recipe_id].getPreparation()) {
             prepar += '<li>' + step + "</li>";
         }
-        ingredients += "</ul>" // Final de la lista sin orden
-        prepar += "</ol>"  // Final de la lista ordenada
+        // Final de la lista sin orden
+        ingredients += "</ul>" 
+        // Final de la lista ordenada
+        prepar += "</ol>"  
         // Montar final
         $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
         $("#vista_receta_gallery").html(images);
@@ -336,12 +343,15 @@ function showMore(recipe_id) {
                                             '<h3 class="preparationTitle"> Preparacion: </h3>'  +'<h6 class="preparationContent">'+ prepar + ' </h3>' +
                                         '</div>' +
                                     '</div>');
+        // Colocar botones
         $("#vista_recta_buttons").html('<button id="btn-notShowRecipeView" class="btn btn-primary">Volver</button>' +
                                         '<button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>' +
                                         '<button id="btn-del-notShowRecipeView-' + recipe_id + '" class="btn btn-primary">Borrar</button>');
+        // añadir fucionalidad a los botones
         eventFunctionDelShow();
 })};
 
+// Para poder utilizar imágenes que se almacenan en la ejecución de la página
 function encodeImageFileAsURL(i) {
     let filesSelected = document.getElementById("inputFileToLoad"+i).files;    
     if (filesSelected.length > 0) {
@@ -362,7 +372,7 @@ function encodeImageFileAsURL(i) {
     }
 }
 
-//resetea el add
+// resetea el add y restablece las funciones de los botones
 function resetAdd(){
     $("#add").html(`
         <div class="col">
