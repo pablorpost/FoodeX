@@ -164,7 +164,6 @@ function buttonsAddElementsInListAddEdit(){
     $("#btn-new").click(function () {
         let newpasos = new Array
         let newingredients = new Array
-
         for (let i = 0; i < add_steps_number; i++) {
             if ($("#stepinp-" + i).val()) {
                 newpasos.push($("#stepinp-" + i).val());
@@ -175,23 +174,32 @@ function buttonsAddElementsInListAddEdit(){
                 newingredients.push($("#ingredientinp-" + i).val())
             }
         }
-        if ($("#tituloadd").html() === 'Modificar receta'){
-            console.log('borrar' + todel)
-            $('#del-' + todel).remove();
-            console.log('bbbbbbbbbbbbbb')
-        }
         //si no hay fotos añadir foto predeterminada
         if (!newphotos.length){
             newphotos.push('Resources/logoFondo.jpg')
         }
-        addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
-        $("#main").append(generateRecipe(recipes.length - 1)); // Añadirla a la vista principal
-        
+        if ($("#tituloadd").html() === 'Modificar receta'){
+            console.log('cambiado ' + todel)
+            recipes[todel] = new Recipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos])
+            $("#del-"+todel).html(
+                `           
+                <div class="card">
+                    <img src="` + recipes[todel].getImages()[0] + `" class="card-img-top" alt="` + recipes[todel].getName() + ` photo">
+                    <div class="card-body">
+                        <h3 class="card-title"><strong>` + recipes[todel].getName() + `</strong></h3>
+                        <h6 class="card-text">` + recipes[todel].getDescription() + `</h6>
+                        <a href="#" id="btn-show-` + todel + `" class="btn btn-primary">Ver receta</a>
+                    </div>
+                </div>
+            `)
+        }
+        else{
+            addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newphotos, newingredients, newpasos]);
+            $("#main").append(generateRecipe(recipes.length - 1)); // Añadirla a la vista principal
+        }
         $("#main").show();
         $("#buttons").show();
         $("#add").hide();
-        //$("#tituloinp").val(""); // Resetear valores de entrada para futuros formularios
-        //$("#descripcioninp").val("");
         resetAdd()
     });
 }
