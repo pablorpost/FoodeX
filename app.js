@@ -66,13 +66,12 @@ function addRecipe(id, recipe) {
         id = nextId
     }
     let newRecipe = new Recipe(recipe)
-    recipes[id.toString()]= newRecipe;
-    nextId++
-    return nextId+1
+    recipes.set(id.toString(), newRecipe);
+    return nextId++
 }
 
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
-for (const i in predefinedRecipes) {
+for (const i of predefinedRecipes) {
     addRecipe('next', i)
 }
 
@@ -209,11 +208,12 @@ function buttonsAddElementsInListAddEdit(){
             newPhotos.push('Resources/fotoPredeterminadaDeReceta.jpg')
         }
         // creamos variable auxiliar para almacenar la receta a editar
-        let thisRecipe = recipes.get(recipe_id.toString())
+        let thisRecipe = recipes.get(idToModify.toString())
         // Comprobar si proviene del editar y no del añadir
         if ($("#addTitle").html() === 'Modificar receta'){
             // guardar en la posicion de la receta a editar la nueva receta editada
             addRecipe(idToModify, [$("#tituloinp").val(), $("#descripcioninp").val(), newPhotos, newingredients, newpasos])
+            thisRecipe = recipes.get(idToModify.toString())
             // cambiar el html
             $("#del-"+idToModify).html(
                 `           
@@ -248,7 +248,7 @@ $(function () {
     $("#add").hide();
     resetAdd();
     // Se añaden las vistas de las recertas predeterminadas
-    for (const i of Object.keys(recipes)) {
+    for (const i of recipes.keys()) {
         $("#main").append(generateRecipe(i));
         
     }
@@ -308,10 +308,9 @@ function editRecipe(recipe_id){
 
 // Generar la carta de una receta, sus botones, ver mas y borrar
 function generateRecipe(i){   
-    console.log('jjjjjjjjjj')
     $('#noElementsMessage').hide()
     // creamos variable auxiliar para almacenar la receta a editar
-    let thisRecipe = recipes[i.toString()]
+    let thisRecipe = recipes.get(i.toString())
     return`
     <div id="del-` + i + `" class="col mb-5 existingElement">                   
         <div class="card">
