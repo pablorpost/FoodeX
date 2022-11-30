@@ -1,0 +1,23 @@
+{
+  "name": "foodex",
+  "version": "0.0.1",
+  "description": "Practica 2",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablorpost/FoodeX.git"
+  },
+  "author": "Diego Isaac Fernandez Conde, David Pimentel Montes, Pablo Requejo Postlbauer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pablorpost/FoodeX/issues"
+  },
+  "homepage": "https://github.com/pablorpost/FoodeX#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mustache-express": "^1.3.2"
+  }
+}
