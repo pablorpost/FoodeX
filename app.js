@@ -49,7 +49,9 @@ class Recipe {
 
 
 // lista que almacena los objetos Receta existentes
-let recipes = new Array()
+let recipes = new Map()
+// variable auxiliar para saber el id actual y saber el siguiente a añadir
+let nextId = 0
 
 // declarar variables auxiliares
 let add_steps_number = 0 // numero de pasos en la edición o el añadido de una receta
@@ -59,14 +61,18 @@ let idToModify = 0 // saber el id de la receta que deseamos modificar
 let newPhotos = new Array() // lista que almacena las rutas de las imagenes que añadimos en una receta
 
 // Añade una reeceta a la lista de objetos receta
-function addRecipe(recipe) {
+function addRecipe(id, recipe) {
+    if (id === 'next'){
+        id = nextId
+    }
     let newRecipe = new Recipe(recipe)
-    recipes.push(newRecipe)
+    recipes.set(id.toString(), newRecipe)
+    return nextId++
 }
 
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
-for (let recipe of predefinedRecipes) {
-    addRecipe(recipe)
+for (const i in predefinedRecipes) {
+    addRecipe('next', i)
 }
 
 // Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
@@ -82,11 +88,19 @@ function eventFunctionDelShow(){
             if (nameButtonPressed.includes('del')){
                 // mostrar cuadro de diálogo para confirmar el borrado
                 if (confirm("¿Seguro que quieres borrar la receta?") == true){
+                    // borrar de la vista en HTML
                     $('#del-' + numberOfId).remove();
+                    // borrar del Map de elementos
+                    recipes.delete(numberOfId.toString())
                     // si no quedan elementos, mostramos el mensaje de No Quedan Elementos
+                    if (!recipes.size){
+                        $('#noElementsMessage').show()
+                    }
+                    /*
                     if (!$('.existingElement').length){
                         $('#noElementsMessage').show()
                     }
+                    */
                 }
             }
             // si se desea mostrar más info 
@@ -193,18 +207,20 @@ function buttonsAddElementsInListAddEdit(){
         if (!newPhotos.length){
             newPhotos.push('Resources/fotoPredeterminadaDeReceta.jpg')
         }
+        // creamos variable auxiliar para almacenar la receta a editar
+        let thisRecipe = recipes.get(recipe_id.toString())
         // Comprobar si proviene del editar y no del añadir
         if ($("#addTitle").html() === 'Modificar receta'){
             // guardar en la posicion de la receta a editar la nueva receta editada
-            recipes[idToModify] = new Recipe([$("#tituloinp").val(), $("#descripcioninp").val(), newPhotos, newingredients, newpasos])
+            addRecipe(idToModify, [$("#tituloinp").val(), $("#descripcioninp").val(), newPhotos, newingredients, newpasos])
             // cambiar el html
             $("#del-"+idToModify).html(
                 `           
                 <div class="card">
-                    <img src="` + recipes[idToModify].getImages()[0] + `" class="card-img-top" alt="` + recipes[idToModify].getName() + ` photo">
+                    <img src="` + thisRecipe.getImages()[0] + `" class="card-img-top" alt="` + thisRecipe.getName() + ` photo">
                     <div class="card-body">
-                        <h3 class="card-title"><strong>` + recipes[idToModify].getName() + `</strong></h3>
-                        <h6 class="card-text">` + recipes[idToModify].getDescription() + `</h6>
+                        <h3 class="card-title"><strong>` + thisRecipe.getName() + `</strong></h3>
+                        <h6 class="card-text">` + thisRecipe.getDescription() + `</h6>
                         <a href="#" id="btn-show-` + idToModify + `" class="btn btn-primary">Ver receta</a>
                     </div>
                 </div>
@@ -212,9 +228,9 @@ function buttonsAddElementsInListAddEdit(){
         }
         // si proviene del añadir
         else{
-            addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newPhotos, newingredients, newpasos]);
+            let thisId = addRecipe('next', [$("#tituloinp").val(), $("#descripcioninp").val(), newPhotos, newingredients, newpasos]);
             // Añadirla a la vista principal
-            $("#main").append(generateRecipe(recipes.length - 1)); 
+            $("#main").append(generateRecipe(thisId)); 
         }
         $("#main").show();
         $("#buttons").show();
@@ -231,7 +247,7 @@ $(function () {
     $("#add").hide();
     resetAdd();
     // Se añaden las vistas de las recertas predeterminadas
-    for (let i = 0; i < recipes.length; i++) {
+    for (const i in recipes.keys()) {
         $("#main").append(generateRecipe(i));
     }
     // Añadir la funcionalidad al boton para ir al formulario y añadir una receta
@@ -260,18 +276,20 @@ function editRecipe(recipe_id){
     $("#addTitle").html('Modificar receta')
     $("#btn-addphoto").hide()
     $("#image_input").hide()
+    // creamos variable auxiliar para almacenar la receta a editar
+    let thisRecipe = recipes.get(recipe_id.toString())
     // obtiene las imagenes de la receta a modificar
-    newPhotos = recipes[recipe_id].getImages();
-    $("#tituloinp").val(recipes[recipe_id].getName());
-    $("#descripcioninp").val(recipes[recipe_id].getDescription());
+    newPhotos = thisRecipe.getImages();
+    $("#tituloinp").val(thisRecipe.getName());
+    $("#descripcioninp").val(thisRecipe.getDescription());
     // alamcena la cantidad de ingredientes
-    add_ingredients_number = recipes[recipe_id].getIngredients().length
+    add_ingredients_number = thisRecipe.getIngredients().length
     // alamcena la cantidad de pasos
-    add_steps_number = recipes[recipe_id].getPreparation().length
+    add_steps_number = thisRecipe.getPreparation().length
     // obtiene los ingredientes de la receta a modificar
-    let ingredientsArray = recipes[recipe_id].getIngredients()
+    let ingredientsArray = thisRecipe.getIngredients()
     // obtiene los pasos de la receta a modificar
-    let preparationArray = recipes[recipe_id].getPreparation()
+    let preparationArray = thisRecipe.getPreparation()
     
     for (let i = 0; i < ingredientsArray.length; i++) {
         newIngredientInp(ingredientsArray[i], i)
@@ -288,14 +306,17 @@ function editRecipe(recipe_id){
 
 // Generar la carta de una receta, sus botones, ver mas y borrar
 function generateRecipe(i){   
+    console.log('jjjjjjjjjj')
     $('#noElementsMessage').hide()
+    // creamos variable auxiliar para almacenar la receta a editar
+    let thisRecipe = recipes.get(i.toString())
     return`
     <div id="del-` + i + `" class="col mb-5 existingElement">                   
         <div class="card">
-            <img src="` + recipes[i].getImages()[0] + `" class="card-img-top" alt="` + recipes[i].getName() + ` photo">
+            <img src="` + thisRecipe.getImages()[0] + `" class="card-img-top" alt="` + thisRecipe.getName() + ` photo">
             <div class="card-body">
-                <h3 class="card-title"><strong>` + recipes[i].getName() + `</strong></h3>
-                <h6 class="card-text">` + recipes[i].getDescription() + `</h6>
+                <h3 class="card-title"><strong>` + thisRecipe.getName() + `</strong></h3>
+                <h6 class="card-text">` + thisRecipe.getDescription() + `</h6>
                 <a href="#" id="btn-show-` + i + `" class="btn btn-primary">Ver receta</a>
             </div>
         </div>
@@ -314,17 +335,19 @@ function showMore(recipe_id) {
         prepar = "<ol>"      
         images = ""
         n = 0
+        // creamos variable auxiliar para almacenar la receta a editar
+        let thisRecipe = recipes.get(recipe_id.toString())
         // Agrupar direcciones de fotos
-        for (let image of recipes[recipe_id].getImages()) {
-            images += "<img src=" + image + " alt=" + recipes[recipe_id].getName() + ' photo ' + n + " class='img-responsive' height='450px' width='450px'></img>";
+        for (let image of thisRecipe.getImages()) {
+            images += "<img src=" + image + " alt=" + thisRecipe.getName() + ' photo ' + n + " class='img-responsive' height='450px' width='450px'></img>";
             n += 1
         }
         // Lista punteada ingredientes
-        for (let ingredient of recipes[recipe_id].getIngredients()) {
+        for (let ingredient of thisRecipe.getIngredients()) {
             ingredients += '<li type="circle">' + ingredient + "</li>";
         }
         // Lista numerada pasos
-        for (let step of recipes[recipe_id].getPreparation()) {
+        for (let step of thisRecipe.getPreparation()) {
             prepar += '<li>' + step + "</li>";
         }
         // Final de la lista sin orden
@@ -332,9 +355,9 @@ function showMore(recipe_id) {
         // Final de la lista ordenada
         prepar += "</ol>"  
         // Montar final
-        $("#vista_receta_tit").text("Receta: "+ recipes[recipe_id].getName());
+        $("#vista_receta_tit").text("Receta: "+ thisRecipe.getName());
         $("#vista_receta_gallery").html(images);
-        $("#vista_receta_cont").html('<h2 class="description"> Descripcion: ' + recipes[recipe_id].getDescription() + ' </h2>'+
+        $("#vista_receta_cont").html('<h2 class="description"> Descripcion: ' + thisRecipe.getDescription() + ' </h2>'+
                                     '<div class="listContent">' +
                                         '<div class="list">' +
                                             '<h3 class="ingredientsTitle"> Ingredientes:  </h3>' +'<h6 class="ingredientsContent">' + ingredients + ' </h6>' +
