@@ -66,9 +66,8 @@ function addRecipe(id, recipe) {
         id = nextId
     }
     let newRecipe = new Recipe(recipe)
-    recipes[id.toString()]= newRecipe;
-    nextId++
-    return nextId+1
+    recipes.set(id.toString(), newRecipe)
+    return nextId++
 }
 
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
@@ -311,7 +310,7 @@ function generateRecipe(i){
     console.log('jjjjjjjjjj')
     $('#noElementsMessage').hide()
     // creamos variable auxiliar para almacenar la receta a editar
-    let thisRecipe = recipes[i.toString()]
+    let thisRecipe = recipes.get(i.toString())
     return`
     <div id="del-` + i + `" class="col mb-5 existingElement">                   
         <div class="card">
