@@ -66,8 +66,9 @@ function addRecipe(id, recipe) {
         id = nextId
     }
     let newRecipe = new Recipe(recipe)
-    recipes.set(id.toString(), newRecipe)
-    return nextId++
+    recipes[id.toString()]= newRecipe;
+    nextId++
+    return nextId+1
 }
 
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
@@ -247,8 +248,9 @@ $(function () {
     $("#add").hide();
     resetAdd();
     // Se añaden las vistas de las recertas predeterminadas
-    for (const i in recipes.keys()) {
+    for (const i of Object.keys(recipes)) {
         $("#main").append(generateRecipe(i));
+        
     }
     // Añadir la funcionalidad al boton para ir al formulario y añadir una receta
     $("#btn-add").click(function () {
@@ -309,7 +311,7 @@ function generateRecipe(i){
     console.log('jjjjjjjjjj')
     $('#noElementsMessage').hide()
     // creamos variable auxiliar para almacenar la receta a editar
-    let thisRecipe = recipes.get(i.toString())
+    let thisRecipe = recipes[i.toString()]
     return`
     <div id="del-` + i + `" class="col mb-5 existingElement">                   
         <div class="card">
