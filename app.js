@@ -213,6 +213,7 @@ function buttonsAddElementsInListAddEdit(){
         if ($("#addTitle").html() === 'Modificar receta'){
             // guardar en la posicion de la receta a editar la nueva receta editada
             addRecipe(idToModify, [$("#tituloinp").val(), $("#descripcioninp").val(), newPhotos, newingredients, newpasos])
+            thisRecipe = recipes.get(idToModify.toString())
             // cambiar el html
             $("#del-"+idToModify).html(
                 `           
