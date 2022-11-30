@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/pablorpost/FoodeX/issues"
   },
-  "homepage": "https://github.com/pablorpost/FoodeX#readme"
+  "homepage": "https://github.com/pablorpost/FoodeX#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
