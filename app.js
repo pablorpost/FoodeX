@@ -311,7 +311,7 @@ function generateRecipe(i){
     console.log('jjjjjjjjjj')
     $('#noElementsMessage').hide()
     // creamos variable auxiliar para almacenar la receta a editar
-    let thisRecipe = recipes[i.toString()]
+    let thisRecipe = recipes.get(i.toString())
     return`
     <div id="del-` + i + `" class="col mb-5 existingElement">                   
         <div class="card">
