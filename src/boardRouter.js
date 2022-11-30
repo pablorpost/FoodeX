@@ -1,36 +1,20 @@
 import express from 'express';
-import * as boardService from './boardService.js';
+import * as recipesService from './recipesService.js';
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
 
     res.render('index', { 
-        posts: boardService.getPosts() 
+        recipes: recipesService.getRecipes() 
     });
 });
 
-router.post('/post/new', (req, res) => {
+router.get('/showMore/:id', (req, res) => {
 
-    let { user, title, text } = req.body;
+    let recipe = recipesService.getRecipe(req.params.id);
 
-    boardService.addPost({ user, title, text });
-
-    res.render('saved_post');
-});
-
-router.get('/post/:id', (req, res) => {
-
-    let post = boardService.getPost(req.params.id);
-
-    res.render('show_post', { post });
-});
-
-router.get('/post/:id/delete', (req, res) => {
-
-    boardService.deletePost(req.params.id);
-
-    res.render('deleted_post');
+    res.render('show_recipe', { recipe });
 });
 
 export default router;
