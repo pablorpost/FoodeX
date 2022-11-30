@@ -1,1 +1,115 @@
+<html>
+<body>
 
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="Resources/logoSinFondoEstrecha.PNG" width="100px" height="40px" class="d-inline-block align-top" alt="">
+            FoodeX
+        </a>
+        <p class="navbar-text">Recetas</p>
+    </nav>
+
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">FoodeX</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Tus recetas a un solo click</p>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Menu principal de la página donde se muestra la lista de recetas existentes -->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div id="main" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                	{{#recipes}}
+	                    <a href="post/{{id}}">{{name}} {{description}} {{images}} {{ingredients}}{{preparation}}</a><br>
+	                {{/recipes}}
+	
+	                {{^recipes}}
+	                    <p>No hay recetas.</p>
+	                {{/recipes}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Zona donde se encuentra el boton de añadir recetas -->    
+    <div id="buttons" class="center centerText"> 
+        <br><button id="btn-add"><a href="new_recipe.html">Nueva Receta</a></button><br><br><br><br>
+    </div>
+
+    <!-- Menu para ver los detalles de una receta -->
+    <div id="vista_receta" class="container"> 
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 id="vista_receta_tit" class="recipe-title">Recipe title</h1>
+                        <section class="py-5">
+                            <div class="container px-4 px-lg-5 mt-5">
+                                <div id="vista_receta_gallery" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                                </div>
+                            </div>
+                        </section>
+                        <div id="vista_receta_cont">
+                        </div>
+                        <div id="vista_recta_buttons" class="btn-toolbar">
+                            <button id="btn-back" class="btn btn-primary">Volver</button>
+                        </div>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Formulario para añadir receta -->
+    <div id="add" class="container"> 
+            <div class="col">
+                <div class="card">
+                    <br>
+                    <div class="card-body">
+                        <h5  class="card-title"><strong id="addTitle"></strong></h5>
+                        <div>
+                            <p>Nombre: <input id='tituloinp' type='text'></p> <!-- Input titulo -->
+                            <p>Descripcion: <input id='descripcioninp' type='text'></p> <!-- Input descripcion -->
+                            <div id="ingredientes_input">
+                                <p>Ingredientes:</p>
+                                <ul id="lista_ingredientes"> <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
+                                </ul>
+                            </div>
+                            <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button> <!-- Boton para añadir un ingrediente más -->
+                            <div id="preparacion_input">
+                                <p>Preparacion:</p>
+                                <ol id="lista_prep"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                                </ol>
+                            </div>
+                            <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button> <!-- Boton para añadir un paso más -->
+                            <div >
+                                <p>Imagenes:</p>
+                                <ol id="image_input"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                                    <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);"/>
+                                    <div id="imgTest0"></div></li>
+                                </ol>
+                            </div>
+                            <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button> <!-- Boton para añadir una foto más -->
+                        </div>
+                        <p id="notImageEditMessage"></p>
+                        <div class="center centerText">
+                            <button id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
+                            <button id="btn-notShowAdd" class="btn btn-primary">Volver</button>
+                        </div>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Diego Isaac Fernández Conde,David Pimentel Montes,Pablo
+            Requejo Postlbauer. All rights reserved.</p></div>
+    </footer>
+</body>
+
+</html>
