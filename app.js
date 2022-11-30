@@ -66,9 +66,9 @@ function addRecipe(id, recipe) {
         id = nextId
     }
     let newRecipe = new Recipe(recipe)
-    recipes[id.toString()]= newRecipe;
-    nextId++
-    return nextId+1
+    recipes.set(id.toString(), newRecipe);
+    console.log(recipes)
+    return nextId++
 }
 
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
