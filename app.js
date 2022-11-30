@@ -208,7 +208,7 @@ function buttonsAddElementsInListAddEdit(){
             newPhotos.push('Resources/fotoPredeterminadaDeReceta.jpg')
         }
         // creamos variable auxiliar para almacenar la receta a editar
-        let thisRecipe = recipes.get(recipe_id.toString())
+        let thisRecipe = recipes.get(idToModify.toString())
         // Comprobar si proviene del editar y no del añadir
         if ($("#addTitle").html() === 'Modificar receta'){
             // guardar en la posicion de la receta a editar la nueva receta editada
