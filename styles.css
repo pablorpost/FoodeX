@@ -6,36 +6,8 @@
         color: #5996CF;
         color: #E4D4B7;
         color: #FFF3D5;
-
-#iconUpperBar {
-    display: "inline-block"
-}
-
-#brandUpperBar {
-    display: "inline-block"
-}
-.cont-main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: space-between;
-
-body {
-    background-color: #005F84;
-}
-.alignToCenter {
-    align-items: center;
-}
-
-
-.item-text-inner {
-    align-items: stretch;
-}
-
-
-}
 */
+
 .navbar-text{
     font-size: 3rem;
     padding-top: 0.2rem;
@@ -47,8 +19,8 @@ body {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     margin-right: 0,2rem;
-
 }
+
 .center {
     margin: auto;
     width: 50%;
