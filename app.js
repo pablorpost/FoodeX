@@ -67,7 +67,6 @@ function addRecipe(id, recipe) {
     }
     let newRecipe = new Recipe(recipe)
     recipes.set(id.toString(), newRecipe);
-    console.log(recipes)
     return nextId++
 }
 
@@ -249,7 +248,6 @@ $(function () {
     resetAdd();
     // Se añaden las vistas de las recertas predeterminadas
     for (const i of recipes.keys()) {
-        console.log(i)
         $("#main").append(generateRecipe(i));
         
     }
@@ -309,11 +307,9 @@ function editRecipe(recipe_id){
 
 // Generar la carta de una receta, sus botones, ver mas y borrar
 function generateRecipe(i){   
-    console.log('jjjjjjjjjj')
     $('#noElementsMessage').hide()
     // creamos variable auxiliar para almacenar la receta a editar
     let thisRecipe = recipes.get(i.toString())
-    console.log(thisRecipe)
     return`
     <div id="del-` + i + `" class="col mb-5 existingElement">                   
         <div class="card">
