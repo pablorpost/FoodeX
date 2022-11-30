@@ -72,7 +72,7 @@ function addRecipe(id, recipe) {
 }
 
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
-for (const i in predefinedRecipes) {
+for (const i of predefinedRecipes) {
     addRecipe('next', i)
 }
 
@@ -248,7 +248,8 @@ $(function () {
     $("#add").hide();
     resetAdd();
     // Se añaden las vistas de las recertas predeterminadas
-    for (const i of Object.keys(recipes)) {
+    for (const i of recipes.keys()) {
+        console.log(i)
         $("#main").append(generateRecipe(i));
         
     }
@@ -312,6 +313,7 @@ function generateRecipe(i){
     $('#noElementsMessage').hide()
     // creamos variable auxiliar para almacenar la receta a editar
     let thisRecipe = recipes.get(i.toString())
+    console.log(thisRecipe)
     return`
     <div id="del-` + i + `" class="col mb-5 existingElement">                   
         <div class="card">
