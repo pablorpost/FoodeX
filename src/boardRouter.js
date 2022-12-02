@@ -14,7 +14,10 @@ router.get('/showMore/:id', (req, res) => {
 
     let recipe = recipesService.getRecipe(req.params.id);
 
-    res.render('show_recipe', { recipe });
+    res.render('show_recipe', {
+        RecipeTitle:recipe.name;
+        RecipeDescription:recipe.description; 
+    });
 });
 
 export default router;

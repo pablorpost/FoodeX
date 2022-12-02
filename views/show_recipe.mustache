@@ -42,17 +42,38 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h1 id="vista_receta_tit" class="recipe-title">Recipe title</h1>
+                        <h1 id="vista_receta_tit" class="recipe-title">{{RecipeTitle}}</h1>
                         <section class="py-5">
                             <div class="container px-4 px-lg-5 mt-5">
                                 <div id="vista_receta_gallery" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                                {{#RecipePhotos}}
+                                {{/RecipePhotos}}
                                 </div>
                             </div>
                         </section>
                         <div id="vista_receta_cont">
+                        <h2 class="description"> Descripcion:  {{RecipeDescription}} </h2>
+                        <div class="listContent"> 
+                            <div class="list"> 
+                                <h3 class="ingredientsTitle"> Ingredientes:  </h3> 
+                                <h6 class="ingredientsContent">
+                                {{#RecipeIngredients}}
+                                {{/RecipeIngredients}}</h6>
+                            </div>
+                            <div class="list"> 
+                                <h3 class="preparationTitle"> Preparacion: </h3> 
+                                <h6 class="preparationContent">
+                                {{#RecipeSteps}}
+                                {{/RecipeSteps}} </h3>
+                            </div> 
+                        </div>
+                            
+                            
                         </div>
                         <div id="vista_recta_buttons" class="btn-toolbar">
-                            <button id="btn-back" class="btn btn-primary">Volver</button>
+                            <button id="btn-notShowRecipeView" class="btn btn-primary">Volver</button>
+                            <button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>
+                            <button id="btn-del-notShowRecipeView-' + recipe_id + '" class="btn btn-primary">Borrar</button>
                         </div>
                         <br><br><br>
                     </div>
