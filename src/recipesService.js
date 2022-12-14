@@ -20,6 +20,17 @@ let predefinedRecipes = [
             'Reposar 15 min.']]
 ]
 
+export function getRecipes(){
+    if (recipes==={}){
+        // Añadir las recetas predeterminadas como objetos en la lista de objetos
+        for (const i of predefinedRecipes) {
+            addRecipe(i)
+        }
+    }
+    console.log(recipes)
+    return recipes;
+}
+
 // Objeto receta que almacena los datos de una receta con geters y setters
 class Recipe {
     name = ''
@@ -66,10 +77,7 @@ export function addRecipe(recipe) {
     return nextId++
 }
 
-// Añadir las recetas predeterminadas como objetos en la lista de objetos
-for (const i of predefinedRecipes) {
-    addRecipe(i)
-}
+
 
 // Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
 function eventFunctionDelShow(){
