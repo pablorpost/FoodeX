@@ -72,7 +72,7 @@ function addRecipe(id, recipe) {
     recipes.set(id.toString(), newRecipe);
     return nextId++
 }
-*/
+
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
 for (const i of predefinedRecipes) {
     addRecipe('next', i)
@@ -103,7 +103,7 @@ function eventFunctionDelShow(){
                     if (!$('.existingElement').length){
                         $('#noElementsMessage').show()
                     }
-                    */
+                    * /
                 }
             }
             // si se desea mostrar más info 
@@ -130,7 +130,7 @@ function eventFunctionDelShow(){
         }
     });
 }
-
+*/
 // crear el html de un nuevo campo de los ingredientes
 function newIngredientInp(innerText, idNumber){
     $("#lista_ingredientes").append(`

@@ -60,16 +60,66 @@ let idToModify = 0 // saber el id de la receta que deseamos modificar
 let newPhotos = new Array() // lista que almacena las rutas de las imagenes que añadimos en una receta
 
 // Añade una receta a la lista de objetos receta
-export function addRecipe(id, recipe) {
-    if (id === 'next'){
-        id = nextId
-    }
+export function addRecipe(recipe) {
     let newRecipe = new Recipe(recipe)
-    recipes.set(id.toString(), newRecipe);
+    recipes.set(nextId.toString(), newRecipe);
     return nextId++
 }
 
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
 for (const i of predefinedRecipes) {
-    addRecipe('next', i)
+    addRecipe(i)
+}
+
+// Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
+function eventFunctionDelShow(){
+    // recibir información del boton que ha sido pulsado
+    $('.btn').on('click', function(event) {
+        // obtenemos la lista de atributos desde el id del boton para saber como actuar
+        let nameButtonPressed = event.target.id.split('-')
+        // obtener el id de la receta que estamos tratando
+        let numberOfId = nameButtonPressed[nameButtonPressed.length - 1]
+        if (nameButtonPressed[0] == 'btn'){
+            // si se desea eliminar el elemento
+            if (nameButtonPressed.includes('del')){
+                // mostrar cuadro de diálogo para confirmar el borrado
+                if (confirm("¿Seguro que quieres borrar la receta?") == true){
+                    // borrar de la vista en HTML
+                    $('#del-' + numberOfId).remove();
+                    // borrar del Map de elementos
+                    recipes.delete(numberOfId.toString())
+                    // si no quedan elementos, mostramos el mensaje de No Quedan Elementos
+                    if (!recipes.size){
+                        $('#noElementsMessage').show()
+                    }
+                    /*
+                    if (!$('.existingElement').length){
+                        $('#noElementsMessage').show()
+                    }
+                    */
+                }
+            }
+            // si se desea mostrar más info 
+            if (nameButtonPressed.includes('show')){
+                showMore(numberOfId);
+            }
+            // si se desea editar la receta
+            else if (nameButtonPressed.includes('edit')){
+                editRecipe(numberOfId);
+            }
+            // si se desea ocultar el más info de la receta
+            else if (nameButtonPressed.includes('notShowRecipeView')){
+                $("#main").show();
+                $("#buttons").show();
+                $("#vista_receta").hide();
+            }
+            // si se desea ocultar el añadir receta
+            if (nameButtonPressed.includes('notShowAdd')){
+                $("#main").show();
+                $("#buttons").show();
+                $("#add").hide();
+                resetAdd();
+            }
+        }
+    });
 }
