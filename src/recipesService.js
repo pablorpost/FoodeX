@@ -20,43 +20,6 @@ let predefinedRecipes = [
             'Reposar 15 min.']]
 ]
 
-export function getRecipes(){
-    if (recipes.size===0){
-        // Añadir las recetas predeterminadas como objetos en la lista de objetos
-        console.log("Recetas predefinidas añadidas\n")
-        for (const i of predefinedRecipes) {
-            addRecipe(i)
-        }
-    }
-    console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
-    let recipesArrayOfClass = new Array()
-    let recipesArray = [...recipes]
-    for (let i = 0; i < recipesArray.length; i++) {
-        recipesArrayOfClass[i] = { 
-            id: recipesArray[i][0], 
-            image: recipesArray[i][1].getImages()[0],
-            name: recipesArray[i][1].getName(),
-            description: recipesArray[i][1].getDescription()
-        };
-    }
-    console.log(recipesArrayOfClass)
-    return recipesArrayOfClass
-}
-
-export function getRecipe(i){
-    let thisRecipe = recipes.get(i.toString())
-    console.log(thisRecipe)
-    let recipeClass = {
-        id: i.toString(),
-        name: thisRecipe.getName(),
-        description: thisRecipe.getDescription(),
-        images: thisRecipe.getImages(),
-        ingredients: thisRecipe.getIngredients(),
-        preparation: thisRecipe.getPreparation()
-    }
-    return recipeClass
-}
-
 // Objeto receta que almacena los datos de una receta con geters y setters
 class Recipe {
     name = ''
@@ -88,6 +51,64 @@ class Recipe {
     getPreparation = () => this.preparation
     setPreparation = preparation => this.preparation = preparation
 }
+
+export function getRecipes(){
+    if (recipes.size===0){
+        // Añadir las recetas predeterminadas como objetos en la lista de objetos
+        console.log("Recetas predefinidas añadidas\n")
+        for (const i of predefinedRecipes) {
+            addRecipe(i)
+        }
+    }
+    console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
+    let recipesArrayOfClass = new Array()
+    let recipesArray = [...recipes]
+    for (let i = 0; i < recipesArray.length; i++) {
+        recipesArrayOfClass[i] = { 
+            id: recipesArray[i][0], 
+            image: recipesArray[i][1].getImages()[0],
+            name: recipesArray[i][1].getName(),
+            description: recipesArray[i][1].getDescription()
+        };
+    }
+    console.log(recipesArrayOfClass)
+    return recipesArrayOfClass
+}
+
+export function getRecipe(i){
+    let thisRecipe = recipes.get(i.toString())
+    console.log(thisRecipe)
+
+    let imagesArray = thisRecipe.getImages()
+    let imagesArrayClass = new Array()
+    for (let i = 0; i < imagesArray.length; i++) {
+        imagesArrayClass[i] = {image: imagesArray[i]}
+    }
+
+    let igredientsArray = thisRecipe.getIngredients()
+    let igredientsArrayClass = new Array()
+    for (let i = 0; i < igredientsArray.length; i++) {
+        igredientsArrayClass[i] = {igredient: igredientsArray[i]}
+    }
+
+    let preparationsArray = thisRecipe.getPreparation()
+    let preparationsArrayClass = new Array()
+    for (let i = 0; i < preparationsArray.length; i++) {
+        preparationsArrayClass[i] = {preparation: preparationsArray[i]}
+    }
+
+    let recipeClass = {
+        id: i.toString(),
+        name: thisRecipe.getName(),
+        description: thisRecipe.getDescription(),
+        images: imagesArrayClass,
+        ingredients: igredientsArrayClass,
+        preparation: preparationsArrayClass
+    };
+    return recipes.get(i.toString())
+}
+
+
 
 // declarar variables auxiliares
 let add_steps_number = 0 // numero de pasos en la edición o el añadido de una receta
