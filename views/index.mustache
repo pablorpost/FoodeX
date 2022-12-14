@@ -43,14 +43,14 @@
             <div id="main" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
                 {{#recipes}}
-                    <a href = "recipe/ {{id}}">
+                    <a href = "recipe/{{0}}">
                     <div  class="col mb-5 existingElement">                   
                         <div class="card">
-                            <img src="{{recipe.getImages()[0]}}" class="card-img-top" alt="{{recipe.getName()}} photo">
+                            <img src="{{1.getImages()[0]}}" class="card-img-top" alt="{{1.getName()}} photo">
                             <div class="card-body">
-                                <h3 class="card-title"><strong>{{recipe.getName()}}</strong></h3>
-                                <h6 class="card-text">{{recipe.getDescription()}}</h6>
-                                <a href="showMore/{{id}}" class="btn btn-primary">Ver receta</a>
+                                <h3 class="card-title"><strong>{{1.getName()}}</strong></h3>
+                                <h6 class="card-text">{{1.getDescription()}}</h6>
+                                <a href="showMore/{{0}}" class="btn btn-primary">Ver receta</a>
                             </div>
                         </div>
                     </div>

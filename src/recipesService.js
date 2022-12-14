@@ -29,7 +29,8 @@ export function getRecipes(){
         }
     }
     console.log(recipes)
-    return recipes;
+
+    return [...recipes];
 }
 
 // Objeto receta que almacena los datos de una receta con geters y setters
