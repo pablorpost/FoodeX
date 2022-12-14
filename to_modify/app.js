@@ -1,4 +1,5 @@
-// Lista predefinida de recetas
+/*// Lista predefinida de recetas
+
 let predefinedRecipes = [
     ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', ['Resources/arrozConLeche1.jpg', 'Resources/arrozConLeche2.jpg', 'Resources/arrozConLeche3.jpg'],
         ['1 litro de Leche', '3 cucharadas de arroz', '4 cucharadas de Azúcar', 'Piel de ¼ de limón', 'Canela en rama'],
@@ -50,6 +51,7 @@ class Recipe {
 
 // lista que almacena los objetos Receta existentes
 let recipes = new Map()
+
 // variable auxiliar para saber el id actual y saber el siguiente a añadir
 let nextId = 0
 
@@ -60,7 +62,8 @@ let add_photo_number = 0 // numero de fotos en el añadido de una receta
 let idToModify = 0 // saber el id de la receta que deseamos modificar
 let newPhotos = new Array() // lista que almacena las rutas de las imagenes que añadimos en una receta
 
-// Añade una reeceta a la lista de objetos receta
+
+// Añade una receta a la lista de objetos receta
 function addRecipe(id, recipe) {
     if (id === 'next'){
         id = nextId
@@ -69,7 +72,7 @@ function addRecipe(id, recipe) {
     recipes.set(id.toString(), newRecipe);
     return nextId++
 }
-
+*/
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
 for (const i of predefinedRecipes) {
     addRecipe('next', i)
