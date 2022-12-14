@@ -21,8 +21,9 @@ let predefinedRecipes = [
 ]
 
 export function getRecipes(){
-    if (recipes==={}){
+    if (recipes.size===0){
         // Añadir las recetas predeterminadas como objetos en la lista de objetos
+        console.log("añadir")
         for (const i of predefinedRecipes) {
             addRecipe(i)
         }
