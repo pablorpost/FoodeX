@@ -45,26 +45,26 @@
                     <section class="py-5">
                         <div class="container px-4 px-lg-5 mt-5">
                             <div id="vista_receta_gallery" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                                {{#RecipePhotos}}
-                                <img src="{{0}}" alt="{{RecipeTitle}}" class="img-responsive" height="450px" width="450px">
-                                {{/RecipePhotos}}
+                                {{#images}}
+                                <img src="{{image}}" alt="{{RecipeTitle}}" class="img-responsive" height="450px" width="450px">
+                                {{/images}}
                             </div>
                         </div>
                     </section>
                     <div id="vista_receta_cont">
-                        <h2 class="description"> Descripcion: {{RecipeDescription}} </h2>
+                        <h2 class="description"> Descripcion: {{description}} </h2>
                         <div class="listContent">
                             <div class="list">
                                 <h3 class="ingredientsTitle"> Ingredientes: </h3>
                                 <h6 class="ingredientsContent">
                                     <ul>
-                                        {{#RecipeIngredients}}
+                                        {{#ingredients}}
                                         <li type="circle">{{igredient}}</li>
-                                        {{/RecipeIngredients}}
+                                        {{/ingredients}}
 
-                                        {{^RecipeIngredients}}
+                                        {{^ingredients}}
                                         <li type="circle"> Sin Ingredientes... </li>
-	                                    {{/RecipeIngredients}}
+	                                    {{/ingredients}}
                                     </ul>
 
                                 </h6>
@@ -73,13 +73,13 @@
                                 <h3 class="preparationTitle"> Preparacion: </h3>
                                 <h6 class="preparationContent">
                                     <ol>
-                                        {{#RecipePreparation}}
+                                        {{#preparations}}
                                         <li>{{preparation}}</li>
-                                        {{/RecipePreparation}}
+                                        {{/preparations}}
 
-                                        {{^RecipePreparation}}
+                                        {{^preparations}}
                                         <li> Sin Preparacion... </li>
-	                                    {{/RecipePreparation}}
+	                                    {{/preparations}}
                                     </ol>
                                 </h6>
                             </div>

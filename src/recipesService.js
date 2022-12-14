@@ -5,16 +5,16 @@ let nextId = 0;
 
 // Lista predefinida de recetas
 let predefinedRecipes = [
-    ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', ['Resources/arrozConLeche1.jpg', 'Resources/arrozConLeche2.jpg', 'Resources/arrozConLeche3.jpg'],
+    ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', ['/Resources/arrozConLeche1.jpg', '/Resources/arrozConLeche2.jpg', '/Resources/arrozConLeche3.jpg'],
         ['1 litro de Leche', '3 cucharadas de arroz', '4 cucharadas de Azúcar', 'Piel de ¼ de limón', 'Canela en rama'],
         ['Ponemos todos los ingredientes a hervir','Movemos continuamente durante 40 min']],
 
-    ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', ['Resources/bizcochoDeYogurt1.jpg', 'Resources/bizcochoDeYogurt2.jpg', 'Resources/bizcochoDeYogurt3.jpg'],
+    ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', ['/Resources/bizcochoDeYogurt1.jpg', '/Resources/bizcochoDeYogurt2.jpg', '/Resources/bizcochoDeYogurt3.jpg'],
         ['1 yogurt de limón', '½ medida de aceite', '2 medidas de azúcar', '3 medidas de harina', '4 huevos', '½ sobre de levadura', 'Sal'],
         ['Se baten los huevos con sal.', 'Se añade el yogurt, el aceite y el azúcar.', 'Se añade la harina y la levadura.',
             'Hornear a 175 ºC durante 20 min.']],
 
-    ['Tortitas', 'Delicioso desayuno, ideal para los domingos', ['Resources/tortitas1.jpg', 'Resources/tortitas2.jpg'],
+    ['Tortitas', 'Delicioso desayuno, ideal para los domingos', ['/Resources/tortitas1.jpg', '/Resources/tortitas2.jpg'],
         ['2 huevos', '1 cucharada de azúcar', '1 cucharada de aceite', '1,5 vasos de leche', '200 gr de harina (6 cucharadas grandes)', 'Levadura', 'Sal'],
         ['Se baten los huevos con sal.', 'Se añade el azúcar, el aceite y la leche y se bate.', 'Se añade la harina y la levadura y se bate.',
             'Reposar 15 min.']]
@@ -90,6 +90,9 @@ export function getRecipe(i){
     for (let i = 0; i < igredientsArray.length; i++) {
         igredientsArrayClass[i] = {igredient: igredientsArray[i]}
     }
+    console.log('jhkdbachkijsd ihvboujsaojulvb losjdb')
+    console.log(igredientsArray)
+    console.log(igredientsArrayClass)
 
     let preparationsArray = thisRecipe.getPreparation()
     let preparationsArrayClass = new Array()
@@ -103,9 +106,9 @@ export function getRecipe(i){
         description: thisRecipe.getDescription(),
         images: imagesArrayClass,
         ingredients: igredientsArrayClass,
-        preparation: preparationsArrayClass
+        preparations: preparationsArrayClass
     };
-    return recipes.get(i.toString())
+    return recipeClass
 }
 
 
