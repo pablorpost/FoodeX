@@ -29,7 +29,7 @@ export function getRecipes(){
         }
     }
     console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
-    [...recipes]
+    return [...recipes]
 }
 
 export function getRecipe(i){
