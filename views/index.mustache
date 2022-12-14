@@ -25,13 +25,14 @@
         <div class="container px-4 px-lg-5 mt-5">
             <div id="main" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {{#recipes}}
-                    <div id="del-{{id}}" class="col mb-5 existingElement">                   
+                    <a href = "recipe/ {{id}}">
+                    <div  class="col mb-5 existingElement">                   
                         <div class="card">
                             <img src="{{recipe.getImages()[0]}}" class="card-img-top" alt="{{recipe.getName()}} photo">
                             <div class="card-body">
                                 <h3 class="card-title"><strong>{{recipe.getName()}}</strong></h3>
                                 <h6 class="card-text">{{recipe.getDescription()}}</h6>
-                                <a href="showMore/{{id}}" id="btn-show-{{id}}" class="btn btn-primary">Ver receta</a>
+                                <a href="showMore/{{id}}" class="btn btn-primary">Ver receta</a>
                             </div>
                         </div>
                     </div>

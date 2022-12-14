@@ -16,11 +16,21 @@ router.get('/showMore/:id', (req, res) => {
 
     res.render('show_recipe', {
         RecipeTitle:recipe.getName(),
-        RecipeDescription:recipe.getDescription(),
+        RecipeDescription:recipe.recipe.RecipeDescription(),
         RecipeIngredients:recipe.getIngredients(),
         RecipePreparation:recipe.getPreparation(),
-
+        RecipePhotos:recipe.getPhotos()
     });
 });
+
+router.get('/showMore/:id/delete', (req, res) => {
+    recipesService.deleteRecipe(req.params.id)
+});
+
+router.get('/showMore/:id/edit', (req, res) => {
+
+
+});
+
 
 export default router;
