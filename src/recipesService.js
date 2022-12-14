@@ -23,13 +23,17 @@ let predefinedRecipes = [
 export function getRecipes(){
     if (recipes.size===0){
         // Añadir las recetas predeterminadas como objetos en la lista de objetos
-        console.log("añadir")
+        console.log("Recetas predefinidas añadidas\n")
         for (const i of predefinedRecipes) {
             addRecipe(i)
         }
     }
-    console.log(recipes)
+    console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
     return recipes;
+}
+
+export function getRecipe(i){
+    return recipes.get(i);
 }
 
 // Objeto receta que almacena los datos de una receta con geters y setters
