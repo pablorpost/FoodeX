@@ -76,6 +76,35 @@ export function getRecipes(){
 }
 
 export function getRecipe(i){
+    let thisRecipe = recipes.get(i.toString())
+    console.log(thisRecipe)
+
+    let imagesArray = thisRecipe.getImages()
+    let imagesArrayClass = new Array()
+    for (let i = 0; i < imagesArray.length; i++) {
+        imagesArrayClass[i] = {image: imagesArray[i]}
+    }
+
+    let igredientsArray = thisRecipe.getIngredients()
+    let igredientsArrayClass = new Array()
+    for (let i = 0; i < igredientsArray.length; i++) {
+        igredientsArrayClass[i] = {igredient: igredientsArray[i]}
+    }
+
+    let preparationsArray = thisRecipe.getPreparation()
+    let preparationsArrayClass = new Array()
+    for (let i = 0; i < preparationsArray.length; i++) {
+        preparationsArrayClass[i] = {preparation: preparationsArray[i]}
+    }
+
+    let recipeClass = {
+        id: i.toString(),
+        name: thisRecipe.getName(),
+        description: thisRecipe.getDescription(),
+        images: imagesArrayClass,
+        ingredients: igredientsArrayClass,
+        preparation: preparationsArrayClass
+    };
     return recipes.get(i.toString())
 }
 
