@@ -15,10 +15,11 @@ router.get('/showMore/:id', (req, res) => {
     let recipe = recipesService.getRecipe(req.params.id);
 
     res.render('show_recipe', {
-        RecipeTitle:recipe.getName(),
-        RecipeDescription:recipe.recipe.RecipeDescription(),
-        RecipeIngredients:recipe.getIngredients(),
-        RecipePreparation:recipe.getPreparation(),
+        RecipeTitle: recipe.getName(),
+        RecipeDescription: recipe.recipe.RecipeDescription(),
+        RecipeIngredients: recipe.getIngredients(),
+        RecipePreparation: recipe.getPreparation(),
+        id: recipe.getId(),
         RecipePhotos:recipe.getPhotos()
     });
 });

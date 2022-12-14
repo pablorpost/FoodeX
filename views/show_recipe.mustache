@@ -38,48 +38,63 @@
     </header>
 
     <!-- Menu para ver los detalles de una receta -->
-    <div id="vista_receta" class="container"> 
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h1 id="vista_receta_tit" class="recipe-title">{{RecipeTitle}}</h1>
-                        <section class="py-5">
-                            <div class="container px-4 px-lg-5 mt-5">
-                                <div id="vista_receta_gallery" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    <div id="vista_receta" class="container" style="display: block;">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h1 id="vista_receta_tit" class="recipe-title">{{RecipeTitle}}</h1>
+                    <section class="py-5">
+                        <div class="container px-4 px-lg-5 mt-5">
+                            <div id="vista_receta_gallery" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                                 {{#RecipePhotos}}
-                                
+                                <img src="{{photo}}" alt="{{RecipeTitle}}" class="img-responsive" height="450px" width="450px">
                                 {{/RecipePhotos}}
-                                </div>
                             </div>
-                        </section>
-                        <div id="vista_receta_cont">
-                        <h2 class="description"> Descripcion:  {{RecipeDescription}} </h2>
-                        <div class="listContent"> 
-                            <div class="list"> 
-                                <h3 class="ingredientsTitle"> Ingredientes:  </h3> 
+                        </div>
+                    </section>
+                    <div id="vista_receta_cont">
+                        <h2 class="description"> Descripcion: {{RecipeDescription}} </h2>
+                        <div class="listContent">
+                            <div class="list">
+                                <h3 class="ingredientsTitle"> Ingredientes: </h3>
                                 <h6 class="ingredientsContent">
-                                {{#RecipeIngredients}}
-                                {{/RecipeIngredients}}</h6>
+                                    <ul>
+                                        {{#RecipeIngredients}}
+                                        <li type="circle">{{ingredient}}</li>
+                                        {{/RecipeIngredients}}
+
+                                        {{^RecipeIngredients}}
+                                        <li type="circle"> Sin Ingredientes... </li>
+	                                    {{/RecipeIngredients}}
+                                    </ul>
+
+                                </h6>
                             </div>
-                            <div class="list"> 
-                                <h3 class="preparationTitle"> Preparacion: </h3> 
+                            <div class="list">
+                                <h3 class="preparationTitle"> Preparacion: </h3>
                                 <h6 class="preparationContent">
-                                {{#RecipePreparation}}
-                                {{/RecipePreparation}} </h3>
-                            </div> 
+                                    <ol>
+                                        {{#RecipePreparation}}
+                                        <li>{{preparation}}</li>
+                                        {{/RecipePreparation}}
+
+                                        {{^RecipePreparation}}
+                                        <li> Sin Preparacion... </li>
+	                                    {{/RecipePreparation}}
+                                    </ol>
+                                </h6>
+                            </div>
                         </div>
-                            
-                            
-                        </div>
-                        <div id="vista_recta_buttons" class="btn-toolbar">
-                            <button id="btn-notShowRecipeView" class="btn btn-primary">Volver</button>
-                            <button id="btn-edit-' + recipe_id + '" class="btn btn-primary">Editar</button>
-                            <button id="btn-del-notShowRecipeView-' + recipe_id + '" class="btn btn-primary">Borrar</button>
-                        </div>
-                        <br><br><br>
                     </div>
+                    <div id="vista_recta_buttons" class="btn-toolbar">
+                        <button id="btn-notShowRecipeView" href="/" class="btn btn-primary">Volver</button>
+                        <button id="btn-edit-{{id}}" href="/showMore/{{id}}/edit" class="btn btn-primary">Editar</button>
+                        <button id="btn-del-notShowRecipeView-{{id}}" href="/showMore/{{id}}/delete" class="btn btn-primary">Borrar</button>
+                    </div>
+                    <br><br><br>
                 </div>
             </div>
+        </div>
     </div>
 
     <!-- Footer-->
