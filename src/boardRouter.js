@@ -4,7 +4,7 @@ import * as recipesService from './recipesService.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-
+    console.log('fffff')
     res.render('index', { 
         recipes: recipesService.getRecipes()
     });
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 router.get('/showMore/:id', (req, res) => {
 
     let recipe = recipesService.getRecipe(req.params.id);
-    console.log
+    console.log(recipe);
 
     res.render('show_recipe', {
         RecipeTitle: recipe.getName(),

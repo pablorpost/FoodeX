@@ -13,7 +13,7 @@
     
     <link rel="icon" href="Resources/logoFondoRedondeado.PNG" type="image" /> <!-- Logo web -->
     <link type="text/css" rel="stylesheet" href="styles.css" /> <!-- Hoja de estilos -->
-    <script src="app.js"></script> <!-- Scripts -->
+    <!-- <script src="app.js"></script> Scripts -->
 </head>
 
 <body>
@@ -45,11 +45,11 @@
                 {{#recipes}}
                     <div  class="col mb-5 existingElement">                   
                         <div class="card">
-                            <img src="{{1.getImages()[0]}}" class="card-img-top" alt="{{1.getName()}} photo">
+                            <img src="{{image}}" class="card-img-top" alt="{{name}} photo">
                             <div class="card-body">
-                                <h3 class="card-title"><strong>{{1.getName()}}</strong></h3>
-                                <h6 class="card-text">{{1.getDescription()}}</h6>
-                                <a href="showMore/{{0}}" class="btn btn-primary">Ver receta</a>
+                                <h3 class="card-title"><strong>{{name}}</strong></h3>
+                                <h6 class="card-text">{{description}}</h6>
+                                <a href="showMore/{{id}}" class="btn btn-primary">Ver receta</a>
                             </div>
                         </div>
                     </div>
