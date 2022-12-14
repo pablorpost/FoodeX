@@ -1,6 +1,7 @@
 {
   "name": "foodex",
   "version": "0.0.1",
+  "type": "module",
   "description": "Practica 2",
   "main": "app.js",
   "scripts": {
