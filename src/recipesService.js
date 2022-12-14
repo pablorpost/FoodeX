@@ -33,7 +33,7 @@ export function getRecipes(){
 }
 
 export function getRecipe(i){
-    return recipes.get(i);
+    return recipes.get(i.toString());
 }
 
 // Objeto receta que almacena los datos de una receta con geters y setters
