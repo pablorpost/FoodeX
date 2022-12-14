@@ -44,7 +44,17 @@ export function getRecipes(){
 }
 
 export function getRecipe(i){
-    return recipes.get(i.toString());
+    let thisRecipe = recipes.get(i.toString())
+    console.log(thisRecipe)
+    let recipeClass = {
+        id: i.toString(),
+        name: thisRecipe.getName(),
+        description: thisRecipe.getDescription(),
+        images: thisRecipe.getImages(),
+        ingredients: thisRecipe.getIngredients(),
+        preparation: thisRecipe.getPreparation()
+    }
+    return recipeClass
 }
 
 // Objeto receta que almacena los datos de una receta con geters y setters
