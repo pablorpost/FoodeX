@@ -29,11 +29,22 @@ export function getRecipes(){
         }
     }
     console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
-    return [...recipes]
+    let recipesArrayOfClass = new Array()
+    let recipesArray = [...recipes]
+    for (let i = 0; i < recipesArray.length; i++) {
+        recipesArrayOfClass[i] = { 
+            id: recipesArray[i][0], 
+            image: recipesArray[i][1].getImages()[0],
+            name: recipesArray[i][1].getName(),
+            description: recipesArray[i][1].getDescription()
+        };
+    }
+    console.log(recipesArrayOfClass)
+    return recipesArrayOfClass
 }
 
 export function getRecipe(i){
-    return recipes.get(i);
+    return recipes.get(i.toString());
 }
 
 // Objeto receta que almacena los datos de una receta con geters y setters
