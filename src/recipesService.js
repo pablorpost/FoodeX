@@ -128,6 +128,9 @@ export function addRecipe(recipe) {
 }
 
 
+export function deleteRecipe(id){
+    recipes.delete(id.toString())
+}
 
 // Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
 function eventFunctionDelShow(){
