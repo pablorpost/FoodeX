@@ -50,20 +50,28 @@ class Recipe {
     setPreparation = preparation => this.preparation = preparation
 }
 
-export function getRecipes(){
-    if (recipes.size===0){
-        // Añadir las recetas predeterminadas como objetos en la lista de objetos
+// Añadir las recetas predeterminadas como objetos en la lista de objetos
+let anad = true
+function añadir(){
+    if(anad){
         console.log("Recetas predefinidas añadidas\n")
-        for (const i of predefinedRecipes) {
-            addRecipe(i)
-        }
+            for (const i of predefinedRecipes) {
+                addRecipe(i)
+            }
+    anad = false
     }
+    console.log("Las recetas borradas, desaparecieron para siempre :´(")
+    
+}
+
+export function getRecipes(){
+    añadir()
     console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
     let recipesArrayOfClass = new Array()
     let recipesArray = [...recipes]
     for (let i = 0; i < recipesArray.length; i++) {
         recipesArrayOfClass[i] = { 
-            id: recipesArray[i][0], 
+            id: recipesArray[i][0],     
             image: recipesArray[i][1].getImages()[0][1],
             name: recipesArray[i][1].getName(),
             description: recipesArray[i][1].getDescription()
