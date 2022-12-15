@@ -135,7 +135,7 @@ function eventFunctionDelShow(){
 function newIngredientInp(innerText, idNumber){
     $("#lista_ingredientes").append(`
         <li id = 'ingredientinpli-` + idNumber + `'>
-            <input id='ingredientinp-` + idNumber + `' type='text' value = "` + innerText + `">
+            <input ='ingredientinp-` + idNumber + `' type='text' value = "` + innerText + `">
             <button id = 'button-remove-ingredients-` + idNumber + `'  type="button" class="btn btn-danger btn-remove">
                 <i class="bi bi-trash text-light"></i> Delete 
             </button>

@@ -6,7 +6,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     console.log("\ntpm\n")
     res.render('index', { 
-        recipes: recipesService.getRecipes()
+        recipes: recipesService.getRecipes(),
+        
     });
 });
 
@@ -22,11 +23,25 @@ router.get('/showMore/:id', (req, res) => {
 router.get('/showMore/delete/:id', (req, res) => {
     recipesService.deleteRecipe(req.params.id)
 });
-/*
+
 router.get('/showMore/:id/edit', (req, res) => {
-
-
+    res.render('add',{ 
+        recipe: recipesService.getRecipe(req.params.id)
+    });
 });
-*/
+
+
+router.get('/add', (req, res) => {
+    res.render('add',{ 
+        recipe: recipesService.getEmptyRecipe()
+    });
+});
+
+
+router.post('/add', (req, res) => {
+    let {recipeName, recipeDescription , recipeSteps , recipeIngredients, recipePhotos} = req.body;
+    boardService.addRecipe({recipeName, recipeDescription , recipePhotos, recipeIngredients, recipeSteps  });
+    res.redirect('/');
+});
 
 export default router;
