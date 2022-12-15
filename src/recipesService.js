@@ -5,28 +5,26 @@ let nextId = 0;
 
 // Lista predefinida de recetas
 let predefinedRecipes = [
-    ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', ['/Resources/arrozConLeche1.jpg', '/Resources/arrozConLeche2.jpg', '/Resources/arrozConLeche3.jpg'],
-        ['1 litro de Leche', '3 cucharadas de arroz', '4 cucharadas de Azúcar', 'Piel de ¼ de limón', 'Canela en rama'],
-        ['Ponemos todos los ingredientes a hervir','Movemos continuamente durante 40 min']],
+    ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', new Map([[0,'/Resources/arrozConLeche1.jpg'], [1,'/Resources/arrozConLeche2.jpg'], [2,'/Resources/arrozConLeche3.jpg']]),
+    new Map([[0,'1 litro de Leche'],[1,'3 cucharadas de arroz'],[2,'4 cucharadas de Azúcar'],[3,'Piel de ¼ de limón'],[4,'Canela en rama']]),
+    new Map([[0,'Ponemos todos los ingredientes a hervir'],[1,'Movemos continuamente durante 40 min']])],
 
-    ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', ['/Resources/bizcochoDeYogurt1.jpg', '/Resources/bizcochoDeYogurt2.jpg', '/Resources/bizcochoDeYogurt3.jpg'],
-        ['1 yogurt de limón', '½ medida de aceite', '2 medidas de azúcar', '3 medidas de harina', '4 huevos', '½ sobre de levadura', 'Sal'],
-        ['Se baten los huevos con sal.', 'Se añade el yogurt, el aceite y el azúcar.', 'Se añade la harina y la levadura.',
-            'Hornear a 175 ºC durante 20 min.']],
+    ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', new Map([[0,'/Resources/bizcochoDeYogurt1.jpg'],[1,'/Resources/bizcochoDeYogurt2.jpg'],[2,'/Resources/bizcochoDeYogurt3.jpg']]),
+        new Map([[0,'1 yogurt de limón'],[1,'½ medida de aceite'],[2,'2 medidas de azúcar'],[3,'3 medidas de harina'],[4,'4 huevos'],[5,'½ sobre de levadura'],[6,'Sal']]),
+        new Map([[0,'Se baten los huevos con sal.'],[1,'Se añade el yogurt, el aceite y el azúcar.'],[2,'Se añade la harina y la levadura.'],[3,'Hornear a 175 ºC durante 20 min.']])],
 
-    ['Tortitas', 'Delicioso desayuno, ideal para los domingos', ['/Resources/tortitas1.jpg', '/Resources/tortitas2.jpg'],
-        ['2 huevos', '1 cucharada de azúcar', '1 cucharada de aceite', '1,5 vasos de leche', '200 gr de harina (6 cucharadas grandes)', 'Levadura', 'Sal'],
-        ['Se baten los huevos con sal.', 'Se añade el azúcar, el aceite y la leche y se bate.', 'Se añade la harina y la levadura y se bate.',
-            'Reposar 15 min.']]
+    ['Tortitas', 'Delicioso desayuno, ideal para los domingos', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
+    new Map([[0,'2 huevos'],[1,'1 cucharada de azúcar'],[2,'1 cucharada de aceite'],[3,'1,5 vasos de leche'],[4,'200 gr de harina (6 cucharadas grandes)'],[5,'Levadura'],[6,'Sal']]),
+    new Map([[0,'Se baten los huevos con sal.'],[1,'Se añade el yogurt, el aceite y el azúcar.'],[2,'Se añade la harina y la levadura.'],[3,'Hornear a 175 ºC durante 20 min.']])]
 ]
 
 // Objeto receta que almacena los datos de una receta con geters y setters
 class Recipe {
     name = ''
     description = ''
-    images = new Array()
-    ingredients = new Array()
-    preparation = new Array()
+    images = new Map()
+    ingredients = new Map()
+    preparation = new Map()
 
     constructor(datos) {
         if (datos[0]) { this.name = datos[0] }
@@ -42,31 +40,39 @@ class Recipe {
     getDescription = () => this.description
     setDescription = description => this.description = description
 
-    getImages = () => this.images
+    getImages = () => [...this.images]
     setImages = images => this.images = images
 
-    getIngredients = () => this.ingredients
+    getIngredients = () => [...this.ingredients]
     setIngredients = ingredients => this.ingredients = ingredients
 
-    getPreparation = () => this.preparation
+    getPreparation = () => [...this.preparation]
     setPreparation = preparation => this.preparation = preparation
 }
 
-export function getRecipes(){
-    if (recipes.size===0){
-        // Añadir las recetas predeterminadas como objetos en la lista de objetos
+// Añadir las recetas predeterminadas como objetos en la lista de objetos
+let anad = true
+function añadir(){
+    if(anad){
         console.log("Recetas predefinidas añadidas\n")
-        for (const i of predefinedRecipes) {
-            addRecipe(i)
-        }
+            for (const i of predefinedRecipes) {
+                addRecipe(i)
+            }
+    anad = false
     }
+    console.log("Las recetas borradas, desaparecieron para siempre :´(")
+    
+}
+
+export function getRecipes(){
+    añadir()
     console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
     let recipesArrayOfClass = new Array()
     let recipesArray = [...recipes]
     for (let i = 0; i < recipesArray.length; i++) {
         recipesArrayOfClass[i] = { 
-            id: recipesArray[i][0], 
-            image: recipesArray[i][1].getImages()[0],
+            id: recipesArray[i][0],     
+            image: recipesArray[i][1].getImages()[0][1],
             name: recipesArray[i][1].getName(),
             description: recipesArray[i][1].getDescription()
         };
@@ -81,23 +87,22 @@ export function getRecipe(i){
 
     let imagesArray = thisRecipe.getImages()
     let imagesArrayClass = new Array()
+    console.log(imagesArray)
     for (let i = 0; i < imagesArray.length; i++) {
-        imagesArrayClass[i] = {image: imagesArray[i]}
+        imagesArrayClass[i] = {image: imagesArray[i][1]}
     }
+    console.log(imagesArrayClass)
 
     let igredientsArray = thisRecipe.getIngredients()
     let igredientsArrayClass = new Array()
     for (let i = 0; i < igredientsArray.length; i++) {
-        igredientsArrayClass[i] = {igredient: igredientsArray[i]}
+        igredientsArrayClass[i] = {igredient: igredientsArray[i][1]}
     }
-    console.log('jhkdbachkijsd ihvboujsaojulvb losjdb')
-    console.log(igredientsArray)
-    console.log(igredientsArrayClass)
 
     let preparationsArray = thisRecipe.getPreparation()
     let preparationsArrayClass = new Array()
     for (let i = 0; i < preparationsArray.length; i++) {
-        preparationsArrayClass[i] = {preparation: preparationsArray[i]}
+        preparationsArrayClass[i] = {preparation: preparationsArray[i][1]}
     }
 
     let recipeClass = {
@@ -128,6 +133,21 @@ export function addRecipe(recipe) {
 }
 
 
+export function deleteRecipe(id){
+    recipes.delete(id.toString())
+}
+
+export function getEmptyRecipe(){
+    let recipeClassEmpty = {
+        id: nextId++,
+        name: '',
+        description: '',
+        images: [],
+        ingredients: [],
+        preparations: []
+    };
+    return recipeClassEmpty;
+}
 
 // Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
 function eventFunctionDelShow(){
