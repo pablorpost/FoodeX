@@ -82,8 +82,8 @@ export function getRecipe(i){
     console.log(imagesArray)
     for (let i = 0; i < imagesArray.length; i++) {
         imagesArrayClass[i] = {image: imagesArray[i][1]}
-        console.log(imagesArray[i][1])
     }
+    console.log(imagesArrayClass)
 
     let igredientsArray = thisRecipe.getIngredients()
     let igredientsArrayClass = new Array()
@@ -105,7 +105,7 @@ export function getRecipe(i){
         ingredients: igredientsArrayClass,
         preparation: preparationsArrayClass
     };
-    return recipes.get(i.toString())
+    return recipeClass
 }
 
 
