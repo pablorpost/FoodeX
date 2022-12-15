@@ -103,7 +103,7 @@ export function getRecipe(i){
         description: thisRecipe.getDescription(),
         images: imagesArrayClass,
         ingredients: igredientsArrayClass,
-        preparation: preparationsArrayClass
+        preparations: preparationsArrayClass
     };
     return recipeClass
 }
