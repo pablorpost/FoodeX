@@ -19,7 +19,7 @@ router.get('/showMore/:id', (req, res) => {
     res.render('show_recipe', recipe);
 });
 
-router.get('/showMore/:id/delete', (req, res) => {
+router.get('/showMore/delete/:id', (req, res) => {
     recipesService.deleteRecipe(req.params.id)
 });
 /*
