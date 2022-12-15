@@ -129,6 +129,18 @@ export function deleteRecipe(id){
     recipes.delete(id.toString())
 }
 
+export function getEmptyRecipe(){
+    let recipeClassEmpty = {
+        id: nextId++,
+        name: '',
+        description: '',
+        images: [],
+        ingredients: [],
+        preparations: []
+    };
+    return recipeClassEmpty;
+}
+
 // Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
 function eventFunctionDelShow(){
     // recibir información del boton que ha sido pulsado
