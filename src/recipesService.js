@@ -5,15 +5,15 @@ let nextId = 0;
 
 // Lista predefinida de recetas
 let predefinedRecipes = [
-    ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', new Map([[0,'Resources/arrozConLeche1.jpg'], [1,'Resources/arrozConLeche2.jpg'], [2,'Resources/arrozConLeche3.jpg']]),
+    ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', new Map([[0,'/Resources/arrozConLeche1.jpg'], [1,'/Resources/arrozConLeche2.jpg'], [2,'/Resources/arrozConLeche3.jpg']]),
     new Map([[0,'1 litro de Leche'],[1,'3 cucharadas de arroz'],[2,'4 cucharadas de Azúcar'],[3,'Piel de ¼ de limón'],[4,'Canela en rama']]),
     new Map([[0,'Ponemos todos los ingredientes a hervir'],[1,'Movemos continuamente durante 40 min']])],
 
-    ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', new Map([[0,'Resources/bizcochoDeYogurt1.jpg'],[1,'Resources/bizcochoDeYogurt2.jpg'],[2,'Resources/bizcochoDeYogurt3.jpg']]),
+    ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', new Map([[0,'/Resources/bizcochoDeYogurt1.jpg'],[1,'/Resources/bizcochoDeYogurt2.jpg'],[2,'/Resources/bizcochoDeYogurt3.jpg']]),
         new Map([[0,'1 yogurt de limón'],[1,'½ medida de aceite'],[2,'2 medidas de azúcar'],[3,'3 medidas de harina'],[4,'4 huevos'],[5,'½ sobre de levadura'],[6,'Sal']]),
         new Map([[0,'Se baten los huevos con sal.'],[1,'Se añade el yogurt, el aceite y el azúcar.'],[2,'Se añade la harina y la levadura.'],[3,'Hornear a 175 ºC durante 20 min.']])],
 
-    ['Tortitas', 'Delicioso desayuno, ideal para los domingos', new Map([[0,'Resources/tortitas1.jpg'],[1,'Resources/tortitas2.jpg']]),
+    ['Tortitas', 'Delicioso desayuno, ideal para los domingos', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
     new Map([[0,'2 huevos'],[1,'1 cucharada de azúcar'],[2,'1 cucharada de aceite'],[3,'1,5 vasos de leche'],[4,'200 gr de harina (6 cucharadas grandes)'],[5,'Levadura'],[6,'Sal']]),
     new Map([[0,'Se baten los huevos con sal.'],[1,'Se añade el yogurt, el aceite y el azúcar.'],[2,'Se añade la harina y la levadura.'],[3,'Hornear a 175 ºC durante 20 min.']])]
 ]
@@ -79,8 +79,10 @@ export function getRecipe(i){
 
     let imagesArray = thisRecipe.getImages()
     let imagesArrayClass = new Array()
+    console.log(imagesArray)
     for (let i = 0; i < imagesArray.length; i++) {
         imagesArrayClass[i] = {image: imagesArray[i][1]}
+        console.log(imagesArray[i][1])
     }
 
     let igredientsArray = thisRecipe.getIngredients()
