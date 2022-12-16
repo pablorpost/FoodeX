@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="stylesBootstrap.css" /> <!-- Hoja de estilos con Bootstrap -->
     <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/><!-- Bootstrap Icons -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> <!-- Bootstrap -->
-    
+    <script src="/public/app.js">
     <link rel="icon" href="Resources/logoFondoRedondeado.PNG" type="image" /> <!-- Logo web -->
     <link type="text/css" rel="stylesheet" href="styles.css" /> <!-- Hoja de estilos -->
 </head>
@@ -63,7 +63,10 @@
     </section>
 
     <div id="buttons" class="center centerText"> 
-        <br><a href="/add" id="btn-add" class="btn btn-primary">Nueva receta</a><br><br><br><br>
+        <br><a href="/add" id="btn-add" class="btn btn-primary">Nueva receta</a>
+        <button onclick="loadAJAX()">Cargar AJAX</button>
+        
+        <br><br><br><br>
     </div>
 
     <!-- Footer-->
