@@ -48,7 +48,7 @@
                 <br>
                 <div class="card-body">
                     <!--<h5  class="card-title"><strong {{name}}></strong></h5>-->
-                    <form action="addRecipe" method="post">
+                    <form action="edit/add" method="post">
                         <p>Nombre: <input type='text' value="{{RecipeTitle}}" name='RecipeTitle'></p>
                         <!-- Input titulo -->
                         <p>Descripcion: <input type='text' value="{{RecipeDescription}}" name='RecipeDescription'></p>
@@ -90,12 +90,13 @@
                         </div>
                         <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button>
                         <!-- Boton para añadir una foto más -->
-                    </form>
+                    
                     <p id="notImageEditMessage"></p>
                     <div class="center centerText">
-                        <a href="/" id="btn-new" class="btn btn-primary">A&ntilde;adir receta</a>
+                        <input type="submit" id="btn-new" class="btn btn-primary" value = "Anadir receta"/>
                         <a href="/" id="btn-notShowAdd" class="btn btn-primary">Volver</a>
                     </div>
+                </form>
                     <br><br><br>
                 </div>
             </div>
