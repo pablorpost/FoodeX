@@ -35,7 +35,7 @@ router.get('/showMore/:id/edit', (req, res) => {
 router.post('/showMore/:id/edit/add', (req, res) => {
     let {recipeName, recipeDescription , recipeSteps , recipeIngredients, recipePhotos} = req.body;
     boardService.editRecipe(req.params.id, {recipeName, recipeDescription , recipePhotos, recipeIngredients, recipeSteps });
-    res.redirect('/');
+    
 });
 
 router.get('/add', (req, res) => {
