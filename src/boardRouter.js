@@ -76,16 +76,12 @@ router.post('/add/formulario', (req, res) => {
 
 });
 
-
-
-
 router.get('/newIngredient', (req, res) => {
     console.log("hddddsdsdsdsdsdsdsdsds");
     res.render('newIngredient', {
         ingredients: [{ingredient:""}]
     });
 });
-
 
 router.get('/', (req, res) => {
     res.render('index', {
@@ -100,12 +96,16 @@ router.post('/add/formulario', (req, res) => {
 
 });
 
-
-
-
 router.get('/morerecipes',(req,res) => {
-    ajaxscript.loadAJAX()
+    const from = parseInt(req.query.from);
+    const to = parseInt(req.query.to);
+
+    const superheroes = getSuperheroes(from,to);
+
+    res.render('superheroes', {
+        superheroes: superheroes
+    });
     res.redirect('/')
-}
-)
+});
+
 export default router;
