@@ -148,13 +148,13 @@ export function getRecipe(i){
     let igredientsArray = thisRecipe.getIngredients()
     let igredientsArrayClass = new Array()
     for (let i = 0; i < igredientsArray.length; i++) {
-        igredientsArrayClass[i] = {igredient: igredientsArray[i][1]}
+        igredientsArrayClass[i] = {id:i, igredient: igredientsArray[i][1]}
     }
 
     let preparationsArray = thisRecipe.getPreparation()
     let preparationsArrayClass = new Array()
     for (let i = 0; i < preparationsArray.length; i++) {
-        preparationsArrayClass[i] = {preparation: preparationsArray[i][1]}
+        preparationsArrayClass[i] = {id:i, preparation: preparationsArray[i][1]}
     }
 
     let recipeClass = {

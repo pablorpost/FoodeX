@@ -31,6 +31,13 @@ router.get('/showMore/:id/edit', (req, res) => {
     });
 });
 
+router.post('/showMore/:id/edit/add', (req, res) => {
+    console.log('------------------------------------------------------------------')
+    console.log(req.body);
+    let {recipeName, recipeDescription , recipeSteps , recipeIngredients, recipePhotos} = req.body;
+    recipesService.editRecipe(req.params.id, {recipeName, recipeDescription , recipePhotos, recipeIngredients, recipeSteps });
+    res.redirect('/');
+});
 
 router.get('/add', (req, res) => {
     res.render('add',{ 
@@ -39,11 +46,61 @@ router.get('/add', (req, res) => {
 });
 
 
-router.post('/add', (req, res) => {
+
+
+router.post('/add/add', (req, res) => {
     let {recipeName, recipeDescription , recipeSteps , recipeIngredients, recipePhotos} = req.body;
     boardService.addRecipe({recipeName, recipeDescription , recipePhotos, recipeIngredients, recipeSteps  });
     res.redirect('/');
 });
+
+
+router.get('/newIngredient', (req, res) => {
+    console.log("hddddsdsdsdsdsdsdsdsds");
+    res.render('newIngredient', {
+        ingredients: [{ingredient:""}]
+    });
+});
+
+
+router.get('/', (req, res) => {
+    res.render('index', {
+    posts: boardService.getPosts()
+    });
+    });
+
+router.post('/add/formulario', (req, res) => {
+    console.log(req.body);
+    let { user, title, text } = req.body;
+    boardService.addPost({ user, title, text });
+
+});
+
+
+
+
+router.get('/newIngredient', (req, res) => {
+    console.log("hddddsdsdsdsdsdsdsdsds");
+    res.render('newIngredient', {
+        ingredients: [{ingredient:""}]
+    });
+});
+
+
+router.get('/', (req, res) => {
+    res.render('index', {
+    posts: boardService.getPosts()
+    });
+    });
+
+router.post('/add/formulario', (req, res) => {
+    console.log(req.body);
+    let { user, title, text } = req.body;
+    boardService.addPost({ user, title, text });
+
+});
+
+
 
 
 router.get('/morerecipes',(req,res) => {
