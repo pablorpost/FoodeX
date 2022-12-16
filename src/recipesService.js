@@ -149,6 +149,8 @@ export function getEmptyRecipe(){
     return recipeClassEmpty;
 }
 
+
+/*
 // Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
 function eventFunctionDelShow(){
     // recibir información del boton que ha sido pulsado
@@ -170,11 +172,11 @@ function eventFunctionDelShow(){
                     if (!recipes.size){
                         $('#noElementsMessage').show()
                     }
-                    /*
+
                     if (!$('.existingElement').length){
                         $('#noElementsMessage').show()
                     }
-                    */
+
                 }
             }
             // si se desea mostrar más info 
@@ -200,4 +202,4 @@ function eventFunctionDelShow(){
             }
         }
     });
-}
+}                    */
