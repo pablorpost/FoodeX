@@ -6,8 +6,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     console.log("\ntpm\n")
     res.render('index', { 
-        recipes: recipesService.getRecipes(),
-        
+        recipes: recipesService.getRecipes(0,1),
     });
 });
 
@@ -46,4 +45,10 @@ router.post('/add', (req, res) => {
     res.redirect('/');
 });
 
+
+router.get('/morerecipes',(req,res) => {
+    ajaxscript.loadAJAX()
+    res.redirect('/')
+}
+)
 export default router;

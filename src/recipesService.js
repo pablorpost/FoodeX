@@ -8,8 +8,8 @@ let predefinedRecipes = [
     new Map([[0,'Ponemos todos los ingredientes a hervir'],[1,'Movemos continuamente durante 40 min']])],
 
     ['Bizcocho de Yogurt', 'Esponjoso postre realizado a base de yogurt', new Map([[0,'/Resources/bizcochoDeYogurt1.jpg'],[1,'/Resources/bizcochoDeYogurt2.jpg'],[2,'/Resources/bizcochoDeYogurt3.jpg']]),
-        new Map([[0,'1 yogurt de limón'],[1,'½ medida de aceite'],[2,'2 medidas de azúcar'],[3,'3 medidas de harina'],[4,'4 huevos'],[5,'½ sobre de levadura'],[6,'Sal']]),
-        new Map([[0,'Se baten los huevos con sal.'],[1,'Se añade el yogurt, el aceite y el azúcar.'],[2,'Se añade la harina y la levadura.'],[3,'Hornear a 175 ºC durante 20 min.']])],
+    new Map([[0,'1 yogurt de limón'],[1,'½ medida de aceite'],[2,'2 medidas de azúcar'],[3,'3 medidas de harina'],[4,'4 huevos'],[5,'½ sobre de levadura'],[6,'Sal']]),
+    new Map([[0,'Se baten los huevos con sal.'],[1,'Se añade el yogurt, el aceite y el azúcar.'],[2,'Se añade la harina y la levadura.'],[3,'Hornear a 175 ºC durante 20 min.']])],
 
     ['Tortitas', 'Delicioso desayuno, ideal para los domingos', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
     new Map([[0,'2 huevos'],[1,'1 cucharada de azúcar'],[2,'1 cucharada de aceite'],[3,'1,5 vasos de leche'],[4,'200 gr de harina (6 cucharadas grandes)'],[5,'Levadura'],[6,'Sal']]),
@@ -46,7 +46,57 @@ class Recipe {
 
     getPreparation = () => [...this.preparation]
     setPreparation = preparation => this.preparation = preparation
+
+    equals(r2){
+        //el comparador esta diseñado de tal manera que hace los procesos mas rapidos primero, para evitar computacion innecesaria,
+        //en caso de que se pueda finalizar la comparacion rapidamente
+        if ((this.name!=r2.getName()) || (this.description != r2.getName())){return false}
+
+        image1 = this.getImages()
+        image2 = r2.getImages()
+        ingredient1 = this.getIngredients()
+        ingredient2 = r2.getIngredients()
+        preparation1 = this.getPreparation()
+        preparation2 = r2.getPreparation()
+
+        if ((image1.length != image2.length) || (ingredient1.length != ingredient2.length) || (preparation1.length != preparation2.length)){return false}
+
+        for (let i = 0; i < image1.length; i++){if(image1[i][1]!=image2[i][1]){return false}} 
+        for (let i = 0; i < ingredient1.length; i++){if(ingredient1[i][1]!=image2[i][1]){return false}} 
+        for (let i = 0; i < preparation1.length; i++){if(preparation1[i][1]!=preparation2[i][1]){return false}} 
+
+        return true
+    }
+    
+    modifyInto(r2){
+        if (this.name!=r2.getName()){
+            this.name=r2.getName()
+        }
+        if (this.description!=r2.getDescription()){
+            this.description=r2.getDescription()
+        }
+        image1 = this.getImages()
+        image2 = r2.getImages()
+        ingredient1 = this.getIngredients()
+        ingredient2 = r2.getIngredients()
+        preparation1 = this.getPreparation()
+        preparation2 = r2.getPreparation()
+
+        for (let i = 0; i < image2.length; i++){if(image1[i][1]!=image2[i][1]){this.images.set(i,image2[i][1])}} 
+        if (image1.length > image2.length){
+            for (let i = image2.length; i < image1.length; i++){this.images.delete(i)}
+        }
+        for (let i = 0; i < ingredient2.length; i++){if(ingredient1[i][1]!=ingredient2[i][1]){this.ingredients.set(i,ingredient2[i][1])}} 
+        if (ingredient1.length > ingredient2.length){
+            for (let i = ingredient2.length; i < ingredient1.length; i++){this.ingredients.delete(i)}
+        }
+        for (let i = 0; i < description2.length; i++){if(description1[i][1]!=description2[i][1]){this.description.set(i,description2[i][1])}} 
+        if (description1.length > description2.length){
+            for (let i = description2.length; i < description1.length; i++){this.description.delete(i)}
+        }
+    }
 }
+
 
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
 let anad = true
@@ -58,11 +108,12 @@ function añadir(){
             }
     anad = false
     }
+    else{
     console.log("Las recetas borradas, desaparecieron para siempre :´(")
-    
+    }
 }
 
-export function getRecipes(){
+export function getRecipes(from, to){
     añadir()
     console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
     let recipesArrayOfClass = new Array()
@@ -76,6 +127,9 @@ export function getRecipes(){
         };
     }
     console.log(recipesArrayOfClass)
+    if (from !== undefined) {
+        return recipesArrayOfClass.slice(from, to);
+    }
     return recipesArrayOfClass
 }
 
@@ -147,6 +201,9 @@ export function getEmptyRecipe(){
     return recipeClassEmpty;
 }
 
+export function editRecipe(n,classs){
+    console.log("/n/n"+n+"/n"+classs+"/n/n")
+}
 
 /*
 // Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
