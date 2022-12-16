@@ -1,8 +1,6 @@
 const recipes = new Map();
 let nextId = 0;
 
-//addPost({ user: "Pepe", title: "Vendo moto", text: "Barata, barata" });
-
 // Lista predefinida de recetas
 let predefinedRecipes = [
     ['Arroz con Leche', 'Postre consistente de arroz cocinado en leche', new Map([[0,'/Resources/arrozConLeche1.jpg'], [1,'/Resources/arrozConLeche2.jpg'], [2,'/Resources/arrozConLeche3.jpg']]),
