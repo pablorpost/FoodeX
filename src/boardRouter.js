@@ -46,8 +46,6 @@ router.get('/add', (req, res) => {
 });
 
 
-
-
 router.post('/add/add', (req, res) => {
     let {recipeName, recipeDescription , recipeSteps , recipeIngredients, recipePhotos} = req.body;
     boardService.addRecipe({recipeName, recipeDescription , recipePhotos, recipeIngredients, recipeSteps  });
@@ -76,25 +74,7 @@ router.post('/add/formulario', (req, res) => {
 
 });
 
-router.get('/newIngredient', (req, res) => {
-    console.log("hddddsdsdsdsdsdsdsdsds");
-    res.render('newIngredient', {
-        ingredients: [{ingredient:""}]
-    });
-});
 
-router.get('/', (req, res) => {
-    res.render('index', {
-    posts: boardService.getPosts()
-    });
-    });
-
-router.post('/add/formulario', (req, res) => {
-    console.log(req.body);
-    let { user, title, text } = req.body;
-    boardService.addPost({ user, title, text });
-
-});
 
 router.get('/morerecipes',(req,res) => {
     const from = parseInt(req.query.from);
