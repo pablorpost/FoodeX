@@ -10,6 +10,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/moreRecipes', (req, res) => {
+    console.log("\ntpmore\n")
+
+    const from = parseInt(req.query.from);
+    const to = parseInt(req.query.to); 
+
+    res.render('index', { 
+        recipes: recipesService.getRecipes(from,to),
+    });
+});
+
 router.get('/showMore/:id', (req, res) => {
 
     console.log(req.params.id)
@@ -94,18 +105,6 @@ router.post('/add/formulario', (req, res) => {
     let { user, title, text } = req.body;
     boardService.addPost({ user, title, text });
 
-});
-
-router.get('/morerecipes',(req,res) => {
-    const from = parseInt(req.query.from);
-    const to = parseInt(req.query.to);
-
-    const superheroes = getSuperheroes(from,to);
-
-    res.render('superheroes', {
-        superheroes: superheroes
-    });
-    res.redirect('/')
 });
 
 export default router;

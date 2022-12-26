@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="all">
 
 <head>
     <title>FoodeX</title> <!-- Titulo página web -->
@@ -39,6 +39,7 @@
     <!-- Menu principal de la página donde se muestra la lista de recetas existentes -->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
+            <div id="prueba"></div>
             <div id="main" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
                 {{#recipes}}
@@ -64,7 +65,7 @@
 
     <div id="buttons" class="center centerText"> 
         <br><a href="/add" id="btn-add" class="btn btn-primary">Nueva receta</a>
-        <a href="/morerecipes" id="btn-addmore" class="btn btn-primary">Cargar más recetas</a>
+        <button class="btn btn-primary" onclick='loadMoreRecipes()'>Load more</button>
 
         
         <br><br><br><br>

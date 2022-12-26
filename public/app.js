@@ -1,4 +1,4 @@
-const NUM_RESULTS = 3;
+const NUM_RESULTS = 1 ;
 let loadMoreRequests = 0;
 let loadMoreIngredientsRequests = 0;
 
@@ -16,14 +16,12 @@ async function loadMoreIngredients(){
     loadMoreIngredientsRequests++;
 }
 
-
 async function loadMoreRecipes(){
-    console.log("aaaaaaajax")
     const from = (loadMoreRequests+1) * NUM_RESULTS;
     const to = from + NUM_RESULTS;
-    const response = await fetch(`/superheroes?from=${from}&to=${to}`);
-    const newSuperheroes = await response.text();
-    const superheroesDiv = document.getElementById("superheroes");
-    superheroesDiv.innerHTML += newSuperheroes;
+    const response = await fetch(`/moreRecipes?from=${0}&to=${to}`);
+    const newRecipes = await response.text();
+    const recipesDiv = document.getElementById("all");
+    recipesDiv.innerHTML = newRecipes;
     loadMoreRequests++;
 }
