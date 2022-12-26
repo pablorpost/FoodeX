@@ -19,9 +19,9 @@ async function loadMoreIngredients(){
 async function loadMoreRecipes(){
     const from = (loadMoreRequests+1) * NUM_RESULTS;
     const to = from + NUM_RESULTS;
-    const response = await fetch(`/moreRecipes?from=${0}&to=${to}`);
+    const response = await fetch(`/moreRecipes?from=${from}&to=${to}`);
     const newRecipes = await response.text();
-    const recipesDiv = document.getElementById("all");
-    recipesDiv.innerHTML = newRecipes;
+    const recipesDiv = document.getElementById("main");
+    recipesDiv.innerHTML += newRecipes;
     loadMoreRequests++;
 }

@@ -16,7 +16,7 @@ router.get('/moreRecipes', (req, res) => {
     const from = parseInt(req.query.from);
     const to = parseInt(req.query.to); 
 
-    res.render('index', { 
+    res.render('recetasindex', { 
         recipes: recipesService.getRecipes(from,to),
     });
 });
