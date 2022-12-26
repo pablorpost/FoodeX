@@ -12,10 +12,8 @@ router.get('/', (req, res) => {
 
 router.get('/moreRecipes', (req, res) => {
     console.log("\ntpmore\n")
-
     const from = parseInt(req.query.from);
     const to = parseInt(req.query.to); 
-
     res.render('recetasindex', { 
         recipes: recipesService.getRecipes(from,to),
     });
@@ -76,13 +74,12 @@ router.get('/', (req, res) => {
     res.render('index', {
     posts: boardService.getPosts()
     });
-    });
+});
 
 router.post('/add/formulario', (req, res) => {
     console.log(req.body);
     let { user, title, text } = req.body;
     boardService.addPost({ user, title, text });
-
 });
 
 export default router;
