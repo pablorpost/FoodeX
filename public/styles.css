@@ -99,4 +99,15 @@
     color:aliceblue;
 }
 
+.btn-lg, .btn-group-lg > .btn {
+  padding: 1rem 2rem;
+  font-size: 3 rem;
+  border-radius: 0.6rem;
+}
+
+#vista_recta_buttons_sep {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 
