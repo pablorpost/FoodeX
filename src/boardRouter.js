@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     console.log("\ntpm\n")
     res.render('index', { 
-        recipes: recipesService.getRecipes(0,1)
+        recipes: recipesService.getRecipes(0,5)
     });
 });
 

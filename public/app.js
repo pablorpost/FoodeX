@@ -1,6 +1,6 @@
 //import * as recipesService from '../src/recipesService.js';
 
-const NUM_RESULTS = 1 ;
+const NUM_RESULTS = 5 ;
 let loadMoreRequests = 0;
 
 // AJAX de la vista de recetas del index
