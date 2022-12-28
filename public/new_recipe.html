@@ -6,11 +6,13 @@
     <meta charset="utf-8"> <!-- Poder meter simbolos especiales -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- JQuery -->
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Bootstrap -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="stylesBootstrap.css" /> <!-- Hoja de estilos con Bootstrap -->
-    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/><!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <!-- Bootstrap Icons -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> <!-- Bootstrap -->
-    
+
     <link rel="icon" href="Resources/logoFondoRedondeado.PNG" type="image" /> <!-- Logo web -->
     <link type="text/css" rel="stylesheet" href="styles.css" /> <!-- Hoja de estilos -->
     <script src="app.js"></script> <!-- Scripts -->
@@ -21,7 +23,8 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-            <img src="Resources/logoSinFondoEstrecha.PNG" width="100px" height="40px" class="d-inline-block align-top" alt="">
+            <img src="Resources/logoSinFondoEstrecha.PNG" width="100px" height="40px" class="d-inline-block align-top"
+                alt="">
             FoodeX
         </a>
         <p class="navbar-text">Recetas</p>
@@ -32,109 +35,72 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">FoodeX</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Tus recetas a un solo click</p>
+                <p class="lead fw-normal text-white-50 mb-0">Tus recetas a un solo clickkkkkkkkkkkkkkkkkkkkkkkk</p>
             </div>
         </div>
     </header>
 
 
     <!-- Formulario para añadir receta -->
-    <div id="add" class="container"> 
+    <div id="add" class="container">
         <div class="col">
             <div class="card">
                 <br>
+                <form action="recipe/new" method="post">
                 <div class="card-body">
-                    <h5  class="card-title"><strong id="addTitle"></strong></h5>
-                    <form action="addRecipe" method="post"> 
-                        <p>Nombre: <input type='text' name = 'recipeName'></p> <!-- Input titulo -->
-                        <p>Descripcion: <input type='text' description = 'recipeDescription'></p> <!-- Input descripcion -->
+                    
+                    <h5 class="card-title"><strong id="addTitle"></strong></h5>
+                    <div>
                         
+                        <p>Nombre: <input name = "nombre" id='tituloinp' type='text' ></p> <!-- Input titulo -->
+                        <p>Descripcion: <input name = "description"  id='descripcioninp' type='text'></p> <!-- Input descripcion -->
                         <div id="ingredientes_input">
                             <p>Ingredientes:</p>
-                            <ul id="lista_ingredientes"> <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
+                            <ul id="lista_ingredientes">
+                                <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
                             </ul>
                         </div>
-                        <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button> <!-- Boton para añadir un ingrediente más -->
+                        <button type="button" id="btn-addingredients" class="btn btn-primary" onclick="newIngredient()">A&ntilde;adir ingrediente</button>
+                        <!-- Boton para añadir un ingrediente más -->
                         <div id="preparacion_input">
                             <p>Preparacion:</p>
-                            <ol id="lista_prep"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                            <ol id="lista_prep">
+                                <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
                             </ol>
                         </div>
-                        <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button> <!-- Boton para añadir un paso más -->
-                        <div >
+                        <button type="button" id="btn-addsteps" class="btn btn-primary" onclick="newStep()">A&ntilde;adir paso</button>
+                        <!-- Boton para añadir un paso más -->
+                        <div>
                             <p>Imagenes:</p>
-                            <ol id="image_input"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
-                                <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);"/>
-                                <div id="imgTest0"></div></li>
+                            <ol id="image_input">
+                                <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
+                                <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);" />
+                                    <div id="imgTest0"></div>
+                                </li>
                             </ol>
                         </div>
-                        <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button> <!-- Boton para añadir una foto más -->
-                    </form>
+                        <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button>
+                        <!-- Boton para añadir una foto más -->
+                    </div>
                     <p id="notImageEditMessage"></p>
                     <div class="center centerText">
-                        <button id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
-                        <button id="btn-notShowAdd" class="btn btn-primary">Volver</button>
+                        <button type="submit" id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
+                        <button type="button" id="btn-notShowAdd" class="btn btn-primary">Volver</button>
                     </div>
                     <br><br><br>
                 </div>
+                </form>
             </div>
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-    <div id="add" class="container"> 
-            <div class="col">
-                <div class="card">
-                    <br>
-                    <div class="card-body">
-                        <h5  class="card-title"><strong id="addTitle"></strong></h5>
-                        <div>
-                            <p>Nombre: <input id='tituloinp' type='text'></p> <!-- Input titulo -->
-                            <p>Descripcion: <input id='descripcioninp' type='text'></p> <!-- Input descripcion -->
-                            <div id="ingredientes_input">
-                                <p>Ingredientes:</p>
-                                <ul id="lista_ingredientes"> <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
-                                </ul>
-                            </div>
-                            <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button> <!-- Boton para añadir un ingrediente más -->
-                            <div id="preparacion_input">
-                                <p>Preparacion:</p>
-                                <ol id="lista_prep"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
-                                </ol>
-                            </div>
-                            <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button> <!-- Boton para añadir un paso más -->
-                            <div >
-                                <p>Imagenes:</p>
-                                <ol id="image_input"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
-                                    <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);"/>
-                                    <div id="imgTest0"></div></li>
-                                </ol>
-                            </div>
-                            <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button> <!-- Boton para añadir una foto más -->
-                        </div>
-                        <p id="notImageEditMessage"></p>
-                        <div class="center centerText">
-                            <button id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
-                            <button id="btn-notShowAdd" class="btn btn-primary">Volver</button>
-                        </div>
-                        <br><br><br>
-                    </div>
-                </div>
-            </div>
-    </div>
-
     <!-- Footer-->
     <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Diego Isaac Fernández Conde,David Pimentel Montes,Pablo
-            Requejo Postlbauer. All rights reserved.</p></div>
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Diego Isaac Fernández Conde,David Pimentel
+                Montes,Pablo
+                Requejo Postlbauer. All rights reserved.</p>
+        </div>
     </footer>
 </body>
 

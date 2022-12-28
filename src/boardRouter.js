@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     console.log("\ntpm\n")
     res.render('index', { 
-        recipes: recipesService.getRecipes(0,1),
+        recipes: recipesService.getRecipes(0,1)
     });
 });
 
@@ -15,7 +15,7 @@ router.get('/moreRecipes', (req, res) => {
     const from = parseInt(req.query.from);
     const to = parseInt(req.query.to); 
     res.render('recetasindex', { 
-        recipes: recipesService.getRecipes(from,to),
+        recipes: recipesService.getRecipes(from,to)
     });
 });
 
@@ -33,7 +33,7 @@ router.get('/showMore/:id/delete', (req, res) => {
     recipesService.deleteRecipe(req.params.id)
     res.redirect('/')
 });
-
+/*
 router.get('/showMore/:id/edit', (req, res) => {
     res.render('add',{ 
         recipe: recipesService.getRecipe(req.params.id)
@@ -47,39 +47,33 @@ router.post('/showMore/:id/edit/add', (req, res) => {
     recipesService.editRecipe(req.params.id, {recipeName, recipeDescription , recipePhotos, recipeIngredients, recipeSteps });
     res.redirect('/');
 });
+*/
+router.post('/recipe/new', (req, res) => {
+    
+    let name = req.body.nombre;
+    let description = req.body.description;
+    let ingred = req.body.ingred;
+    let ingredMap = new Map();
+    if (ingred){
+    for (let i = 0; i < ingred.length; i++) {
+        ingredMap.set(i, ingred[i]);
+    }
+}
 
-router.get('/add', (req, res) => {
-    res.render('add',{ 
-        recipe: recipesService.getEmptyRecipe()
-    });
-});
-
-
-router.post('/add/add', (req, res) => {
-    let {recipeName, recipeDescription , recipeSteps , recipeIngredients, recipePhotos} = req.body;
-    boardService.addRecipe({recipeName, recipeDescription , recipePhotos, recipeIngredients, recipeSteps  });
+    let steps = req.body.steps;
+    let stepMap = new Map();
+    if (steps){
+    for (let i = 0; i < steps.length; i++) {
+        stepMap.set(i, steps[i]);
+    }
+}
+    
+    let images = new Map();
+    images.set(0, 'Resources/fotoPredeterminadaDeReceta.jpg');
+    
+    recipesService.addRecipe([name, description, images, ingredMap, stepMap]);
     res.redirect('/');
 });
 
-
-router.get('/newIngredient', (req, res) => {
-    console.log("hddddsdsdsdsdsdsdsdsds");
-    res.render('newIngredient', {
-        ingredients: [{ingredient:""}]
-    });
-});
-
-
-router.get('/', (req, res) => {
-    res.render('index', {
-    posts: boardService.getPosts()
-    });
-});
-
-router.post('/add/formulario', (req, res) => {
-    console.log(req.body);
-    let { user, title, text } = req.body;
-    boardService.addPost({ user, title, text });
-});
 
 export default router;
