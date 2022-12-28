@@ -62,19 +62,29 @@ router.post('/recipe/new', (req, res) => {
     let description = req.body.description;
     let ingred = req.body.ingred;
     let ingredMap = new Map();
-    if (ingred){
-    for (let i = 0; i < ingred.length; i++) {
-        ingredMap.set(i, ingred[i]);
+    if (ingred) {
+        if (typeof (ingred) != String) {
+            for (let i = 0; i < ingred.length; i++) {
+                ingredMap.set(i, ingred[i]);
+            }
+        } else {
+            ingredMap.set(0, ingred);
+        }
     }
-}
 
     let steps = req.body.steps;
     let stepMap = new Map();
-    if (steps){
-    for (let i = 0; i < steps.length; i++) {
-        stepMap.set(i, steps[i]);
+    
+    if (steps) {
+        if (typeof (steps) != String) {
+            for (let i = 0; i < steps.length; i++) {
+                stepMap.set(i, steps[i]);
+            }
+        } else {
+            stepMap.set(0, steps);
+        }
     }
-}
+
     
     let images = new Map();
     images.set(0, 'Resources/fotoPredeterminadaDeReceta.jpg');
