@@ -29,6 +29,14 @@ router.get('/showMore/:id', (req, res) => {
 });
 
 router.get('/showMore/:id/delete', (req, res) => {
+    let recipe = recipesService.getRecipe(req.params.id);
+    console.log(recipe)
+
+    res.render('conf', recipe);
+
+});
+
+router.get('/showMore/:id/trudelete', (req, res) => {
     ////if (prop.confirm("¿Seguro que quieres borrar la receta?") == true){}
     recipesService.deleteRecipe(req.params.id)
     res.redirect('/')
