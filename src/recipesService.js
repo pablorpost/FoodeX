@@ -13,7 +13,28 @@ let predefinedRecipes = [
 
     ['Tortitas', 'Delicioso desayuno, ideal para los domingos', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
     new Map([[0,'2 huevos'],[1,'1 cucharada de azúcar'],[2,'1 cucharada de aceite'],[3,'1,5 vasos de leche'],[4,'200 gr de harina (6 cucharadas grandes)'],[5,'Levadura'],[6,'Sal']]),
-    new Map([[0,'Se baten los huevos con sal.'],[1,'Se añade el yogurt, el aceite y el azúcar.'],[2,'Se añade la harina y la levadura.'],[3,'Hornear a 175 ºC durante 20 min.']])]
+    new Map([[0,'Se baten los huevos con sal.'],[1,'Se añade el yogurt, el aceite y el azúcar.'],[2,'Se añade la harina y la levadura.'],[3,'Hornear a 175 ºC durante 20 min.']])],
+
+    ['Tarta de Santiago', 'Ideal postre gallego', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
+    new Map([[0,'200 gr azúcar glass'],[1,'Piel de 1 limón'],[2,'250 gr de almendra picada'],[3,'3 huevos'],[4,'4 yemas'],[5,'2 cucharadas de mantequilla'],[6,'50 gr de harina'],[7,'Sal'], [8,'•	2 cucharaditas de levadura'] ]),
+    new Map([[0,'Moler el azúcar con el limón.'],[1,'Añadir almendra, huevos y mantequilla y batir.'],[2,'Añadir harina, levadura y sal y batir.'],[3,'Hornear a 180 ºC durante 15-20 min.']])],
+
+    ['Gambas Gabardina', 'Un plato que sorprenderá', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
+    new Map([[0,'Gambas cocidas'],[1,'Harina'],[2,'Agua/Leche/Cerveza'],[3,'2 claras a punto de nieve'] ]),
+    new Map([[0,'Mezclar la harina y el líquido escogido para crear una masa'],[1,'Mojar las gambas y freír']])],
+
+    ['Tortilla', 'El plato que nunca defrauda', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
+    new Map([[0,'1kg de patatas'],[1,'6 huevos'],[2,'sal'],[3,'media cebolla'] ]),
+    new Map([[0,'Pelar y picar las patatas'],[1,'Freir las patatas a fuego medio'],[2,'Mezclar las patatas medio fritas con el huevo'],[3,'Poner la masa en la sartén y dar vuelta y vuelta']])],
+
+    ['Pizza', 'Una cena deliciosa', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
+    new Map([[0,'masa de pizza'],[1,'tomate frito'],[2,'orégano'],[3,'queso a elegir'],[4,'jamón cocido'],[5,'champiñones']]),
+    new Map([[0,'Extender la masa y esparcir de tomate la base'],[1,'Añadir orégano y cubrir la base con queso'],[2,'Añadir el resto de ingredientes'],[3,'Hornear a 180 ºC durante 15-20 min.']])],
+
+    ['Pasta Carbonara', 'Una visita a la rica italia', new Map([[0,'/Resources/tortitas1.jpg'],[1,'/Resources/tortitas2.jpg']]),
+    new Map([[0,'Pasta'],[1,'3 yemas'],[2,'100gr de queso Grana Padano'],[3,'150gr de guanciale'],[4,'pimienta']]),
+    new Map([[0,'Cocer la pasta'],[1,'Dorar la carne'],[2,'Mezclar las yemas con el queso'],[3,'Juntar todas las elaboraciones y batir junto con el agua de la pasta']])]
+
 ]
 
 // Objeto receta que almacena los datos de una receta con geters y setters
