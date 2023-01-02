@@ -74,12 +74,10 @@
                             <p>Imagenes:</p>
                             <ol id="image_input">
                                 <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
-                                <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);" />
-                                    <div id="imgTest0"></div>
-                                </li>
+                                
                             </ol>
                         </div>
-                        <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button>
+                        <button type="button" id="btn-addphoto" class="btn btn-primary" onclick="newImage()">A&ntilde;adir foto</button>
                         <!-- Boton para añadir una foto más -->
                     </div>
                     <p id="notImageEditMessage"></p>

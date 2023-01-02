@@ -43,10 +43,32 @@ function newIngredientInp(innerText, idNumber){
         </li>`);
 }
 
+function newImageInp(idNumber){ //<input name='imag' id="imageinpli-`+idNumber+`" type="text">
+    $("#image_input").append(`
+        <li id = 'imageinpli-` + idNumber + `'>
+            
+            <input id="inputFileToLoad`+idNumber+`" type="file" onchange="encodeImageFileAsURL(`+idNumber+`);"/>
+            <div id="imgTest`+idNumber+`"></div>
+            <div id="imageimpli-"`+idNumber+`>wrqq</div>
+            
+
+            <button id = 'button-remove-images-` + idNumber + `'  type="button" class="btn btn-danger btn-remove">
+                <i class="bi bi-trash text-light"></i> Delete 
+            </button>
+            <br>
+        </li>`).css("color", "black");
+    
+        $('#button-remove-images-' + idNumber).click(function () {
+            if (confirm("¿Seguro que quieres borrar esta imagen?") == true){
+                $('#imageinpli-' + idNumber).remove()
+            }
+        });
+}
+
 // crear el html de un nuevo campo de los pasos
 function newStepInp(innerText, idNumber){
     $("#lista_prep").append(`
-        <li id = 'stepinpli-` + idNumber + `'>
+        <li id = 'stepinpli-`+idNumber + `'>
             <input name = "steps" id='stepinp-` + idNumber + `' type='text' value = "` + innerText + `">
             <button id = 'button-remove-steps-` + idNumber + `' type="button" class="btn btn-danger btn-remove" onclick="delStepBtn(${idNumber})>
                 <i class="bi bi-trash text-light"></i> Delete 
@@ -65,7 +87,82 @@ function newStep(){
     add_steps_number++
 }
 
+function newImage(){
+    newImageInp(add_photo_number)
+    add_photo_number++
+}
+
+// Para poder utilizar imágenes que se almacenan en la ejecución de la página
+function encodeImageFileAsURL(i) {
+    let filesSelected = document.getElementById("inputFileToLoad"+i).files;    
+    if (filesSelected.length > 0) {
+        let fileToLoad = filesSelected[0];
+
+        let fileReader = new FileReader();
+
+        fileReader.onload = function(fileLoadedEvent) {
+            let srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+            let newImage = document.createElement('img');
+            newImage.src = srcData;
+
+            //document.getElementById("imageimpli-"+i).innerHTML = srcData ;
+            
+            //newPhotos[add_photo_number - 1] = srcData; // Añadir elemento al array
+
+            document.getElementById("imgTest"+i).innerHTML = newImage.outerHTML;
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    }
+}
+
 /*
+
+function encodeImageFileAsURL(i) {
+    let filesSelected = document.getElementById("imageinp-"+i).files;    
+    if (filesSelected.length > 0) {
+        let fileToLoad = filesSelected[0];
+
+        let fileReader = new FileReader();
+
+        fileReader.onload = function(fileLoadedEvent) {
+            let srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+            let newImage = document.createElement('img');
+            newImage.src = srcData;
+            newPhotos[add_photo_number - 1] = srcData; // Añadir elemento al array
+
+            document.getElementById("imgTest"+i).innerHTML = newImage.outerHTML;
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Función para asignar funcionalidad a los botones de: 
 function buttonsAddElementsInListAddEdit(){
     
