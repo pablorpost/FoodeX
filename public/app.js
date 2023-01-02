@@ -33,7 +33,7 @@ function delStepBtn (idNumber) {
 
 // crear el html de un nuevo campo de los ingredientes
 function newIngredientInp(innerText, idNumber){
-    $("#lista_ingredientes").append(`
+    $("#ingredients_list").append(`
         <li id = 'ingredientinpli-` + idNumber + `'>
             <input name = "ingred" id='ingredientinp-` + idNumber + `' type='text' value = "` + innerText + `">
             <button id = 'button-remove-ingredients-` + idNumber + `'  type="button" class="btn btn-danger btn-remove" onclick="delIngredientBtn(${idNumber})">
@@ -67,7 +67,7 @@ function newImageInp(idNumber){ //<input name='imag' id="imageinpli-`+idNumber+`
 
 // crear el html de un nuevo campo de los pasos
 function newStepInp(innerText, idNumber){
-    $("#lista_prep").append(`
+    $("#prep_list").append(`
         <li id = 'stepinpli-`+idNumber + `'>
             <input name = "steps" id='stepinp-` + idNumber + `' type='text' value = "` + innerText + `">
             <button id = 'button-remove-steps-` + idNumber + `' type="button" class="btn btn-danger btn-remove" onclick="delStepBtn(${idNumber})">
@@ -228,13 +228,13 @@ function resetAdd(){
                     <div>
                         <p>Nombre: <input id='tituloinp' type='text'></p> <!-- Input titulo -->
                         <p>Descripcion: <input id='descripcioninp' type='text'></p> <!-- Input descripcion -->
-                        <div id="ingredientes_input">
+                        <div id="ingredients_input">
                             <p>Ingredientes:</p>
                             <ul id="lista_ingredientes"> <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
                             </ul>
                         </div>
                         <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button> <!-- Boton para añadir un ingrediente más -->
-                        <div id="preparacion_input">
+                        <div id="preparation_input">
                             <p>Preparacion:</p>
                             <ol id="lista_prep"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
                             </ol>
