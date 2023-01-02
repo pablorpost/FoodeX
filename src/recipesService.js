@@ -95,7 +95,6 @@ class Recipe {
                 this.images.set(i,image2[i][1])
             }
         } 
-        console.log(this.images)
         if (image1.length > image2.length){
             for (let i = image2.length; i < image1.length; i++){
                 this.images.delete(i)
