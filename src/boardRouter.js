@@ -28,6 +28,18 @@ router.get('/showMore/:id', (req, res) => {
     res.render('show_recipe', recipe);
 });
 
+router.get('/showMore/:id/edit', (req, res) => {
+    let recipe = recipesService.getRecipe(req.params.id);
+    console.log(recipe)
+
+    res.render('edit_recipe', recipe);
+
+});
+
+router.post('/recipe/edit', (req, res) => {
+
+});
+
 router.get('/showMore/:id/delete', (req, res) => {
     let recipe = recipesService.getRecipe(req.params.id);
     console.log(recipe)
