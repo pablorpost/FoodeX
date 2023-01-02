@@ -127,24 +127,8 @@ class Recipe {
 for (const i of predefinedRecipes) {
     addRecipe(i)
 }
-// Añadir las recetas predeterminadas como objetos en la lista de objetos
-let anad = true
-function anyadir(){
-    if(anad){
-        console.log("Recetas predefinidas añadidas\n")
-        /*
-        for (const i of predefinedRecipes) {
-            addRecipe(i)
-        }*/
-    anad = false
-    }
-    else{
-    console.log("Las recetas borradas, desaparecieron para siempre :´(")
-    }
-}
 
 export function getRecipes(from, to){
-    anyadir()
     let recipesArrayOfClass = new Array()
     let recipesArray = [...recipes]
     for (let i = 0; i < recipesArray.length; i++) {
