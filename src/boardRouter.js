@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 router.get('/moreRecipes', (req, res) => {
     const from = parseInt(req.query.from);
     const to = parseInt(req.query.to); 
-    res.render('recetasindex', { 
+    res.render('recipesIndex', { 
         recipes: recipesService.getRecipes(from,to)
     });
 });
