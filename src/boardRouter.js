@@ -61,6 +61,7 @@ router.post('/recipe/new', (req, res) => {
     let name = req.body.nombre;
     let description = req.body.description;
     let ingred = req.body.ingred;
+    let images = req.body.imag;
     let ingredMap = new Map();
     let sum = 0;
     if (ingred) {
@@ -78,7 +79,7 @@ router.post('/recipe/new', (req, res) => {
     let stepMap = new Map();
     sum = 0
     if (steps) {
-        for(const l of ingred){sum += l.length}
+        for(const l of steps){sum += l.length}
         if (steps.length!=sum) {
             for (let i = 0; i < steps.length; i++) {
                 stepMap.set(i, steps[i]);
@@ -88,13 +89,24 @@ router.post('/recipe/new', (req, res) => {
         }
     }
 
-    
-    let images = new Map();
-    images.set(0, '/Resources/fotoPredeterminadaDeReceta.jpg');
-    
-    recipesService.addRecipe([name, description, images, ingredMap, stepMap]);
-    res.redirect('/');
-});
+    let imagesMap = new Map();
+    sum = 0;
+    if(images){
+        for(const l of images){sum += l.length}
+        if (images.length!=sum) {
+            for (let i = 0; i < images.length; i++) {
+                imagesMap.set(i, images[i]);
+            }
+        } else {
+            imagesMap.set(0, images);
+        }
+    }
+    else{
+        imagesMap.set(0, '/Resources/fotoPredeterminadaDeReceta.jpg');
+    }
 
+    recipesService.addRecipe([name, description, imagesMap, ingredMap, stepMap]);
+    res.redirect('/');
+}); 
 
 export default router;
