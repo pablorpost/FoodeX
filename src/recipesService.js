@@ -33,7 +33,15 @@ let predefinedRecipes = [
 
     ['Pasta Carbonara', 'Una visita a la rica italia', new Map([[0,'/Resources/carbonara1.jpg'],[1,'/Resources/carbonara2.jpg']]),
     new Map([[0,'Pasta'],[1,'3 yemas'],[2,'100gr de queso Grana Padano'],[3,'150gr de guanciale'],[4,'pimienta']]),
-    new Map([[0,'Cocer la pasta'],[1,'Dorar la carne'],[2,'Mezclar las yemas con el queso'],[3,'Juntar todas las elaboraciones y batir junto con el agua de la pasta']])]
+    new Map([[0,'Cocer la pasta'],[1,'Dorar la carne'],[2,'Mezclar las yemas con el queso'],[3,'Juntar todas las elaboraciones y batir junto con el agua de la pasta']])],
+
+    ['Pasta al pesto', 'Una visita a la rica italia', new Map([[0,'/Resources/pesto1.jpg']]),
+    new Map([[0,'Pasta'],[1,'200gr salsa pesto'],[2,'100gr de queso Grana Padano']]),
+    new Map([[0,'Cocer la pasta'],[1,'Escurrir y mezclar con la salsa'],[2,'Servir y espolvorear con parte del queso']])],
+
+    ['Brownie', 'Delicia de chocolate', new Map([[0,'/Resources/brownie1.jpg'],[1,'/Resources/brownie2.jpg']]),
+    new Map([[0,'Pasta'],[1,'200gr de mantequilla'],[2,'200 gr de chocolate'],[3,'150gr de harina sin levadura'],[4,'150 gr de azúcar']]),
+    new Map([[0,'Derretir en una pota la mantequilla y chocolate'],[1,'Batir los huevos y mezclar con el azúcar'],[2,'Mezclar ambas elaboraciones y añadir la harina'],[3,'Hornear a 180 ºC durante 20 min.']])]
 
 ]
 
