@@ -75,66 +75,67 @@ class Recipe {
 
     getPreparation = () => [...this.preparation]
     setPreparation = preparation => this.preparation = preparation
-
-    equals(r2){
-        //el comparador esta diseñado de tal manera que hace los procesos mas rapidos primero, para evitar computacion innecesaria,
-        //en caso de que se pueda finalizar la comparacion rapidamente
-        if ((this.name!=r2.getName()) || (this.description != r2.getName())){return false}
-
-        image1 = this.getImages()
-        image2 = r2.getImages()
-        ingredient1 = this.getIngredients()
-        ingredient2 = r2.getIngredients()
-        preparation1 = this.getPreparation()
-        preparation2 = r2.getPreparation()
-
-        if ((image1.length != image2.length) || (ingredient1.length != ingredient2.length) || (preparation1.length != preparation2.length)){return false}
-
-        for (let i = 0; i < image1.length; i++){if(image1[i][1]!=image2[i][1]){return false}} 
-        for (let i = 0; i < ingredient1.length; i++){if(ingredient1[i][1]!=image2[i][1]){return false}} 
-        for (let i = 0; i < preparation1.length; i++){if(preparation1[i][1]!=preparation2[i][1]){return false}} 
-
-        return true
-    }
     
     modifyInto(r2){
         if (this.name!=r2.getName()){
-            this.name=r2.getName()
+            this.setName(r2.getName());
         }
         if (this.description!=r2.getDescription()){
-            this.description=r2.getDescription()
+            this.setDescription(r2.getDescription());
         }
-        image1 = this.getImages()
-        image2 = r2.getImages()
-        ingredient1 = this.getIngredients()
-        ingredient2 = r2.getIngredients()
-        preparation1 = this.getPreparation()
-        preparation2 = r2.getPreparation()
-
-        for (let i = 0; i < image2.length; i++){if(image1[i][1]!=image2[i][1]){this.images.set(i,image2[i][1])}} 
+        let image1 = this.getImages()
+        let image2 = r2.getImages()
+        let ingredient1 = this.getIngredients()
+        let ingredient2 = r2.getIngredients()
+        let preparation1 = this.getPreparation()
+        let preparation2 = r2.getPreparation()
+        /*
+        for (let i = 0; i < image2.length; i++){
+            if(image1.length <= i || image1[i][1]!=image2[i][1]){
+                this.images.set(i,image2[i][1])
+            }
+        } 
         if (image1.length > image2.length){
-            for (let i = image2.length; i < image1.length; i++){this.images.delete(i)}
-        }
-        for (let i = 0; i < ingredient2.length; i++){if(ingredient1[i][1]!=ingredient2[i][1]){this.ingredients.set(i,ingredient2[i][1])}} 
+            for (let i = image2.length; i < image1.length; i++){
+                this.images.delete(i)
+            }
+        }*/
+        for (let i = 0; i < ingredient2.length; i++){
+            if(ingredient1.length <= i || ingredient1[i][1]!=ingredient2[i][1]){
+                this.ingredients.set(i, ingredient2[i][1])
+            }
+        } 
         if (ingredient1.length > ingredient2.length){
-            for (let i = ingredient2.length; i < ingredient1.length; i++){this.ingredients.delete(i)}
+            for (let i = ingredient2.length; i < ingredient1.length; i++){
+                this.ingredients.delete(i)
+            }
         }
-        for (let i = 0; i < description2.length; i++){if(description1[i][1]!=description2[i][1]){this.description.set(i,description2[i][1])}} 
-        if (description1.length > description2.length){
-            for (let i = description2.length; i < description1.length; i++){this.description.delete(i)}
+        for (let i = 0; i < preparation2.length; i++){
+            if(preparation1.length <= i || preparation1[i][1]!=preparation2[i][1]){
+                this.preparation.set(i, preparation2[i][1])
+            }
+
+        } 
+        if (preparation1.length > preparation2.length){
+            for (let i = preparation2.length; i < preparation1.length; i++){
+                this.preparation.delete(i)
+            }
         }
     }
 }
 
-
+for (const i of predefinedRecipes) {
+    addRecipe(i)
+}
 // Añadir las recetas predeterminadas como objetos en la lista de objetos
 let anad = true
 function anyadir(){
     if(anad){
         console.log("Recetas predefinidas añadidas\n")
-            for (const i of predefinedRecipes) {
-                addRecipe(i)
-            }
+        /*
+        for (const i of predefinedRecipes) {
+            addRecipe(i)
+        }*/
     anad = false
     }
     else{
@@ -232,6 +233,8 @@ export function getEmptyRecipe(){
 
 export function editRecipe(n,classs){
     console.log("/n/n"+n+"/n"+classs+"/n/n")
+    let newRecipeToEdit = new Recipe(classs)
+    recipes.get(n).modifyInto(newRecipeToEdit)
 }
 
 /*
