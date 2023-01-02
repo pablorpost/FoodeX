@@ -63,7 +63,7 @@ function newStepInp(innerText, idNumber){
     $("#lista_prep").append(`
         <li id = 'stepinpli-`+idNumber + `'>
             <input name = "steps" id='stepinp-` + idNumber + `' type='text' value = "` + innerText + `">
-            <button id = 'button-remove-steps-` + idNumber + `' type="button" class="btn btn-danger btn-remove" onclick="delStepBtn(${idNumber})>
+            <button id = 'button-remove-steps-` + idNumber + `' type="button" class="btn btn-danger btn-remove" onclick="delStepBtn(${idNumber})">
                 <i class="bi bi-trash text-light"></i> Delete 
             </button>
             <br>
