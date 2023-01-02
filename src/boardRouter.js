@@ -63,7 +63,7 @@ router.post('/recipe/new', (req, res) => {
     let ingred = req.body.ingred;
     let ingredMap = new Map();
     if (ingred) {
-        if (typeof (ingred) != String) {
+        if (ingred[0].length>1) {
             for (let i = 0; i < ingred.length; i++) {
                 ingredMap.set(i, ingred[i]);
             }
@@ -76,7 +76,7 @@ router.post('/recipe/new', (req, res) => {
     let stepMap = new Map();
     
     if (steps) {
-        if (typeof (steps) != String) {
+        if (steps[0].length>1) {
             for (let i = 0; i < steps.length; i++) {
                 stepMap.set(i, steps[i]);
             }
