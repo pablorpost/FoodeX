@@ -15,21 +15,41 @@ router.get('/moreRecipes', (req, res) => {
     const from = parseInt(req.query.from);
     const to = parseInt(req.query.to); 
     res.render('recetasindex', { 
-        recipes: recipesService.getRecipes(from, to)
+        recipes: recipesService.getRecipes(from,to)
     });
 });
 
 router.get('/showMore/:id', (req, res) => {
+
+    console.log(req.params.id)
     let recipe = recipesService.getRecipe(req.params.id);
+    console.log(recipe)
+
     res.render('show_recipe', recipe);
 });
+/*
+router.get('/showMore/:id/edit', (req, res) => {
+    let recipe = recipesService.getRecipe(req.params.id);
+    console.log(recipe)
 
+    res.render('edit_recipe', recipe);
+
+});
+
+router.post('/recipe/edit', (req, res) => {
+
+});
+*/
 router.get('/showMore/:id/delete', (req, res) => {
     let recipe = recipesService.getRecipe(req.params.id);
+    console.log(recipe)
+
     res.render('conf', recipe);
+
 });
 
 router.get('/showMore/:id/trudelete', (req, res) => {
+    ////if (prop.confirm("¿Seguro que quieres borrar la receta?") == true){}
     recipesService.deleteRecipe(req.params.id)
     res.redirect('/')
 });
@@ -51,7 +71,7 @@ function getRecipeFromForm(reqBody){
         }
     }
 
-    let steps = reqBody.steps;
+    let steps = req.body.steps;
     let stepMap = new Map();
     sum = 0
     if (steps) {
