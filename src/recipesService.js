@@ -145,7 +145,6 @@ function anyadir(){
 
 export function getRecipes(from, to){
     anyadir()
-    console.log("Recetas:"); for (const i of recipes.values()) {console.log("    "+i.getName())}console.log("")
     let recipesArrayOfClass = new Array()
     let recipesArray = [...recipes]
     for (let i = 0; i < recipesArray.length; i++) {
@@ -156,24 +155,18 @@ export function getRecipes(from, to){
             description: recipesArray[i][1].getDescription()
         };
     }
-    console.log(recipesArrayOfClass)
-    if (from !== undefined) {
-        return recipesArrayOfClass.slice(from, to);
-    }
-    return recipesArrayOfClass
+    return recipesArrayOfClass.slice(from, to);
 }
 
 export function getRecipe(i){
     let thisRecipe = recipes.get(i.toString())
-    console.log(thisRecipe)
 
     let imagesArray = thisRecipe.getImages()
     let imagesArrayClass = new Array()
-    console.log(imagesArray)
+
     for (let i = 0; i < imagesArray.length; i++) {
         imagesArrayClass[i] = {image: imagesArray[i][1]}
     }
-    console.log(imagesArrayClass)
 
     let igredientsArray = thisRecipe.getIngredients()
     let igredientsArrayClass = new Array()
@@ -199,14 +192,6 @@ export function getRecipe(i){
 }
 
 
-
-// declarar variables auxiliares
-let add_steps_number = 0 // numero de pasos en la edición o el añadido de una receta
-let add_ingredients_number = 0 // numero de ingredientes en la edición o el añadido de una receta
-let add_photo_number = 0 // numero de fotos en el añadido de una receta
-let idToModify = 0 // saber el id de la receta que deseamos modificar
-let newPhotos = new Array() // lista que almacena las rutas de las imagenes que añadimos en una receta
-
 // Añade una receta a la lista de objetos receta
 export function addRecipe(recipe) {
     let newRecipe = new Recipe(recipe)
@@ -214,79 +199,11 @@ export function addRecipe(recipe) {
     return nextId++
 }
 
-
 export function deleteRecipe(id){
     recipes.delete(id.toString())
 }
 
-export function getEmptyRecipe(){
-    let recipeClassEmpty = {
-        id: nextId++,
-        name: '',
-        description: '',
-        images: [],
-        ingredients: [],
-        preparations: []
-    };
-    return recipeClassEmpty;
-}
-
-export function editRecipe(n,classs){
-    console.log("/n/n"+n+"/n"+classs+"/n/n")
+export function editRecipe(n, classs){
     let newRecipeToEdit = new Recipe(classs)
     recipes.get(n).modifyInto(newRecipeToEdit)
 }
-
-/*
-// Función para asignar funcionalidad a los botones de: mostrar info, editar, ocultar info y ocultar añadido
-function eventFunctionDelShow(){
-    // recibir información del boton que ha sido pulsado
-    $('.btn').on('click', function(event) {
-        // obtenemos la lista de atributos desde el id del boton para saber como actuar
-        let nameButtonPressed = event.target.id.split('-')
-        // obtener el id de la receta que estamos tratando
-        let numberOfId = nameButtonPressed[nameButtonPressed.length - 1]
-        if (nameButtonPressed[0] == 'btn'){
-            // si se desea eliminar el elemento
-            if (nameButtonPressed.includes('del')){
-                // mostrar cuadro de diálogo para confirmar el borrado
-                if (confirm("¿Seguro que quieres borrar la receta?") == true){
-                    // borrar de la vista en HTML
-                    $('#del-' + numberOfId).remove();
-                    // borrar del Map de elementos
-                    recipes.delete(numberOfId.toString())
-                    // si no quedan elementos, mostramos el mensaje de No Quedan Elementos
-                    if (!recipes.size){
-                        $('#noElementsMessage').show()
-                    }
-
-                    if (!$('.existingElement').length){
-                        $('#noElementsMessage').show()
-                    }
-
-                }
-            }
-            // si se desea mostrar más info 
-            if (nameButtonPressed.includes('show')){
-                showMore(numberOfId);
-            }
-            // si se desea editar la receta
-            else if (nameButtonPressed.includes('edit')){
-                editRecipe(numberOfId);
-            }
-            // si se desea ocultar el más info de la receta
-            else if (nameButtonPressed.includes('notShowRecipeView')){
-                $("#main").show();
-                $("#buttons").show();
-                $("#vista_receta").hide();
-            }
-            // si se desea ocultar el añadir receta
-            if (nameButtonPressed.includes('notShowAdd')){
-                $("#main").show();
-                $("#buttons").show();
-                $("#add").hide();
-                resetAdd();
-            }
-        }
-    });
-}                    */

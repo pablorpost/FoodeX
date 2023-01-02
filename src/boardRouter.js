@@ -15,41 +15,21 @@ router.get('/moreRecipes', (req, res) => {
     const from = parseInt(req.query.from);
     const to = parseInt(req.query.to); 
     res.render('recetasindex', { 
-        recipes: recipesService.getRecipes(from,to)
+        recipes: recipesService.getRecipes(from, to)
     });
 });
 
 router.get('/showMore/:id', (req, res) => {
-
-    console.log(req.params.id)
     let recipe = recipesService.getRecipe(req.params.id);
-    console.log(recipe)
-
     res.render('show_recipe', recipe);
 });
-/*
-router.get('/showMore/:id/edit', (req, res) => {
-    let recipe = recipesService.getRecipe(req.params.id);
-    console.log(recipe)
 
-    res.render('edit_recipe', recipe);
-
-});
-
-router.post('/recipe/edit', (req, res) => {
-
-});
-*/
 router.get('/showMore/:id/delete', (req, res) => {
     let recipe = recipesService.getRecipe(req.params.id);
-    console.log(recipe)
-
     res.render('conf', recipe);
-
 });
 
 router.get('/showMore/:id/trudelete', (req, res) => {
-    ////if (prop.confirm("¿Seguro que quieres borrar la receta?") == true){}
     recipesService.deleteRecipe(req.params.id)
     res.redirect('/')
 });
@@ -73,7 +53,6 @@ router.post('/recipe/new', (req, res) => {
     let name = req.body.nombre;
     let description = req.body.description;
     let ingred = req.body.ingred;
-    let images = req.body.imag;
     let ingredMap = new Map();
     let sum = 0;
     if (ingred) {
@@ -87,7 +66,7 @@ router.post('/recipe/new', (req, res) => {
         }
     }
 
-    let steps = req.body.steps;
+    let steps = reqBody.steps;
     let stepMap = new Map();
     sum = 0
     if (steps) {
@@ -128,42 +107,7 @@ router.get('/showMore/:id/edit', (req, res) => {
 });
 
 router.post('/showMore/:id/edit', (req, res) => {
-    
-    let name = req.body.nombre;
-    let description = req.body.description;
-    let ingred = req.body.ingred;
-    let ingredMap = new Map();
-    let sum = 0;
-    if (ingred) {
-        for(const l of ingred){sum += l.length}
-        if (ingred.length!=sum) {
-            for (let i = 0; i < ingred.length; i++) {
-                ingredMap.set(i, ingred[i]);
-            }
-        } else {
-            ingredMap.set(0, ingred);
-        }
-    }
-
-    let steps = req.body.steps;
-    let stepMap = new Map();
-    sum = 0
-    if (steps) {
-        for(const l of ingred){sum += l.length}
-        if (steps.length!=sum) {
-            for (let i = 0; i < steps.length; i++) {
-                stepMap.set(i, steps[i]);
-            }
-        } else {
-            stepMap.set(0, steps);
-        }
-    }
-
-    
-    let images = new Map();
-    images.set(0, '/Resources/fotoPredeterminadaDeReceta.jpg');
-    
-    recipesService.editRecipe(req.params.id, [name, description, images, ingredMap, stepMap]);
+    recipesService.editRecipe(req.params.id, getRecipeFromForm(req.body));
     res.redirect('/');
 });
 
