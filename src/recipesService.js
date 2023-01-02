@@ -89,17 +89,18 @@ class Recipe {
         let ingredient2 = r2.getIngredients()
         let preparation1 = this.getPreparation()
         let preparation2 = r2.getPreparation()
-        /*
+
         for (let i = 0; i < image2.length; i++){
             if(image1.length <= i || image1[i][1]!=image2[i][1]){
                 this.images.set(i,image2[i][1])
             }
         } 
+        console.log(this.images)
         if (image1.length > image2.length){
             for (let i = image2.length; i < image1.length; i++){
                 this.images.delete(i)
             }
-        }*/
+        }
         for (let i = 0; i < ingredient2.length; i++){
             if(ingredient1.length <= i || ingredient1[i][1]!=ingredient2[i][1]){
                 this.ingredients.set(i, ingredient2[i][1])
