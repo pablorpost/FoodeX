@@ -27,7 +27,7 @@
                 alt="">
             FoodeX
         </a>
-        <p class="navbar-text">Recetas</p>
+        <a href= "/" class="navbar-text">Recetas</a>
     </nav>
 
     <!-- Header-->
@@ -54,9 +54,9 @@
                         
                         <p>Nombre: <input name = "nombre" id='tituloinp' type='text' value = "{{name}}" ></p> <!-- Input titulo -->
                         <p>Descripcion: <input name = "description"  id='descripcioninp' type='text' value = "{{description}}"></p> <!-- Input descripcion -->
-                        <div id="ingredientes_input">
+                        <div id="ingredients_input">
                             <p>Ingredientes:</p>
-                            <ul id="lista_ingredientes">
+                            <ul id="ingredients_list">
                                 {{#ingredients}}
                                 <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
                                 <li id = 'ingredientinpli-{{id}}'>
@@ -72,9 +72,9 @@
                         </div>
                         <button type="button" id="btn-addingredients" class="btn btn-primary" onclick="newIngredient()">A&ntilde;adir ingrediente</button>
                         <!-- Boton para añadir un ingrediente más -->
-                        <div id="preparacion_input">
+                        <div id="preparation_input">
                             <p>Preparacion:</p>
-                            <ol id="lista_prep">
+                            <ol id="prep_list">
                                 {{#preparations}}
                                 <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
                                 <li id = 'stepinpli-{{id}}'>
@@ -107,10 +107,9 @@
                         <button type="button" id="btn-addphoto" class="btn btn-primary" onclick="newImage()">A&ntilde;adir foto</button>
                         <!-- Boton para añadir una foto más -->
                     </div>
-                    <p id="notImageEditMessage"></p>
                     <div class="center centerText">
                         <button type="submit" id="btn-new" class="btn btn-primary">Editar receta</button>
-                        <button href="/" type="button" id="btn-notShowAdd" class="btn btn-primary">Cancelar</button>
+                        <a href='/' type="button" id="btn-notShowAdd" class="btn btn-primary">Cancelar</a>
                     </div>
                     <br><br><br>
                 </div>

@@ -37,7 +37,7 @@ function delImgBtn (idNumber) {
 
 // crear el html de un nuevo campo de los ingredientes
 function newIngredientInp(innerText, idNumber){
-    $("#lista_ingredientes").append(`
+    $("#ingredients_list").append(`
         <li id = 'ingredientinpli-` + idNumber + `'>
             <input name = "ingred" id='ingredientinp-` + idNumber + `' type='text' value = "` + innerText + `">
             <button id = 'button-remove-ingredients-` + idNumber + `'  type="button" class="btn btn-danger btn-remove" onclick="delIngredientBtn(${idNumber})">
@@ -60,7 +60,7 @@ function newImageInp(idNumber){
 
 // crear el html de un nuevo campo de los pasos
 function newStepInp(innerText, idNumber){
-    $("#lista_prep").append(`
+    $("#prep_list").append(`
         <li id = 'stepinpli-`+idNumber + `'>
             <input name = "steps" id='stepinp-` + idNumber + `' type='text' value = "` + innerText + `">
             <button id = 'button-remove-steps-` + idNumber + `' type="button" class="btn btn-danger btn-remove" onclick="delStepBtn(${idNumber})">
