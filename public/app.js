@@ -19,22 +19,28 @@ let add_ingredients_number = 0;
 let add_steps_number = 0;
 let add_photo_number = 0;
 
+function delIngredientBtn (idNumber) {
+    if (confirm("¿Seguro que quieres borrar este ingrediente?") == true){
+        $('#ingredientinpli-' + idNumber).remove()
+    }
+}
+
+function delStepBtn (idNumber) {
+    if (confirm("¿Seguro que quieres borrar este paso?") == true){
+        $('#stepinpli-' + idNumber).remove()
+    }
+}
+
 // crear el html de un nuevo campo de los ingredientes
 function newIngredientInp(innerText, idNumber){
     $("#lista_ingredientes").append(`
         <li id = 'ingredientinpli-` + idNumber + `'>
             <input name = "ingred" id='ingredientinp-` + idNumber + `' type='text' value = "` + innerText + `">
-            <button id = 'button-remove-ingredients-` + idNumber + `'  type="button" class="btn btn-danger btn-remove">
+            <button id = 'button-remove-ingredients-` + idNumber + `'  type="button" class="btn btn-danger btn-remove" onclick="delIngredientBtn(${idNumber})">
                 <i class="bi bi-trash text-light"></i> Delete 
             </button>
             <br>
-        </li>`).css("color", "black");
-    
-        $('#button-remove-ingredients-' + idNumber).click(function () {
-            if (confirm("¿Seguro que quieres borrar este ingrediente?") == true){
-                $('#ingredientinpli-' + idNumber).remove()
-            }
-        });
+        </li>`);
 }
 
 function newImageInp(idNumber){ //<input name='imag' id="imageinpli-`+idNumber+`" type="text">
@@ -64,17 +70,11 @@ function newStepInp(innerText, idNumber){
     $("#lista_prep").append(`
         <li id = 'stepinpli-`+idNumber + `'>
             <input name = "steps" id='stepinp-` + idNumber + `' type='text' value = "` + innerText + `">
-            <button id = 'button-remove-steps-` + idNumber + `' type="button" class="btn btn-danger btn-remove">
+            <button id = 'button-remove-steps-` + idNumber + `' type="button" class="btn btn-danger btn-remove" onclick="delStepBtn(${idNumber})>
                 <i class="bi bi-trash text-light"></i> Delete 
             </button>
             <br>
-        </li>`).css("color", "black");
-    
-        $('#button-remove-steps-' + idNumber).click(function () {
-            if (confirm("¿Seguro que quieres borrar este paso?") == true){
-                $('#stepinpli-' + idNumber).remove()
-            }
-        });
+        </li>`);
 }
 
 function newIngredient(){
