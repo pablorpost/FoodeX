@@ -87,7 +87,7 @@ router.post('/recipe/new', (req, res) => {
 
     
     let images = new Map();
-    images.set(0, 'Resources/fotoPredeterminadaDeReceta.jpg');
+    images.set(0, '/Resources/fotoPredeterminadaDeReceta.jpg');
     
     recipesService.addRecipe([name, description, images, ingredMap, stepMap]);
     res.redirect('/');
