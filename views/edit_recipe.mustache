@@ -92,14 +92,19 @@
                         <!-- Boton para añadir un paso más -->
                         <div>
                             <p>Imagenes:</p>
-                            <ol id="image_input">
-                                <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
-                                <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);" />
-                                    <div id="imgTest0"></div>
+                            <ol id="list_image">
+                                {{#images}}
+                                <li id = 'imageinpli-{{id}}'>
+                                    <input name = "image" id='imageinp-{{id}}' type='text' value = "{{image}}">
+                                    <button id = 'button-remove-images-{{id}}'  type="button" class="btn btn-danger btn-remove" onclick="delImgBtn('{{id}}')">
+                                        <i class="bi bi-trash text-light"></i> Delete 
+                                    </button>
+                                    <br>
                                 </li>
+                                {{/images}}
                             </ol>
                         </div>
-                        <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button>
+                        <button type="button" id="btn-addphoto" class="btn btn-primary" onclick="newImage()">A&ntilde;adir foto</button>
                         <!-- Boton para añadir una foto más -->
                     </div>
                     <p id="notImageEditMessage"></p>

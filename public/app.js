@@ -1,5 +1,3 @@
-//import * as recipesService from '../src/recipesService.js';
-
 const NUM_RESULTS = 5 ;
 let loadMoreRequests = 0;
 
@@ -31,6 +29,12 @@ function delStepBtn (idNumber) {
     }
 }
 
+function delImgBtn (idNumber) {
+    if (confirm("¿Seguro que quieres borrar esta imagen?") == true){
+        $('#imageinpli-' + idNumber).remove()
+    }
+}
+
 // crear el html de un nuevo campo de los ingredientes
 function newIngredientInp(innerText, idNumber){
     $("#ingredients_list").append(`
@@ -43,26 +47,15 @@ function newIngredientInp(innerText, idNumber){
         </li>`);
 }
 
-function newImageInp(idNumber){ //<input name='imag' id="imageinpli-`+idNumber+`" type="text">
-    $("#image_input").append(`
+function newImageInp(idNumber){
+        $("#list_image").append(`
         <li id = 'imageinpli-` + idNumber + `'>
-            
-            <input id="inputFileToLoad`+idNumber+`" type="file" onchange="encodeImageFileAsURL(`+idNumber+`);"/>
-            <div id="imgTest`+idNumber+`"></div>
-            <div id="imageimpli-"`+idNumber+`>wrqq</div>
-            
-
-            <button id = 'button-remove-images-` + idNumber + `'  type="button" class="btn btn-danger btn-remove">
+            <input name = "image" id='imageinp-` + idNumber + `' type='text' value = "` + '' + `">
+            <button id = 'button-remove-images-` + idNumber + `'  type="button" class="btn btn-danger btn-remove" onclick="delImgBtn(${idNumber})">
                 <i class="bi bi-trash text-light"></i> Delete 
             </button>
             <br>
-        </li>`).css("color", "black");
-    
-        $('#button-remove-images-' + idNumber).click(function () {
-            if (confirm("¿Seguro que quieres borrar esta imagen?") == true){
-                $('#imageinpli-' + idNumber).remove()
-            }
-        });
+        </li>`);
 }
 
 // crear el html de un nuevo campo de los pasos
@@ -90,174 +83,4 @@ function newStep(){
 function newImage(){
     newImageInp(add_photo_number)
     add_photo_number++
-}
-
-// Para poder utilizar imágenes que se almacenan en la ejecución de la página
-function encodeImageFileAsURL(i) {
-    let filesSelected = document.getElementById("inputFileToLoad"+i).files;    
-    if (filesSelected.length > 0) {
-        let fileToLoad = filesSelected[0];
-
-        let fileReader = new FileReader();
-
-        fileReader.onload = function(fileLoadedEvent) {
-            let srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-            let newImage = document.createElement('img');
-            newImage.src = srcData;
-
-            //document.getElementById("imageimpli-"+i).innerHTML = srcData ;
-            
-            //newPhotos[add_photo_number - 1] = srcData; // Añadir elemento al array
-
-            document.getElementById("imgTest"+i).innerHTML = newImage.outerHTML;
-        }
-        fileReader.readAsDataURL(fileToLoad);
-    }
-}
-
-/*
-
-function encodeImageFileAsURL(i) {
-    let filesSelected = document.getElementById("imageinp-"+i).files;    
-    if (filesSelected.length > 0) {
-        let fileToLoad = filesSelected[0];
-
-        let fileReader = new FileReader();
-
-        fileReader.onload = function(fileLoadedEvent) {
-            let srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-            let newImage = document.createElement('img');
-            newImage.src = srcData;
-            newPhotos[add_photo_number - 1] = srcData; // Añadir elemento al array
-
-            document.getElementById("imgTest"+i).innerHTML = newImage.outerHTML;
-        }
-        fileReader.readAsDataURL(fileToLoad);
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Función para asignar funcionalidad a los botones de: 
-function buttonsAddElementsInListAddEdit(){
-    
-    // Añadir receta con los datos obtenidos
-    $("#btn-new").click(function () {
-        let newpasos = new Map()
-        let newingredients = new Map()
-        let newPhotos = new Map()
-        // recoger los pasos del html
-        for (let i = 0; i < add_steps_number; i++) {
-            if ($("#stepinp-" + i).val()) {
-                newpasos.set(i, $("#stepinp-" + i).val());
-            }
-        }
-        // recoger los ingredientes del html
-        for (let i = 0; i < add_ingredients_number; i++) {
-            if ($("#ingredientinp-" + i).val()){
-                newingredients.set(i, $("#ingredientinp-" + i).val())
-            }
-        }
-        
-        // si no hay fotos, añadir la foto predeterminada
-        if (!newPhotos.size()){
-            newPhotos.set(0, 'Resources/fotoPredeterminadaDeReceta.jpg')
-        }
-        // si proviene del añadir
-        let thisId = recipesService.addRecipe([$("#tituloinp").val(), $("#descripcioninp").val(), newPhotos, newingredients, newpasos]);
-        // Resetear el añadir receta
-        resetAdd()
-    });
-}
-*/
-// Para poder utilizar imágenes que se almacenan en la ejecución de la página
-/*
-function encodeImageFileAsURL(i) {
-    let filesSelected = document.getElementById("inputFileToLoad"+i).files;    
-    if (filesSelected.length > 0) {
-        let fileToLoad = filesSelected[0];
-
-        let fileReader = new FileReader();
-
-        fileReader.onload = function(fileLoadedEvent) {
-            let srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-            let newImage = document.createElement('img');
-            newImage.src = srcData;
-            newPhotos[add_photo_number - 1] = srcData; // Añadir elemento al array
-
-            document.getElementById("imgTest"+i).innerHTML = newImage.outerHTML;
-        }
-        fileReader.readAsDataURL(fileToLoad);
-    }
-}
-*/
-// resetea el add y restablece las funciones de los botones
-function resetAdd(){
-    $("#add").html(`
-        <div class="col">
-            <div class="card">
-                <br>
-                <div class="card-body">
-                    <h5  class="card-title"><strong id="addTitle"></strong></h5>
-                    <div>
-                        <p>Nombre: <input id='tituloinp' type='text'></p> <!-- Input titulo -->
-                        <p>Descripcion: <input id='descripcioninp' type='text'></p> <!-- Input descripcion -->
-                        <div id="ingredients_input">
-                            <p>Ingredientes:</p>
-                            <ul id="lista_ingredientes"> <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
-                            </ul>
-                        </div>
-                        <button id="btn-addingredients" class="btn btn-primary">A&ntilde;adir ingrediente</button> <!-- Boton para añadir un ingrediente más -->
-                        <div id="preparation_input">
-                            <p>Preparacion:</p>
-                            <ol id="lista_prep"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
-                            </ol>
-                        </div>
-                        <button id="btn-addsteps" class="btn btn-primary">A&ntilde;adir paso</button> <!-- Boton para añadir un paso más -->
-                        <div>
-                            <p>Imagenes:</p>
-                            <ol id="image_input"> <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
-                                <li><input id="inputFileToLoad0" type="file" onchange="encodeImageFileAsURL(0);"/>
-                                <div id="imgTest0"></div></li>
-                            </ol>
-                        </div>
-                        <button id="btn-addphoto" class="btn btn-primary">A&ntilde;adir foto</button> <!-- Boton para añadir una foto más -->
-                    </div>
-                    <p id="notImageEditMessage"></p>
-                    <div class="center centerText">
-                        <button id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
-                        <button id="btn-notShowAdd" class="btn btn-primary">Volver</button>
-                    </div>
-                    <br><br><br>
-                </div>
-            </div>
-        </div>
-    `)
-    buttonsAddElementsInListAddEdit();
 }

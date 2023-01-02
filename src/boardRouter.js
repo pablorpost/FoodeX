@@ -39,7 +39,7 @@ router.post('/recipe/new', (req, res) => {
     let name = req.body.nombre;
     let description = req.body.description;
     let ingred = req.body.ingred;
-    let images = req.body.imag;
+    
     let ingredMap = new Map();
     let sum = 0;
     if (ingred) {
@@ -67,6 +67,7 @@ router.post('/recipe/new', (req, res) => {
         }
     }
 
+    let images = req.body.image;
     let imagesMap = new Map();
     sum = 0;
     if(images){
@@ -124,10 +125,24 @@ router.post('/showMore/:id/edit', (req, res) => {
         }
     }
     
-    let images = new Map();
-    images.set(0, '/Resources/fotoPredeterminadaDeReceta.jpg');
+    let images = req.body.image;
+    let imagesMap = new Map();
+    sum = 0;
+    if(images){
+        for(const l of images){sum += l.length}
+        if (images.length!=sum) {
+            for (let i = 0; i < images.length; i++) {
+                imagesMap.set(i, images[i]);
+            }
+        } else {
+            imagesMap.set(0, images);
+        }
+    }
+    else{
+        imagesMap.set(0, '/Resources/fotoPredeterminadaDeReceta.jpg');
+    }
     
-    recipesService.editRecipe(req.params.id, [name, description, images, ingredMap, stepMap]);
+    recipesService.editRecipe(req.params.id, [name, description, imagesMap, ingredMap, stepMap]);
     res.redirect('/');
 });
 
