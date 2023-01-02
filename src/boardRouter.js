@@ -62,8 +62,10 @@ router.post('/recipe/new', (req, res) => {
     let description = req.body.description;
     let ingred = req.body.ingred;
     let ingredMap = new Map();
+    let sum = 0;
     if (ingred) {
-        if (ingred[0].length>1) {
+        for(const l of ingred){sum += l.length}
+        if (ingred.length!=sum) {
             for (let i = 0; i < ingred.length; i++) {
                 ingredMap.set(i, ingred[i]);
             }
@@ -74,9 +76,10 @@ router.post('/recipe/new', (req, res) => {
 
     let steps = req.body.steps;
     let stepMap = new Map();
-    
+    sum = 0
     if (steps) {
-        if (steps[0].length>1) {
+        for(const l of ingred){sum += l.length}
+        if (steps.length!=sum) {
             for (let i = 0; i < steps.length; i++) {
                 stepMap.set(i, steps[i]);
             }
