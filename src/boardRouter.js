@@ -1,14 +1,17 @@
+//importamos el modulo express y todas las funciones del recipeService
 import express from 'express';
 import * as recipesService from './recipesService.js';
 
 const router = express.Router();
 
+//index
 router.get('/', (req, res) => {
     res.render('index', { 
         recipes: recipesService.getRecipes(0,5)
     });
 });
 
+//mostrar más recetas (las carga con Ajax)
 router.get('/moreRecipes', (req, res) => {
     const from = parseInt(req.query.from);
     const to = parseInt(req.query.to); 
@@ -17,11 +20,13 @@ router.get('/moreRecipes', (req, res) => {
     });
 });
 
+//mostrar receta
 router.get('/showMore/:id', (req, res) => {
     let recipe = recipesService.getRecipe(req.params.id);
     res.render('show_recipe', recipe);
 });
 
+//una vez mostrada la receta, se le da a eliminar
 router.get('/showMore/:id/delete', (req, res) => {
     let recipe = recipesService.getRecipe(req.params.id);
     console.log(recipe)
@@ -29,11 +34,13 @@ router.get('/showMore/:id/delete', (req, res) => {
 
 });
 
+//confirmación de eliminar
 router.get('/showMore/:id/trudelete', (req, res) => {
     recipesService.deleteRecipe(req.params.id)
     res.redirect('/')
 });
 
+//recibir los datos del formulario de añadir
 router.post('/recipe/new', (req, res) => {
     
     let name = req.body.nombre;
@@ -81,6 +88,7 @@ router.post('/recipe/new', (req, res) => {
         }
     }
     else{
+        //cargamos imagen predefinida
         imagesMap.set(0, '/Resources/fotoPredeterminadaDeReceta.jpg');
     }
 
@@ -88,11 +96,13 @@ router.post('/recipe/new', (req, res) => {
     res.redirect('/');
 });
 
+//enviamos a la página con el formulario para editar receta
 router.get('/showMore/:id/edit', (req, res) => {
     let thisRecipe = recipesService.getRecipe(req.params.id);
     res.render('edit_recipe', thisRecipe);
 });
 
+//recogemos los nuevos datos de la receta
 router.post('/showMore/:id/edit', (req, res) => {
     
     let name = req.body.nombre;

@@ -105,7 +105,7 @@
   border-radius: 0.6rem;
 }
 
-#vista_recta_buttons_sep {
+#view_recipe_buttons_sep {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;

@@ -45,7 +45,7 @@ let predefinedRecipes = [
 
 ]
 
-// Objeto receta que almacena los datos de una receta con geters y setters
+// Objeto receta que almacena los datos de una receta con diferentes funciones que usaremos 
 class Recipe {
     name = ''
     description = ''
@@ -61,6 +61,7 @@ class Recipe {
         if (datos[4]) { this.preparation = datos[4] }
     }
 
+    //getters y setters
     getName = () => this.name
     setName = name => this.name = name
 
@@ -76,6 +77,7 @@ class Recipe {
     getPreparation = () => [...this.preparation]
     setPreparation = preparation => this.preparation = preparation
     
+    //función que modifica una receta comparándola con otra 
     modifyInto(r2){
         if (this.name!=r2.getName()){
             this.setName(r2.getName());
@@ -124,10 +126,12 @@ class Recipe {
     }
 }
 
+//carga las recetas predefinidas
 for (const i of predefinedRecipes) {
     addRecipe(i)
 }
 
+//devuelve una lista de recetas desde el index from hasta to
 export function getRecipes(from, to){
     let recipesArrayOfClass = new Array()
     let recipesArray = [...recipes]
@@ -183,10 +187,12 @@ export function addRecipe(recipe) {
     return nextId++
 }
 
+// Elimina una receta de la lista de objetos receta
 export function deleteRecipe(id){
     recipes.delete(id.toString())
 }
 
+// Modifica una receta de la lista de objetos receta
 export function editRecipe(n, classs){
     let newRecipeToEdit = new Recipe(classs)
     recipes.get(n).modifyInto(newRecipeToEdit)

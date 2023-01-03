@@ -48,10 +48,8 @@
                 <br>
                 <form action="recipe/new" method="post">
                 <div class="card-body">
-                    
                     <h5 class="card-title"><strong id="addTitle"></strong></h5>
                     <div>
-                        
                         <p>Nombre: <input name = "nombre" id='tituloinp' type='text' ></p> <!-- Input titulo -->
                         <p>Descripcion: <input name = "description"  id='descripcioninp' type='text'></p> <!-- Input descripcion -->
                         <div id="ingredients_input">
@@ -60,16 +58,16 @@
                                 <!-- Lista sin orden en la que se añadira por jquery los inputs de los ingredientes -->
                             </ul>
                         </div>
+                        <!-- Boton para añadir un ingrediente más -->                        
                         <button type="button" id="btn-addingredients" class="btn btn-primary" onclick="newIngredient()">A&ntilde;adir ingrediente</button>
-                        <!-- Boton para añadir un ingrediente más -->
                         <div id="preparation_input">
                             <p>Preparacion:</p>
                             <ol id="prep_list">
                                 <!-- Lista ordenada en la que se añadira por jquery los inputs de los pasos -->
                             </ol>
                         </div>
-                        <button type="button" id="btn-addsteps" class="btn btn-primary" onclick="newStep()">A&ntilde;adir paso</button>
                         <!-- Boton para añadir un paso más -->
+                        <button type="button" id="btn-addsteps" class="btn btn-primary" onclick="newStep()">A&ntilde;adir paso</button>
                         <div id="image_input">
                             <p>Imagenes:</p>
                             <ol id="list_image">
@@ -77,10 +75,9 @@
                                 
                             </ol>
                         </div>
-                        <button type="button" id="btn-addphoto" class="btn btn-primary" onclick="newImage()">A&ntilde;adir foto</button>
                         <!-- Boton para añadir una foto más -->
+                        <button type="button" id="btn-addphoto" class="btn btn-primary" onclick="newImage()">A&ntilde;adir foto</button>
                     </div>
-                    <p id="notImageEditMessage"></p>
                     <div class="center centerText">
                         <button type="submit" id="btn-new" class="btn btn-primary">A&ntilde;adir receta</button>
                         <a href='/' type="button" id="btn-notShowAdd" class="btn btn-primary">Volver</a>
