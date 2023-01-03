@@ -146,6 +146,7 @@ export function getRecipes(from, to){
     return recipesArrayOfClass.slice(from, to);
 }
 
+//recibe los datos de una receta en función de su index
 export function getRecipe(i){
     let thisRecipe = recipes.get(i.toString())
 
